@@ -14,12 +14,11 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    activeadmin (0.6.0)
-      arbre (>= 1.0.1)
+    activeadmin (0.4.4)
       bourbon (>= 1.0.0)
       devise (>= 1.1.2)
       fastercsv
-      formtastic (>= 2.0.0)
+      formtastic (~> 2.1.1)
       inherited_resources (>= 1.3.1)
       jquery-rails (>= 1.0.0)
       kaminari (>= 0.13.0)
@@ -42,8 +41,6 @@ GEM
       multi_json (~> 1.0)
     addressable (2.3.4)
     annotate (2.4.1.beta1)
-    arbre (1.0.1)
-      activesupport (>= 3.0.0)
     arel (3.0.2)
     aws-sdk (1.3.9)
       httparty (~> 0.7)
@@ -74,10 +71,24 @@ GEM
     cocaine (0.5.1)
       climate_control (>= 0.0.3, < 1.0)
     coderay (1.0.9)
+    coffee-rails (3.2.2)
+      coffee-script (>= 2.2.0)
+      railties (~> 3.2.0)
+    coffee-script (2.2.0)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.6.2)
+    columnize (0.3.6)
     commonjs (0.2.6)
     daemons (1.1.9)
     dalli (2.6.3)
     database_cleaner (0.9.1)
+    debugger (1.6.0)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
+      debugger-ruby_core_source (~> 1.2.1)
+    debugger-linecache (1.2.0)
+    debugger-ruby_core_source (1.2.1)
     delayed_job (3.0.5)
       activesupport (~> 3.0)
     delayed_job_active_record (0.4.4)
@@ -92,7 +103,6 @@ GEM
     dotenv (0.7.0)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    excon (0.20.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
     facets (2.9.3)
@@ -107,8 +117,8 @@ GEM
       dotenv (>= 0.7)
       thor (>= 0.13.6)
     formatador (0.2.4)
-    formtastic (2.2.1)
-      actionpack (>= 3.0)
+    formtastic (2.1.1)
+      actionpack (~> 3.0)
     friendly_id (4.0.9)
     gon (4.1.0)
       actionpack (>= 2.3.0)
@@ -127,14 +137,6 @@ GEM
       guard (>= 1.1)
       spork (>= 0.8.4)
     has_scope (0.5.1)
-    heroku (2.39.2)
-      heroku-api (~> 0.3.7)
-      launchy (>= 0.3.2)
-      netrc (~> 0.7.7)
-      rest-client (~> 1.6.1)
-      rubyzip
-    heroku-api (0.3.9)
-      excon (~> 0.20.1)
     hike (1.2.2)
     httparty (0.11.0)
       multi_json (~> 1.0)
@@ -156,6 +158,8 @@ GEM
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
+    kgio (2.8.0)
+    kramdown (1.0.2)
     launchy (2.3.0)
       addressable (~> 2.3)
     less (2.3.2)
@@ -175,6 +179,9 @@ GEM
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    memcached (1.5.0)
+    meta-tags (1.5.0)
+      actionpack
     meta_search (1.1.3)
       actionpack (~> 3.1)
       activerecord (~> 3.1)
@@ -184,10 +191,11 @@ GEM
     mime-types (1.23)
     multi_json (1.7.3)
     multi_xml (0.5.3)
-    netrc (0.7.7)
     newrelic_rpm (3.6.2.96)
     nokogiri (1.5.9)
     orm_adapter (0.4.0)
+    pagedown-rails (1.0.0)
+      railties (~> 3.1)
     paperclip (3.4.1)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -203,6 +211,11 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    pry-debugger (0.2.2)
+      debugger (~> 1.3)
+      pry (~> 0.9.10)
+    pry-rails (0.3.0)
+      pry (>= 0.9.10)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -241,8 +254,6 @@ GEM
     ref (1.0.4)
     responders (0.9.3)
       railties (~> 3.1)
-    rest-client (1.6.7)
-      mime-types (>= 1.16)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -259,13 +270,16 @@ GEM
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
     ruby-graphviz (1.0.9)
-    rubyzip (0.9.9)
+    ruby-prof (0.13.0)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
     seed_dump (0.4.2)
+    sextant (0.2.3)
+      activesupport (>= 3.2)
+      rails (>= 3.2)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
       shoulda-matchers (>= 1.4.1, < 3.0)
@@ -300,8 +314,6 @@ GEM
       rack (>= 1.0.0)
     thor (0.18.1)
     tilt (1.4.1)
-    tinymce-rails (3.5.8.2)
-      railties (>= 3.1.1)
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
@@ -319,14 +331,14 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin
+  activeadmin (= 0.4.4)
   annotate (~> 2.4.1.beta)
   aws-sdk (~> 1.3.4)
   bluecloth
-  bundler (>= 1.2.1)
   cancan
   capybara
   capybara-webkit
+  coffee-rails (~> 3.2.1)
   dalli
   database_cleaner
   delayed_job_active_record
@@ -334,27 +346,35 @@ DEPENDENCIES
   facets
   factory_girl_rails
   foreman
-  friendly_id (~> 4.0.9)
+  friendly_id
   gon
   guard-rspec
   guard-spork
-  heroku
   httparty
   hunspell-ffi
   jquery-ui-rails
   json
+  kgio
+  kramdown
   launchy
   less-rails-bootstrap
+  memcached
+  meta-tags
   meta_search (>= 1.1.0.pre)
   newrelic_rpm
+  pagedown-rails (= 1.0.0)
   paperclip (~> 3.0)
   pg
   progressbar
+  pry-debugger
+  pry-rails
   rails (= 3.2.11)
   rails-erd
   rspec-rails (>= 2.10.1)
+  ruby-prof (~> 0.13.0)
   sass-rails (~> 3.2.5)
   seed_dump
+  sextant
   shoulda
   simplecov
   spork-rails
@@ -364,5 +384,4 @@ DEPENDENCIES
   text
   therubyracer
   thin
-  tinymce-rails
   uglifier (>= 1.0.3)
