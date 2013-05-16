@@ -1,5 +1,5 @@
 <% set_meta_tags :description => @article.preview,
-                 :canonical => "http://answers.honolulu.gov#{request.fullpath}",
+                 :canonical => "http://oaklandanswers.herokuapp.com/#{request.fullpath}",
                  :title => [@article.category.name, @article.title] %>
 <div class="page-container article">
   <div class="breadcrumbs">
@@ -22,8 +22,8 @@
             <div class="servicebox">
               <a href="<%= @article.service_url%>" target="_blank"><img src="/assets/getting_started_btn.png" /></a>
             </div>
-            <h3 class="service">Honolulu.gov lets you do this online! </h3>
-            <p>This will take you directly to the online service on the honolulu.gov website.</p>
+            <h3 class="service">Oaklandnet.com lets you do this online! </h3>
+            <p>This will take you directly to the online service on the oaklandnet.com website.</p>
           </div>
           <% end %>
 
