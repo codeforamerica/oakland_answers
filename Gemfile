@@ -42,6 +42,7 @@ gem 'hunspell-ffi'                        # Spellchecking library
 gem 'text'                                # NLP algorithms
 gem 'httparty'                            # For accessing APIs directly
 gem 'json'                                # Convert between JSON and Ruby objects
+gem 'indextank'                           # library for interacting with Searchify
 
 ## Content and presentation
 gem 'bluecloth'                           # Parse Markdown

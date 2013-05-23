@@ -15,13 +15,14 @@ class SearchController < ApplicationController
       @results = []
       return
     end
+    require 'indextank'
     # expand the query
     query_final = Article.expand_query( query )
     # perform the search
     @results = Article.search_tank( query_final)#, :conditions => { :status => 'Published' } )
     # Log the search results
     puts "search-request: IP:#{request.env['REMOTE_ADDR']}, params[:query]:#{query}, QUERY:#{query_final}, FIRST_RESULT:#{@results.first.title unless @results.empty?}, RESULTS_N:#{@results.size}" 
-
+ 
     respond_to do |format|
       format.json  { render @results }
       format.html
