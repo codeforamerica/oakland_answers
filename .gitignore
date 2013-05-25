@@ -32,3 +32,4 @@ coverage/
 tags
 
 config/database.yml
+latest.dump
