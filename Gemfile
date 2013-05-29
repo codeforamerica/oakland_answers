@@ -37,7 +37,7 @@ gem 'devise', '~> 2.0'                    # User authentication
 gem 'cancan'                              # User permissions
 
 ## Search and NLP
-gem 'indextank'
+# gem 'indextank'
 gem 'tanker'                              # library for interacting with Searchify
 gem 'hunspell-ffi'                        # Spellchecking library 
 gem 'text'                                # NLP algorithms
@@ -69,13 +69,13 @@ end
 group :test, :development do
   gem 'rspec-rails', '>= 2.10.1'          # Testing framework
   gem 'shoulda'                           # Extra RSpec matchers for Active Record Associations
-  # gem 'capybara'                          # Simulates real-user behaviour for acceptance and integration testing
+  gem 'capybara'                          # Simulates real-user behaviour for acceptance and integration testing
   gem 'launchy'                           # Lets you 'save_and_open_page' in the middle of a test - opens up the browser and shows you the current state of the page
   gem 'guard-rspec'                       # Guard integratio for RSpec.  Guard monitors files and automatically and intelligently runs 'rspec spec' in the background
   gem 'factory_girl_rails'                # Create factories to test against
   gem 'spork-rails'                       # Speeds up TDD by launching multiple Rails instances in the background
   gem 'guard-spork'                       # Make guard aware of Spork - automatically restart spork if a change requires a rails restart   
-  # gem 'capybara-webkit'                   # JS driver for Capybara (headless)
+  gem 'capybara-webkit'                   # JS driver for Capybara (headless)
   gem 'memcached'                         # Local memcache
   gem 'sextant'                           # visit /rails/routes in the browser for nicer 'rake routes'
 end
