@@ -37,6 +37,7 @@ gem 'devise', '~> 2.0'                    # User authentication
 gem 'cancan'                              # User permissions
 
 ## Search and NLP
+gem 'indextank'
 gem 'tanker'                              # library for interacting with Searchify
 gem 'hunspell-ffi'                        # Spellchecking library 
 gem 'text'                                # NLP algorithms
