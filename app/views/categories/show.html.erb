@@ -1,4 +1,5 @@
-<% set_meta_tags :description => "Questions related to #{@category.name}.", :canonical => "http://oaklandanswers.herokuapp.com#{request.fullpath}" %>
+<%= set_meta_tags :description => "Questions related to #{@category.name}.", 
+                  :canonical => link_to_offical_government_website(request.fullpath) %>
 <div class="page-container">
   <div class="breadcrumbs">
     <%= link_to( "Home", root_url) %>

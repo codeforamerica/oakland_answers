@@ -1,4 +1,7 @@
-<% set_meta_tags :description => "All #{@article_type.split(/(?=[A-Z])/).join(' ')} questions.", :canonical => "http://answers.oaklandnet.com#{request.fullpath}" %>
+<%= set_meta_tags :description => "All #{@article_type.split(/(?=[A-Z])/).join(' ')} questions.", 
+                 :canonical => link_to_offical_government_website(request.fullpath),
+                 :title => [@article.category.name, @article.title] %>
+
 <div class="page-container">
   <div class="breadcrumbs">
     <%= link_to( "Home", root_url) %>

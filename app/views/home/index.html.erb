@@ -1,12 +1,12 @@
-<% set_meta_tags :description => "Find answers to your questions about Honolulu City Services." %>
+<%= set_meta_tags :description => "Find answers to your questions about #{offical_city_name} City Services." %>
 <div class="modal-container span8">
   <div class="main-modal">
     <div id="welcome-line-l"></div>
     <div id="welcome-line-r"></div>
     <h3 class="welcome">Welcome To</h3>
-    <h1 class="home-modal">Oakland Answers</h1>
+    <h1 class="home-modal"><%= offical_site_title %></h1>
     <p class="call">
-      Find answers to your questions about City of Oakland services.
+      <%= "Find answers to your questions about City of #{offical_city_name} services." %>
     </p>
 
     <div class="ribbon-front">

@@ -6,17 +6,36 @@ module ApplicationHelper
 		Category.where(:name => name).first
 	end
 
-	def offical_government_short_url
-		ENV['OFFICIAL_GOVERMENT_URL']
+
+
+
+	def offical_site_title
+		# "Oakland Answers"
+		ENV['OFFICIAL_SITE_TITLE']
 	end
+
+
+	def offical_city_name
+		ENV['OFFICIAL_CITY_NAME']
+	end
+
+	def offical_contact_email
+		ENV['OFFICIAL_CONTACT_MAIL']
+	end
+
 
 	def offical_government_long_url
 		ENV['OFFICIAL_GOVERMENT_URL']
 	end
 
+	def offical_government_short_url
+		File.basename(offical_government_long_url)
+	end
 
-	def link_offical_government
-		link_to ( offical_government_short_url,  offical_government_long_url )
+
+	def link_to_offical_government_website(request, name = nil)
+		name = name.nil? ? offical_government_short_url : name
+		link_to(name, "#{offical_government_long_url}/#{request}")
 	end
 
 end
