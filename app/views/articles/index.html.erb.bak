@@ -2,7 +2,7 @@
 <div id="navigation">
   <div id="searchBox">
     <form id="search" class="noanimation" autocomplete="off" action="/search">
-      <p class="hnlanswers"><a class="header" href="/">Honolulu Answers</a></p>
+      <p class="hnlanswers"><a class="header" href="/">Oakland Answers</a></p>
       <input type="text" id="query" name="q" />
       <input type="submit" class="btn" value="" />
     </form>
@@ -131,7 +131,7 @@
 		</h2>
 		<ul>
 			<%= missing_article_list_tag(39, "Where can I view a live video feed of traffic in a particular area?")%>
-			<%= missing_article_list_tag(40, "Where can I view a live webcast of Honolulu Council meetings?")%>
+			<%= missing_article_list_tag(40, "Where can I view a live webcast of Oakland Council meetings?")%>
 			<%= missing_article_list_tag(41, "Where can I see live video of all areas of traffic congestion?")%>
 			<%= missing_article_list_tag(42, "Where can I view live video of Waikiki beach?")%>
 			<%= missing_article_list_tag(43, "Where can I view live video of Kuhio beach?")%>
