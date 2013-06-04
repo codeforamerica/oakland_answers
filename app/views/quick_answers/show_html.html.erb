@@ -1,5 +1,5 @@
 <% set_meta_tags :description => @article.preview,
-                 :canonical => link_to_offical_government_website(request.fullpath),
+                 :canonical => offical_government_long_url(request.fullpath)
                  :title => [@article.category.name, @article.title] %>
 <div class="page-container article">
   <div class="breadcrumbs">

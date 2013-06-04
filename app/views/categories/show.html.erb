@@ -1,5 +1,5 @@
 <% set_meta_tags :description => "Questions related to #{@category.name}.", 
-                  :canonical => link_to_offical_government_website(request.fullpath) %>
+                  :canonical => offical_government_long_url(request.fullpath) %>
 <div class="page-container">
   <div class="breadcrumbs">
     <%= link_to( "Home", root_url) %>
@@ -13,7 +13,7 @@
           <h1><%= @category.name %></h1>
         </div>
         <% if @category.description.strip != "" %>
-          <p><%= @category.description %></p>
+          <p><% @category.description %></p>
           <br/>
         <% end %>
         <ul>
