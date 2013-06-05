@@ -11,6 +11,11 @@
   <%= stylesheet_link_tag    "application-mobile", :media => "all and (max-width: 969px)" %>
   <%= stylesheet_link_tag    "application-print", :media => "print" %>
   
+  <style>
+    body {
+     background:transparent url('<%= ENV["BACKGROUND_IMAGE"] %>') repeat 0 100%;
+    }
+  </style>
   <!--[if lte IE 8]>
     <%= stylesheet_link_tag    "application-ie", :media=> "all" %>
   <![endif]-->

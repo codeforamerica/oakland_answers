@@ -45,7 +45,7 @@ a.gsfn-jqmClose {
 /* General Styles */
 /* -------------- */
 body {
- background:transparent url("/assets/background_image.jpg") repeat 0 100%;
+ /*background:transparent url("/assets/background_image.jpg") repeat 0 100%;*/
  background-attachment: fixed;
  font: 100%/1.5 "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
 }
