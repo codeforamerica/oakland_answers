@@ -5,7 +5,12 @@ $(document).ready(function () {
   });
 });
 </script>
-<% set_meta_tags :description => "Search results for #{@query}.", link_to_offical_government_website(request.fullpath), :title => "Search results for #{@query}." %>
+<% set_meta_tags  :description => "Search results for #{@query}.", 
+                  :canonical => offical_government_long_url(request.fullpath),
+                  :title => "Search results for #{@query}."                  
+
+                   %>
+
 <div class="page-container search">
   <div class="row">
     <div class="span9">
