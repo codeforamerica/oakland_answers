@@ -69,6 +69,10 @@
       <li><%=link_to("About", about_path)%></li>
       <li><a href=<%= "mailto:#{offical_contact_email}" %>>Contact</a></li>
       <li><a href="https://github.com/city-of-oakland/oakland_answers">Code</a></li>
+      <% if not offical_style_guide.nil? %>
+        <li><a href="#{offical_style_guide}" target="_blank">Style Guide</a></li>
+      <% end %>
+
       <li><%= link_to("Sign In", admin_dashboard_path) %></li>
     </ul>
     <div class="cfa-logos">

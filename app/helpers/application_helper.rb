@@ -15,6 +15,12 @@ module ApplicationHelper
 	end
 
 
+	def offical_style_guide
+		# "Oakland Answers"
+		ENV['OFFICIAL_STYLE_GUIDE']
+	end
+
+
 	def offical_city_name
 		ENV['OFFICIAL_CITY_NAME']
 	end
