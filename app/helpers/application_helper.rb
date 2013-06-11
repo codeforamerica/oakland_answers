@@ -30,16 +30,16 @@ module ApplicationHelper
 	end
 
 
-	def offical_government_long_url(params)
+	def offical_government_long_url(params = '')
 		ENV['OFFICIAL_GOVERMENT_URL']
 	end
 
-	def offical_government_short_url(params)
+	def offical_government_short_url(params = '')
 		File.basename(offical_government_long_url) + params
 	end
 
 
-	def link_to_offical_government_website(params, name = nil)
+	def link_to_offical_government_website(params = '', name = nil)
 		name = name.nil? ? offical_government_short_url : name
 		link_to(name, "#{offical_government_long_url}/#{params}")
 	end
