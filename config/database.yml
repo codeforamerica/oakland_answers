@@ -1,27 +1,26 @@
-login: &login
-  username: hnl
-  password: test44
-
-# This line is not compatible with the gem 'taps' used to sync the dataabse with heroku
-<%= file = File.join(Rails.root, "config", "dblogin.yml")
-    IO.read(file) if File.exist?(file) %>
-
 development:
   adapter: postgresql
   encoding: unicode
   database: oakland_answers_dev
   username: oakland_answers
   host: localhost
+  pool: 5
+  timeout: 5000
 
 test:
   adapter: postgresql
+  encoding: unicode
   database: oakland_answers_test
+  username: oakland_answers
+  host: localhost
+  pool: 5
+  timeout: 5000
 
 production:
   adapter: postgresql
   encoding: unicode
   database: oakland_answers_production
+  username: oakland_answers
   host: localhost
   pool: 5
   timeout: 5000
-  <<: *login
