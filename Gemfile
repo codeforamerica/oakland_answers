@@ -15,7 +15,7 @@ gem 'foreman'                             # For launching with the Procfile and 
 #gem 'pry-debugger'                        # Adds next, step and continue to Pry for debugging
 
 gem 'newrelic_rpm', :group => [:production, :staging, :development] # Rails analytics - see the Heroku addon
-gem 'annotate', '~>2.4.1.beta'            # Annotates models with database info: `bundle exec rake:annotate` 
+gem 'annotate', '~>2.4.1.beta'            # Annotates models with database info: `bundle exec rake:annotate`
 gem 'rails-erd'                           # Create Entity Relationship Diagrams
 gem 'progressbar'                         # Display progress bars in terminal output
 gem 'facets', :require => false           # Some extra methods for ruby
@@ -33,13 +33,13 @@ gem 'kgio'
 
 ## Admin
 gem 'activeadmin', '0.4.4'                # Back-end Content Management System
-gem 'devise', '~> 2.0'                    # User authentication 
+gem 'devise', '~> 2.0'                    # User authentication
 gem 'cancan'                              # User permissions
 
 ## Search and NLP
 # gem 'indextank'
 gem 'tanker'                              # library for interacting with Searchify
-gem 'hunspell-ffi'                        # Spellchecking library 
+gem 'hunspell-ffi'                        # Spellchecking library
 gem 'text'                                # NLP algorithms
 gem 'httparty'                            # For accessing APIs directly
 gem 'json'                                # Convert between JSON and Ruby objects
@@ -65,25 +65,26 @@ group :assets do
   gem 'therubyracer'                      # Embeds the V8 Javascript interpreter into Ruby
 end
 
-## Testing
+# TODO: organize test, dev gems better
 group :test, :development do
-  gem 'rspec-rails', '>= 2.10.1'          # Testing framework
-  gem 'shoulda'                           # Extra RSpec matchers for Active Record Associations
-  gem 'capybara'                          # Simulates real-user behaviour for acceptance and integration testing
-  gem 'launchy'                           # Lets you 'save_and_open_page' in the middle of a test - opens up the browser and shows you the current state of the page
-  gem 'guard-rspec'                       # Guard integratio for RSpec.  Guard monitors files and automatically and intelligently runs 'rspec spec' in the background
-  gem 'factory_girl_rails'                # Create factories to test against
-  gem 'spork-rails'                       # Speeds up TDD by launching multiple Rails instances in the background
-  gem 'guard-spork'                       # Make guard aware of Spork - automatically restart spork if a change requires a rails restart   
-  gem 'capybara-webkit'                   # JS driver for Capybara (headless)
-  gem 'memcached'                         # Local memcache
-  gem 'sextant'                           # visit /rails/routes in the browser for nicer 'rake routes'
+  gem 'rspec-rails', '>= 2.10.1'
+  gem 'shoulda'
+  gem 'capybara'
+  gem 'launchy'
+  gem 'guard-rspec'
+  gem 'factory_girl_rails'
+  gem 'spork-rails'
+  gem 'guard-spork'
+  gem 'capybara-webkit'
+  gem 'memcached'
+  gem 'sextant'
+  gem 'dotenv-rails'
+  gem 'webmock'
 end
 
 gem 'test-unit'                           # Remove at your peril.  Too many other gems randomly depend on it.
 
 group :test do
-  gem "sqlite3"                           # Use SQLite instead of PostgreSQL for tests
-  gem 'database_cleaner'                  # Purge the test database between test runs
-  gem 'simplecov', :require => false      # Calculates code coverage and outputs info to html. 
+  gem 'database_cleaner'
+  gem 'simplecov', :require => false
 end

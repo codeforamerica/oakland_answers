@@ -1,4 +1,4 @@
-Honoluluanswers::Application.routes.draw do
+Oaklandanswers::Application.routes.draw do
   get "quick_answer/show"
 
   # devise_for :admin_users, ActiveAdmin::Devise.config
@@ -26,7 +26,7 @@ Honoluluanswers::Application.routes.draw do
   root :to => "home#index"
 
   match '/about' => "home#about" , :as => :about
-  match '/search/' => "search#index" , :as => :search, :via => [:get, :post] 
+  match '/search/' => "search#index" , :as => :search, :via => [:get, :post]
   match 'autocomplete' => "search#autocomplete"
   match '/articles/article-type/:content_type' => "articles#article_type"
 

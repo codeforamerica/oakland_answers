@@ -9,7 +9,7 @@ class Keyword < ActiveRecord::Base
 
   after_create :analyse
 
-  after_save do 
+  after_save do
     Rails.cache.clear
   end
 
@@ -29,30 +29,4 @@ class Keyword < ActiveRecord::Base
   def self.create_all( words )
     words.each { |word| create(:name => word )}
   end
-
-
-  private
-
-  # def stem string
-  # end
-
-  # def metaphone string
-  # end
-
-  # def synonyms
-  # end
-
 end
-# == Schema Information
-#
-# Table name: keywords
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  metaphone  :string(255)
-#  stem       :string(255)
-#  synonyms   :text
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#
-

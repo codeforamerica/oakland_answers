@@ -4,7 +4,7 @@ module TankerArticleDefaults
 
     index = ENV['SEARCHIFY_API_INDEX']
     index = ENV['SEARCHIFY_API_INDEX'] if Rails.env === 'production'
-    
+
     base.tankit index, :as => 'Article' do
       indexes :title
 	    indexes :content_md
