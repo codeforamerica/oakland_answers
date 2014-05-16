@@ -47,7 +47,7 @@ describe "Articles" do
     describe "a category" do
       xit { should have_content article.category.name }
     end
-    
+
 
   end
 end

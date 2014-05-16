@@ -6,9 +6,9 @@ class ArticlesController < ApplicationController
 
   def index
     @bodyclass = "results"
-  
+
     @categories = Category.by_access_count
-    
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @categories }

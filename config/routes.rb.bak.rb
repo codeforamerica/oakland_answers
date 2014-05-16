@@ -16,7 +16,7 @@ Oaklandanswers::Application.routes.draw do
   #get "home/index"
   root :to => "home#index"
 
-  match '/search/' => "search#index" , :as => :search, :via => [:get, :post] 
+  match '/search/' => "search#index" , :as => :search, :via => [:get, :post]
   match 'autocomplete' => "search#autocomplete"
 
   # The priority is based upon order of creation:

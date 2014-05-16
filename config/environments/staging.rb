@@ -54,7 +54,7 @@ Oaklandanswers::Application.configure do
     #:allow_reload => true,
     #:default_ttl  => 10800
   #}
-  
+
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
