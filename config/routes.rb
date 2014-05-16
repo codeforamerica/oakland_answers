@@ -1,4 +1,4 @@
-Honoluluanswers::Application.routes.draw do
+Oaklandanswers::Application.routes.draw do
   get "quick_answer/show"
 
   # devise_for :admin_users, ActiveAdmin::Devise.config

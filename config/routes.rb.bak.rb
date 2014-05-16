@@ -1,4 +1,4 @@
-Honoluluanswers::Application.routes.draw do
+Oaklandanswers::Application.routes.draw do
   get "category/index"
 
   ActiveAdmin.routes(self)
