@@ -16,7 +16,7 @@ $(document).ready(function () {
     <div class="span9">
       <div class="main-content">
         <div class="header">
-          <h1>Search results for: &ldquo;<strong><%=@query%></strong>&rdquo;</h1>
+          <h1>Search results for: "<strong><%=@query%></strong>"</h1>
 
           <% if @query_corrected != @query %>
             <div class="suggestion">
@@ -29,8 +29,8 @@ $(document).ready(function () {
           <% end %>
 
           <br/>
-       
-          <% if @results.blank? or @results.count == 0 %>
+
+          <% if @results.empty? %>
             <p>Sorry, no results found for "<%=@query%>".  Please try rephrasing your search terms.</p>
           <% else %>
             <ul>

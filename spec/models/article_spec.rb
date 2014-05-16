@@ -1,38 +1,22 @@
 require 'spec_helper'
 
 describe Article do
-  it { should belong_to :contact}
-  it { should belong_to :category}
-  it { should have_many(:keywords).through :wordcounts }
-  it { should have_many :wordcounts }
-
-  it { should respond_to :title }
-  it { should respond_to :content }
-  it { should respond_to :category }
-  it { should respond_to :preview }
-  it { should respond_to :tags }
-  it { should respond_to :access_count }
-
-  it { should respond_to :content_md }
-
-  it { should respond_to :content_main }
-  it { should respond_to :content_main_extra }
-  it { should respond_to :content_need_to_know }
-
   let(:article) { FactoryGirl.create(:article) }
-  subject { article }
-  it { should be_valid }
-  its(:access_count) { should_not be_nil }
+  before        { Article.stub(:search_tank).and_return([article]) }
+  subject       { article }
 
-  describe "search" do
-    context "query matches articles in the database" do
-      subject { Article.search( article.title ) }
-      it { should include( article ) }
+  describe ".search" do
+    it "matches articles in the database" do
+      Article.search(article.title).should include(article)
     end
+
     context "query does not match anything in the database" do
-      subject { Article.search( SecureRandom.hex(16) ) }
-      it { should == [] }
+      it "returns an empty array" do
+        Article.stub(:search_tank).and_return([])
+        Article.search(SecureRandom.hex(16)).should be_empty
+      end
     end
+
     context "query is the empty string" do
       subject { Article.search ''}
       it { should == Article.all }
@@ -43,11 +27,12 @@ describe Article do
       it { should == Article.all }
     end
 
-    describe "search titles" do
-      context "query is present in an article but not the title" do
-        subject { Article.search_titles article.preview }
-        it { should == [] }
+    describe ".search titles" do
+      it "returns an empty array when the search term is present in an article but not the title" do
+        Article.stub(:search_tank).and_return([])
+        Article.search_titles(article.preview).should be_empty
       end
+
       context "query is present in the title" do
         subject { Article.search_titles article.title }
         it { should include(article) }
