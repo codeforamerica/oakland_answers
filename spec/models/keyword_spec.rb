@@ -1,45 +1,26 @@
 require 'spec_helper'
 
 describe Keyword do
-  it { should have_many :wordcounts }
-  it { should have_many(:articles).through :wordcounts }
+  describe "after create with a keyword with the name 'example'" do
+    let(:keyword)           { FactoryGirl.create(:keyword, name: 'example') }
+    let(:returned_synonyms) { ["illustration", "instance", "representative",
+              "model", "exemplar", "good example", "deterrent example",
+              "lesson", "object lesson", "case", "exercise", "admonition",
+              "happening", "ideal", "information", "internal representation",
+              "mental representation", "monition", "natural event",
+              "occurrence", "occurrent", "representation", "warning",
+              "word of advice"] }
 
-  it { should respond_to :name }
-  it { should respond_to :metaphone }
-  it { should respond_to :stem }
-  it { should respond_to :synonyms }
+    before do
+      BigHugeThesaurus.stub(:synonyms).and_return(returned_synonyms)
+    end
 
-  let(:keyword) { FactoryGirl.create :keyword }
-  subject { keyword }
-  it { should be_valid }
-  
-  it 'deserialises the metaphone field' do
-    keyword.reload.metaphone.should eq( ["RJST", "RKST"] )
-  end
+    it "sets a metaphone of 'equal'" do
+      keyword.metaphone.should eq(["AKSM", nil])
+    end
 
-  it 'deserialised the synonyms field' do
-    keyword.reload.synonyms.should include('enrollment')
-  end
-
-  describe "creating a new Keyword" do
-    let(:kw) { Keyword.create!(:name => 'example') }
-    subject { kw }
-    its(:name) { should eq('example') }
-    its(:stem) { should eq('exampl') }
-    its(:metaphone) { should eq(["AKSM", nil]) }
-    its(:synonyms) { should eq(["illustration", "instance", "representative", "model", "exemplar", "good example", "deterrent example", "lesson", "object lesson", "case", "exercise", "admonition", "happening", "ideal", "information", "internal representation", "mental representation", "monition", "natural event", "occurrence", "occurrent", "representation", "warning", "word of advice"]) }
+    it "set an array synonyms of 'example'" do
+      keyword.synonyms.should eq(returned_synonyms)
+    end
   end
 end
-# == Schema Information
-#
-# Table name: keywords
-#
-#  id         :integer         not null, primary key
-#  name       :string(255)
-#  metaphone  :string(255)
-#  stem       :string(255)
-#  synonyms   :text
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
-#
-

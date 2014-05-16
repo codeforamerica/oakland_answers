@@ -1,9 +1,9 @@
 class SearchController < ApplicationController
   def index
-    query =  params[:q].strip 
-    return redirect_to root_path if params[:q].blank? 
+    query =  params[:q].strip
+    return redirect_to root_path if params[:q].blank?
     @query = query
-    # spell check the query. 
+    # spell check the query.
     @query_corrected = Article.spell_check query
     # remove puntuation and plurals.
     query = query.downcase.gsub(/[^\w]/, ' ').gsub(/ . /, ' ')
@@ -15,12 +15,10 @@ class SearchController < ApplicationController
       @results = []
       return
     end
-    # expand the query
+
     query_final = Article.expand_query( query )
-    # perform the search
-    @results = Article.search_tank( query_final)#, :conditions => { :status => 'Published' } )
-    # Log the search results
-    puts "search-request: IP:#{request.env['REMOTE_ADDR']}, params[:query]:#{query}, QUERY:#{query_final}, FIRST_RESULT:#{@results.first.title unless @results.empty?}, RESULTS_N:#{@results.size}" 
+    @results = Article.search_tank(query_final)
+    Rails.logger.info "search-request: IP:#{request.env['REMOTE_ADDR']}, params[:query]:#{query}, QUERY:#{query_final}, FIRST_RESULT:#{@results.first.title unless @results.empty?}, RESULTS_N:#{@results.size}"
 
     respond_to do |format|
       format.json  { render @results }
@@ -54,5 +52,5 @@ class SearchController < ApplicationController
       format.json { render :json => string_corrected.join(' ') }
     end
   end
-  
+
 end

@@ -1,40 +1,16 @@
 require 'spec_helper'
 
 describe Category do
-  it { should have_many :articles }
-  
-  it { should respond_to :name }
-  it { should respond_to :access_count }
-
-  let(:category) { FactoryGirl.create :category}
-  it { should be_valid }
-  subject { category }
-  its(:access_count) { should_not be_nil }
-
-
-  describe "all by access count" do
-    subject { Category }
-    its(:all_by_access_count) { should == Category.all(:order => 'access_count DESC') }
+  it "a category should have a non nil access_count" do
+    category = FactoryGirl.create(:category)
+    category.access_count.should_not be_nil
   end
 
-  describe 'articles by access count' do
-    subject { category }
-    its(:articles_by_access_count) { should == category.articles.all(:order => 'access_count DESC') }
+  describe "all_by_access_count scope" do
+    it "returns categories in descending order of their access_counts" do
+      first_category = FactoryGirl.create(:category, access_count: 5)
+      second_category = FactoryGirl.create(:category, access_count: 3)
+      Category.by_access_count.should == [first_category, second_category]
+    end
   end
-
-
-
 end
-# == Schema Information
-#
-# Table name: categories
-#
-#  id           :integer         not null, primary key
-#  name         :string(255)
-#  access_count :integer
-#  created_at   :datetime        not null
-#  updated_at   :datetime        not null
-#  article_id   :integer
-#  description  :text
-#
-
