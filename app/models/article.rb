@@ -1,5 +1,6 @@
 # encoding: utf-8
 include ActionView::Helpers::SanitizeHelper
+require 'ffi/hunspell'
 
 class Article < ActiveRecord::Base
   include TankerArticleDefaults
@@ -140,9 +141,14 @@ class Article < ActiveRecord::Base
   end
 
   def self.spell_check(string)
-    dict = Hunspell.new( "#{Rails.root.to_s}/lib/assets/dict/en_US", 'en_US' )
+    dict_path = Rails.root.join("lib","assets","dict")
+    en_aff_path = (dict_path + "en_US/en_US.aff").to_s
+    en_dic_path = (dict_path + "en_US/en_US.dic").to_s
+    blank_aff_path = (dict_path + "blank/blank.aff").to_s
+    blank_dic_path = (dict_path + "blank/blank.dic").to_s
 
-    dict_custom = Hunspell.new( "#{Rails.root.to_s}/lib/assets/dict/blank", 'blank' )
+    dict = FFI::Hunspell::Dictionary.new(en_aff_path,en_dic_path)
+    dict_custom = FFI::Hunspell::Dictionary.new(blank_aff_path, blank_dic_path)
     Keyword.all(:select => ['name', 'synonyms']).each do |kw|
       dict_custom.add kw.name
     end
@@ -152,7 +158,7 @@ class Article < ActiveRecord::Base
     stop_words.each{ |sw| dict_custom.add sw }
 
     string_corrected = string.split.map do |word|
-      if dict.spell(word) or dict_custom.spell(word) # word is correct
+      if dict.check?(word) or dict_custom.check?(word) # word is correct
         word
       else
         suggestion = dict_custom.suggest( word ).first
