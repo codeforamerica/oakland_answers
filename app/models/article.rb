@@ -1,6 +1,5 @@
 # encoding: utf-8
 include ActionView::Helpers::SanitizeHelper
-require 'ffi/hunspell'
 
 class Article < ActiveRecord::Base
   include TankerArticleDefaults

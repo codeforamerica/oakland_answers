@@ -1,5 +1,3 @@
-require 'ffi/hunspell'
-
 class SearchController < ApplicationController
   def index
     query =  params[:q].strip
