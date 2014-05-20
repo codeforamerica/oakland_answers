@@ -376,6 +376,7 @@ DEPENDENCIES
   meta-tags
   meta_search (>= 1.1.0.pre)
   newrelic_rpm
+  nokogiri
   paperclip (~> 3.0)
   pg
   progressbar
