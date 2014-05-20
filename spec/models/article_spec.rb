@@ -45,12 +45,4 @@ describe Article do
       Article.remove_stop_words('why am I a banana').should eq('banana')
     end
   end
-
-  describe "#spell_check" do
-    it "corrects misspelt words in the string" do
-      BigHugeThesaurus.stub(:synonyms).and_return([])
-      Keyword.create_all(['renew', 'driver', 'license'])
-      Article.spell_check('renw droivr lisence').should eq('renew driver license')
-    end
-  end
 end
