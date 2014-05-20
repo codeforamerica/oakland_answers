@@ -27,7 +27,6 @@ gem 'devise', '~> 2.0'
 gem 'cancan'
 
 gem 'tanker'
-gem 'ffi-hunspell', require: 'ffi/hunspell'
 gem 'text'
 gem 'httparty'
 gem 'json'

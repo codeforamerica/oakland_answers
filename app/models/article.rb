@@ -139,35 +139,6 @@ class Article < ActiveRecord::Base
     string = (string.downcase.split - eng_stop_list.flatten).join " "
   end
 
-  def self.spell_check(string)
-    dict_path = Rails.root.join("lib","assets","dict")
-    en_aff_path = (dict_path + "en_US/en_US.aff").to_s
-    en_dic_path = (dict_path + "en_US/en_US.dic").to_s
-    blank_aff_path = (dict_path + "blank/blank.aff").to_s
-    blank_dic_path = (dict_path + "blank/blank.dic").to_s
-
-    dict = FFI::Hunspell::Dictionary.new(en_aff_path,en_dic_path)
-    dict_custom = FFI::Hunspell::Dictionary.new(blank_aff_path, blank_dic_path)
-    Keyword.all(:select => ['name', 'synonyms']).each do |kw|
-      dict_custom.add kw.name
-    end
-    stop_words ||= Rails.cache.fetch('stop_words') do
-      CSV.read( "lib/assets/eng_stop.csv" ).flatten
-    end
-    stop_words.each{ |sw| dict_custom.add sw }
-
-    string_corrected = string.split.map do |word|
-      if dict.check?(word) or dict_custom.check?(word) # word is correct
-        word
-      else
-        suggestion = dict_custom.suggest( word ).first
-        suggestion.nil? ? word : suggestion
-      end
-    end
-
-    string_corrected.join ' '
-  end
-
   def self.expand_query( query )
     stems,metaphones,synonyms = [[],[],[]]
     query.split.each do |term|
