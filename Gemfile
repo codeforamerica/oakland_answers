@@ -9,12 +9,9 @@ gem 'foreman'
 
 gem 'newrelic_rpm', :group => [:production, :staging, :development]
 gem 'annotate', '~>2.4.1.beta'
-gem 'rails-erd'
 gem 'progressbar'
 gem 'facets', :require => false
-gem 'seed_dump'
 gem 'jquery-ui-rails'
-gem 'ruby-prof', '~> 0.13.0'
 
 gem 'meta-tags', :require => 'meta_tags'
 
@@ -48,9 +45,13 @@ group :assets do
   gem 'therubyracer'
 end
 
-# TODO: organize test, dev gems better
 group :test, :development do
+  gem 'memcached'
+  gem 'dotenv-rails'
   gem 'rspec-rails', '>= 2.10.1'
+end
+
+group :test do
   gem 'shoulda'
   gem 'capybara'
   gem 'launchy'
@@ -59,15 +60,7 @@ group :test, :development do
   gem 'spork-rails'
   gem 'guard-spork'
   gem 'capybara-webkit'
-  gem 'memcached'
-  gem 'sextant'
-  gem 'dotenv-rails'
-  gem 'webmock'
-end
-
-gem 'test-unit'                           # Remove at your peril.  Too many other gems randomly depend on it.
-
-group :test do
   gem 'database_cleaner'
   gem 'simplecov', :require => false
+  gem 'webmock'
 end
