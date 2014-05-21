@@ -341,7 +341,7 @@ DEPENDENCIES
   facets
   factory_girl_rails
   foreman
-  friendly_id
+  friendly_id (~> 4.0)
   gon
   guard-rspec
   guard-spork

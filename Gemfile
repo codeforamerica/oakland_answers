@@ -32,7 +32,7 @@ gem 'indextank'
 
 gem 'bluecloth'
 gem 'kramdown'
-gem 'friendly_id'
+gem 'friendly_id', '~> 4.0'
 gem 'gon'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk', '~> 1.3.4'
