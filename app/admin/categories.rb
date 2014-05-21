@@ -1,17 +1,12 @@
 ActiveAdmin.register Category do
-  # This will authorize the Foobar class
-  # The authorization is done using the AdminAbility class
   controller.authorize_resource
 
-  # View
   index do
-    #column :id
     column :name, :sortable => :name
     column "Created", :created_at
     column "Updated", :updated_at
     column "Description", :description
-    #column "Slug", :slug
-    default_actions # Add show, edit, delete column
+    default_actions
   end
 
   show do
@@ -39,7 +34,7 @@ ActiveAdmin.register Category do
           column "" do |article|
             if article.status=="Published"
               link_to "View", article
-            else 
+            else
               "Draft"
             end
           end
@@ -50,10 +45,7 @@ ActiveAdmin.register Category do
           column :user
           column :status
         end
-
-      end #panel
-    end #div
-
-  end #show
-
+      end
+    end
+  end
 end

@@ -50,7 +50,6 @@ class Article < ActiveRecord::Base
   # *  We then moved to Markdown for content storage, resulting in Article#content_md.
   # *  Most recently, the QuickAnswers were split into three distinct sections: content_main, content_main_extra and content_need_to_know. All these use Markdown.
 
-  # Tanker callbacks to update the search index
   after_save :update_tank_indexes
   after_destroy :delete_tank_indexes
 
@@ -142,26 +141,21 @@ class Article < ActiveRecord::Base
   def self.expand_query( query )
     stems,metaphones,synonyms = [[],[],[]]
     query.split.each do |term|
-      # try and hit the database first, only compute stuff if we have to
       kw = Keyword.find_by_name(term)
       if kw
         stems << kw.stem
         metaphones << kw.metaphone.compact
-        # synonyms << kw.synonyms.first(3)
       else
         stems << Text::PorterStemming.stem(term)
         metaphones << Text::Metaphone.double_metaphone(term)
-        # synonyms << RailsNlp::BigHugeThesaurus.synonyms(term)
       end
     end
 
-    ## Construct the OR query
     query_final =      "title:(#{query.split.join(' OR ')})^10"
     query_final << " OR content:(#{query.split.join(' OR ')})^5"
     query_final << " OR tags:(#{query.split.join(' OR ')})^8"
     query_final << " OR stems:(#{stems.flatten.join(' OR ')})^3"
     query_final << " OR metaphones:(#{metaphones.flatten.compact.join(' OR ')})^2"
-    # query_final << " OR #{'synonyms:"'  + synonyms.flatten.first(3).join( '" OR synonyms:"') + '"'}"
     query_final << " OR synonyms:(#{query.split.join(' OR ')})"
 
     return query_final
@@ -190,15 +184,9 @@ class Article < ActiveRecord::Base
     Article.all.each { |a| a.analyse }
   end
 
-
-  #protected
-
-
   def set_access_count_if_nil
     self.access_count = 0 if self.access_count.nil?
   end
-
-  ## Query Magic methods (soon to be refactored into a gem)
 
   require 'facets/enumerable'
 
@@ -221,17 +209,11 @@ class Article < ActiveRecord::Base
     # "This currently assumes valid XHTML, which means no free < or > characters."
     # https://github.com/rails/rails/blob/master/actionpack/lib/action_controller/vendor/html-scanner/html/tokenizer.rb
     str = ActionView::Helpers::SanitizeHelper.strip_tags str
-    # # replace control characters like \n and \t with a space
     str.gsub!(/[[:cntrl:]]+/, ' ')
-    # remove plurals and posessives
     str.gsub!(/'(\S+)/, '')
-    # remove anything that isn't a letter or a space
     str.gsub!(/[^\p{Word} ]/, '')
-    # remove single characters
     str.gsub!(/(\s|\A)\S(\s|\z)/, ' ')
-    # remove numbers
     str.gsub!(/\s\d+\s/, ' ')
-    # downcase
     str.downcase!
     str
   end
@@ -239,9 +221,7 @@ class Article < ActiveRecord::Base
   def count_words words
     words = words.split
     words = words - @@STOP_WORDS
-
-    # Ruby Facets - http://www.webcitation.org/69k1oBjmR
-    return words.frequency
+    words.frequency
   end
 
   def delete_orphaned_keywords
@@ -270,71 +250,32 @@ class Article < ActiveRecord::Base
           end
       end
     rescue => e
-      puts "ERROR: error after article creation; could not update keywords and wordcounts for article with id #{self.try(:id)}"
-      puts e.message
-      puts e.backtrace
+      logger.error "Could not update keywords and wordcounts after create for article: #{self.try(:id)}"
+      logger.error "Message: #{e.message} Backtrace: #{e.backtrace}"
     end
   end
   handle_asynchronously :qm_after_create
 
-  # 1) remove all wordcount rows for this article
-  # 2) treat the article as a new article
-  # 3) remove keywords where keyword.id isn't present in column Wordcount#keyword_id
   def qm_after_update
-    #binding.pry
     begin
       wordcounts.destroy_all
       qm_after_create
       delete_orphaned_keywords
     rescue => e
-      puts "ERROR: error after article update; could not update keywords and wordcounts for article with id #{self.id unless self.id.blank?}"
-      puts e.message
-      puts e.backtrace
+      logger.error "Could not update keywords and wordcounts after update for article: #{self.id unless self.id.blank?}"
+      logger.error "Message: #{e.message} Backtrace: #{e.backtrace}"
     end
   end
   handle_asynchronously :qm_after_update
 
-  # 1) remove all wordcount rows for this article
-  # 2) remove keywords where keyword.id isn't present in column Wordcount#keyword_id
   def qm_after_destroy
     begin
       wordcounts.destroy_all
       delete_orphaned_keywords
     rescue => e
-      puts "ERROR: error after article destruction; could not update keywords and wordcounts for article with id #{self.id unless self.id.blank?}"
-      puts e.message
-      puts e.backtrace
+      logger.error "Could not update keywords and wordcounts after destroy for article: #{self.id unless self.id.blank?}"
+      logger.error "Message: #{e.message} Backtrace: #{e.backtrace}"
     end
   end
   handle_asynchronously :qm_after_destroy
-
 end
-
-
-
-# == Schema Information
-#
-# Table name: articles
-#
-#  id                      :integer         not null, primary key
-#  updated                 :datetime
-#  title                   :string(255)
-#  content                 :text
-#  created_at              :datetime        not null
-#  updated_at              :datetime        not null
-#  content_type            :string(255)
-#  preview                 :text
-#  contact_id              :integer
-#  tags                    :text
-#  service_url             :string(255)
-#  is_published            :boolean         default(FALSE)
-#  slug                    :string(255)
-#  category_id             :integer
-#  access_count            :integer         default(0)
-#  author_pic_file_name    :string(255)
-#  author_pic_content_type :string(255)
-#  author_pic_file_size    :integer
-#  author_pic_updated_at   :datetime
-#  author_name             :string(255)
-#  author_link             :string(255)
-#
