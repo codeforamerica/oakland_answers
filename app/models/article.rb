@@ -90,11 +90,6 @@ class Article < ActiveRecord::Base
     return Article.where(:type => content_type).order('category_id').order('access_count DESC')
   end
 
-  # legacy
-  def allContent()
-    [self.title, self.content].join(" ")
-  end
-
   def to_s
     if self.category
       "#{self.title} (#{self.id}) [#{self.category}]"
@@ -162,9 +157,9 @@ class Article < ActiveRecord::Base
   end
 
   def related
-    Rails.cache.fetch("#{self.id}-related") {
-      return [] if wordcounts.empty?
-      (Article.search_tank(self.wordcounts.all(:order => 'count DESC', :limit => 10).map(&:keyword).map(&:name).join(" OR ")) - [self]).first(4)
+    Rails.cache.fetch("#{id}-related") {
+      return [] # if wordcounts.empty?
+      # (Article.search_tank(wordcounts.all(:order => 'count DESC', :limit => 10).map(&:keyword).map(&:name).join(" OR ")) - [self]).first(4)
     }
   end
 
