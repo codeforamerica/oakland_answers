@@ -4,18 +4,12 @@ class Keyword < ActiveRecord::Base
   serialize :synonyms, Array
 
   has_many :wordcounts
-  #  TODO: set this via metaprogramming for whatever the AR model is called that has keywords.
   has_many :articles, :through => :wordcounts
 
   after_create :analyse
 
   after_save do
     Rails.cache.clear
-  end
-
-  # returns the total number of ocurrences of this keyword across all articles
-  def count
-    self.wordcounts.map(&:count).inject(0, :+)
   end
 
   def analyse

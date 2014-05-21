@@ -19,12 +19,12 @@ class CategoriesController < ApplicationController
     end
 
     @category.delay.increment! :access_count
- 
+
     @content_html = BlueCloth.new(@category.name).to_html
     @bodyclass = "results"
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html
       format.json { render json: @category }
     end
   end

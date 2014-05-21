@@ -1,5 +1,4 @@
 ActiveAdmin.register Guide do
-  # as per https://github.com/gregbell/active_admin/wiki/Enforce-CanCan-constraints
   controller do
     load_and_authorize_resource :except => :index
       def scoped_collection
@@ -7,22 +6,14 @@ ActiveAdmin.register Guide do
       end
    end
 
-  # Add to :parent Dropdown menu
   menu :parent => "Articles"
-  # menu :priority => 3
-  # Initialize tinymce
-  # tinymce_assets
-  # tinymce
-  
-  # Filterable attributes
+
   filter :title
   filter :tags
   filter :contact_id
   filter :status
-  
-  # View 
+
   index do
-    #column :id
     column "Guide Title", :title do |guide|
       link_to guide.title, [:admin, guide]
     end
@@ -31,19 +22,17 @@ ActiveAdmin.register Guide do
     column "Created", :created_at
     column "Author", :user do |article|
       if(article.user.try(:department))
-        (article.user.try(:email) || "") + ", " + (article.user.try(:department).name || "")        
+        (article.user.try(:email) || "") + ", " + (article.user.try(:department).name || "")
       else
         (article.user.try(:email) || "")
       end
     end
-    # column :tags
     column :slug
     column "Status", :status
-    default_actions # Add show, edit, delete column
+    default_actions
   end
-  
-  form :partial => "shared/admin/article_form"
 
+  form :partial => "shared/admin/article_form"
 
   show do |guide|
     attributes_table do
