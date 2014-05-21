@@ -1,8 +1,14 @@
 # encoding: UTF-8
-
 require 'spork'
 
 Spork.prefork do
+
+  unless ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
+
+
   def logger
     Rails.logger
   end
@@ -13,7 +19,6 @@ Spork.prefork do
 
   require 'database_cleaner'
   require 'rubygems'
-  require 'simplecov'
   require 'capybara/rspec'
   Capybara.javascript_driver = :webkit
 
@@ -47,5 +52,8 @@ Spork.prefork do
 end
 
 Spork.each_run do
-  SimpleCov.start 'rails'
+  if ENV['DRB']
+    require 'simplecov'
+    SimpleCov.start 'rails'
+  end
 end
