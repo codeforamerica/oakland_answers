@@ -4,31 +4,42 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile ~/.gitignore_global
 
-# Ignore bundler config
-/.bundle
+*.rbc
+*.sassc
+**.orig
+.bundle
+.env
+.idea
+.powrc
+.sass-cache
+.zeus.sock
+.DS_store
+.rspec
+.ruby-gemset
+.travis.yml
+.vagrant
 
-# Ignore the default SQLite database.
-/db/*.sqlite3
-
-# Ignore all logfiles and tempfiles.
-/log/*.log
-/tmp
-
-.DS_Store
-config/dblogin.yml
-
-config/initializers/searchify.rb
-doc/search_stats.csv
-coverage/
-.sass-cache/
-
-# Ignore files created by RubyMine IDE (CCHNL Specific)
-/.idea
-.rvmrc
-
-
+# root files
+bootstrap.sh
+capybara-*.html
+latest.dump
+Guardfile
+rerun.txt
+Vagrantfile
 *tags
 tags
 
-config/database.yml
-latest.dump
+# folders
+/config/*.yml
+/config/deploy.rb
+/config/deploy
+/config/environments/production.rb
+/config/initializers/searchify.rb
+/coverage
+/db/*.sqlite3
+/doc/search_stats.csv
+/log/*
+/public/system
+/spec/tmp
+/tmp
+/vendor/bundle
