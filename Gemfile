@@ -7,14 +7,14 @@ gem 'pg'
 gem 'thin'
 gem 'foreman'
 
-gem 'newrelic_rpm', :group => [:production, :staging, :development]
+gem 'newrelic_rpm', group: [:production, :staging, :development]
 gem 'annotate', '~>2.4.1.beta'
 gem 'progressbar'
-gem 'facets', :require => false
+gem 'facets', require: false
 gem 'jquery-ui-rails'
 gem 'jquery-rails', '~> 2.3.0'
 
-gem 'meta-tags', :require => 'meta_tags'
+gem 'meta-tags', require: 'meta_tags'
 
 gem 'delayed_job_active_record'
 gem 'dalli'
@@ -62,6 +62,6 @@ group :test do
   gem 'guard-spork'
   gem 'capybara-webkit'
   gem 'database_cleaner'
-  gem 'simplecov', :require => false
+  gem 'simplecov', '~> 0.7.1', require: false
   gem 'webmock'
 end
