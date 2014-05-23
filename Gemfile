@@ -50,26 +50,26 @@ group :assets do
 end
 
 group :test, :development do
-  gem 'faker'
-  gem 'spring-commands-rspec'
-  gem 'memcached'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'inch', require: false
+  gem 'memcached'
   gem 'rspec-rails', '>= 2.10.1'
   gem 'rspec-html-matchers'
-  gem 'inch', require: false
+  gem 'spring-commands-rspec'
 end
 
 group :test do
-  gem 'vcr'
-  gem 'shoulda'
   gem 'capybara'
-  gem 'launchy'
-  gem 'guard-rspec'
-  gem 'factory_girl_rails'
-  gem 'spork-rails'
-  gem 'guard-spork'
   gem 'capybara-webkit'
   gem 'database_cleaner'
+  gem 'guard-rspec'
+  gem 'guard-spork'
+  gem 'launchy'
+  gem 'shoulda'
   gem 'simplecov', '~> 0.7.1', require: false
+  gem 'spork-rails'
   gem 'webmock'
+  gem 'vcr'
 end
