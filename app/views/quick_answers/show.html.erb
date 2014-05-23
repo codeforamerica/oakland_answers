@@ -1,12 +1,14 @@
 <% set_meta_tags :description => @article.preview,
                  :canonical => official_government_long_url(request.fullpath),
-                 :title => [@article.category.name, @article.title] %>
+                 :title => [@article.category.try(:name), @article.title] %>
 
 <div class="page-container article">
   <div class="breadcrumbs">
     <%= link_to( "Home", root_url) %>
+    <% if @article.category.present? %>
     >
-    <%= link_to(@article.category.name, @article.category) %>
+      <%= link_to(@article.category.name, @article.category) %>
+    <% end %>
     >
     <%= title @article.title %>
   </div>
@@ -33,7 +35,7 @@
         </div>
       </div>
     </div><!-- /span9 -->
-    
+
     <div class="span3">
       <%= render :partial => 'shared/articles_sidebar' %>
     </div><!-- /span3 -->

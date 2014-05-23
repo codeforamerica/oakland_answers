@@ -90,11 +90,6 @@ class Article < ActiveRecord::Base
     return Article.where(:type => content_type).order('category_id').order('access_count DESC')
   end
 
-  # legacy
-  def allContent()
-    [self.title, self.content].join(" ")
-  end
-
   def to_s
     if self.category
       "#{self.title} (#{self.id}) [#{self.category}]"

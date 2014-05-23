@@ -1,26 +1,24 @@
-<% set_meta_tags :description => @article.preview,
-                  :canonical => official_government_long_url(request.fullpath)
-                 :title => [@article.category.name, @article.title] %>
+<% set_meta_tags :description => @article.try(:preview),
+                  :canonical => official_government_long_url(request.fullpath),
+                 :title => [@article.category.try(:name), @article.title] %>
 <div class="page-container article">
   <div class="breadcrumbs">
     <%= link_to( "Home", root_url) %>
+    <% if @article.category.present? %>
     >
     <%= link_to(@article.category.name, @article.category) %>
+    <% end %>
     >
     <%= @article.title %>
   </div>
   <div class="row">
     <div class="span9">
       <div class="main-content">
-        <!-- h3 class="content-type">< %= #@article.content_type %></h3 -->
         <div class="header">
           <%= content_tag(:h1, @article.title ) %>
         </div>
         <div class="content-text">
-          
           <%= raw @content_html %>
-
-
         </div>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -28,37 +26,6 @@ $(document).ready(function(){
   $("#vtabs").jVertTabs({
     equalHeights: true
   });
-  // $("#vtabs2").jVertTabs({
-  //   selected: 1
-  // });
-  // $("#vtabs3").jVertTabs({
-  //   select: function(index){
-  //     alert("You clicked tab " + index);
-  //   }
-  // });
-  // $("#vtabs4").jVertTabs();
-  // $("#vtabs5").jVertTabs({
-  //   equalHeights: true
-  // });
-  // $("#vtabs6").jVertTabs({
-  //   select: function(index){
-  //     alert("tab " + index + " opened.");
-  //   }
-  // });
-  // $("#vtabs6").jVertTabs('selected',3); // select 4th tab, 0-based.
-  // $("#vtabs7").jVertTabs({
-  //   selected: 1
-  // });
-  // $("#vtabs8").jVertTabs();
-  // $("#vtabs8").jVertTabs('selected',2); // select 3rd tab, 0-based.
-    
-  // add click events for open tab buttons
-  // $("input[id^=openTab]").each(function(index){
-  //   $(this).click(function(){
-  //     openTab("#vtabs6",index);
-  //     return false;
-  //   });
-  // }); 
   function openTab(tabId,index){
     $(tabId).jVertTabs('selected',index);
   }
@@ -99,27 +66,26 @@ function nextTab(){
         <h2 class="vtab-content-header"><%= step.title %></h2>
         <%= raw @article.raw_md_to_html( step.content ) %>
       </div>
-    <% end %> 
+    <% end %>
     <br/>
     <br/>
     <p style="margin-left:auto;margin-right:auto;text-align:center;display:block;">
 	    <a class="btn guidearrow" href="#" onclick="prevTab();" id="prev" style="display:inline;">&larr; Previous</a>
 	    &nbsp;&nbsp;&nbsp;&nbsp;
 	    |
-	    &nbsp;&nbsp;&nbsp;&nbsp;	    
+	    &nbsp;&nbsp;&nbsp;&nbsp;
 	    <a class="btn guidearrow" href="#" onclick="nextTab();" id="next" style="display:inline;">Next &rarr;</a>
 	</p>
-    
+
   </div>
 </div>
   <!-- -->
 
       </div>
     </div><!-- /span9 -->
-    
+
     <div class="span3">
       <%= render :partial => 'shared/articles_sidebar' %>
-    </div><!-- /span3 -->
-    
+    </div>
   </div>
 </div>
