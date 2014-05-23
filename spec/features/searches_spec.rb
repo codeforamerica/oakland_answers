@@ -50,22 +50,25 @@ describe "Searches" do
                         title: "I Prefer Monkeys",
                         content: "Monkeys are quite nice."
                       }
-      let(:query_random) { "best nice" }
+      let(:query)     { "best nice" }
 
       before do
         Article.stub(:search_tank).and_return([article_1, article_2])
         visit root_path
-        fill_in 'query', :with => query_random
+        fill_in 'query', :with => query
         click_on 'SEARCH'
       end
 
-      subject { page }
+      it "show the query" do
+        page.should have_content "Search results for: \"#{query}\""
+      end
 
-      it { should have_content "Search results for: \"#{query_random}\"" }
-      it { should have_content article_1.title }
-      it { should have_content article_1.preview }
-      it { should have_content article_2.title }
-      it { should have_content article_2.preview }
+      it "should contain the title and preview of both articles" do
+        page.should have_content article_1.title
+        page.should have_content article_1.preview
+        page.should have_content article_2.title
+        page.should have_content article_2.preview
+      end
     end
   end
 end
