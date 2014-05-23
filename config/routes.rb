@@ -23,5 +23,5 @@ Oaklandanswers::Application.routes.draw do
   match '/about' => "home#about" , :as => :about
   match '/search/' => "search#index" , :as => :search, :via => [:get, :post]
   match 'autocomplete' => "search#autocomplete"
-  match '/articles/article-type/:content_type' => "articles#article_type"
+  match '/articles/article-type/:content_type' => "articles#article_type", as: :articles_type
 end

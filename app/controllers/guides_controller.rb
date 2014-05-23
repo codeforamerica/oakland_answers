@@ -12,7 +12,7 @@ class GuidesController < ApplicationController
     @article.delay.increment! :access_count
     @article.delay.category.increment!(:access_count) if @article.category
 
-    unless @article.render_markdown
+    if !@article.render_markdown
       @content_html = @article.content
 	      hr = /<hr( \/)?>/
         if @content_html.match hr
@@ -21,8 +21,6 @@ class GuidesController < ApplicationController
         end
       render :show_html and return
     end
-
-		@content_main = @article.md_to_html( @article.content )
 
     respond_to do |format|
       format.html
