@@ -39,6 +39,7 @@ gem 'aws-sdk', '~> 1.3.4'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.5'
+  gem 'bourbon', '~> 3.2.3'
   gem "meta_search", '>= 1.1.0.pre'
   gem 'uglifier', '>= 1.0.3'
   gem 'less-rails-bootstrap'
