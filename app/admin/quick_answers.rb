@@ -33,4 +33,41 @@ ActiveAdmin.register QuickAnswer do
   end
 
   form :partial => "shared/admin/article_form"
+
+  show do
+    attributes_table do
+      row :title
+      row :content_main
+      row :content_main_extra
+      row :content_need_to_know
+      row :preview
+      row :status
+      row :user
+      row :created_at
+      row :updated_at
+      row :contact
+    end
+  end
+
+  form do |f|
+    f.inputs "Quick Answer Details" do
+      f.input :title
+      f.input :preview
+      if current_user.is_writer?
+        f.input :status, as: :select, collection: ["Draft", "Pending Review"]
+      else
+        f.input :status, as: :select, collection: ["Draft", "Pending Review", "Published"]
+      end
+      f.input :category
+      f.input :contact
+      f.input :keywords
+      f.input :author_name, label: "Author"
+    end
+    f.inputs "Content" do
+      f.input :content_main, label: "Overview/Summary"
+      f.input :content_main_extra, label: "Full Content"
+      f.input :content_need_to_know, label: "Related Resources"
+    end
+    f.buttons
+  end
 end
