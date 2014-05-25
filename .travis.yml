@@ -2,6 +2,7 @@ language: ruby
 rvm:
   - ruby-1.9.3
 before_script:
+  - cp .env.example .env
   - psql -c 'create database "oakland_answers_test";' -U postgres
   - bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare --trace
