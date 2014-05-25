@@ -121,7 +121,7 @@ GEM
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
-    formatador (0.2.4)
+    formatador (0.2.5)
     formtastic (2.1.1)
       actionpack (~> 3.0)
     friendly_id (4.0.10.1)
@@ -160,8 +160,8 @@ GEM
     jquery-rails (2.3.0)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    jquery-ui-rails (4.1.2)
-      railties (>= 3.1.0)
+    jquery-ui-rails (4.2.1)
+      railties (>= 3.2.16)
     json (1.8.1)
     kaminari (0.15.1)
       actionpack (>= 3.0.0)
@@ -196,13 +196,11 @@ GEM
       polyamorous (~> 0.5.0)
     method_source (0.8.2)
     mime-types (1.25.1)
-    mini_portile (0.6.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     newrelic_rpm (3.8.1.221)
-    nokogiri (1.6.2.1)
-      mini_portile (= 0.6.0)
+    nokogiri (1.4.7)
     orm_adapter (0.5.0)
     paperclip (3.5.4)
       activemodel (>= 3.0.0)
@@ -363,7 +361,7 @@ DEPENDENCIES
   meta-tags
   meta_search (>= 1.1.0.pre)
   newrelic_rpm
-  nokogiri
+  nokogiri (= 1.4.7)
   paperclip (~> 3.0)
   pg
   progressbar
