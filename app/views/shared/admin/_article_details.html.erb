@@ -7,17 +7,5 @@
     <%=f.input :service_url, :label => "Web Service link" %>
   <% end %>
   <%=f.input :tags, :as => :string, :label => "Keywords" %>
-  <%=f.input :author_link, :label => "Write-a-thon Author Link" %>
-  <%=f.input :author_pic, :label => "Write-a-thon Author Pic" %>
-  <% if @article.author_pic.exists? %>
-    <li class="file input optional">
-      <div class="author_image">
-        <%= image_tag(@article.author_pic.url(:thumb),
-                      :alt => "Current Write-a-thon Author Pic",
-                      :title => "Current Write-a-thon Author Pic") %>
-      </div>
-    </li>
-  <% end %>
-  <%=f.input :author_name, :label => "Write-a-thon Author Name" %>
+  <%=f.input :author_name, :label => "Author" %>
 <% end %> <!-- details -->
-
