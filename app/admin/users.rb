@@ -28,6 +28,17 @@ ActiveAdmin.register User do
     f.buttons
   end
 
+  show do |user|
+    attributes_table do
+      row :email
+      row :is_editor
+      row :is_writer
+      row :is_admin
+      row :created_at
+      row :updated_at
+    end
+  end
+
   create_or_edit = Proc.new {
     @user            = User.find_or_create_by_id(params[:id])
     @user.is_admin = params[:user][:is_admin]

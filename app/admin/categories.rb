@@ -9,13 +9,19 @@ ActiveAdmin.register Category do
     default_actions
   end
 
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :description
+    end
+    f.buttons
+  end
+
   show do
 
     attributes_table do
       row :name
-      row :access_count
       row :description
-      row :slug
     end
 
     div do

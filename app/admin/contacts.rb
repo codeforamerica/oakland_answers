@@ -9,6 +9,18 @@ ActiveAdmin.register Contact do
     default_actions
   end
 
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :number, label: "Phone Number"
+      f.input :url
+      f.input :address
+      f.input :department
+      f.input :description
+    end
+    f.buttons
+  end
+
   # FIXME: not working
   show :title => proc { contact.name } do
   end
@@ -17,11 +29,11 @@ ActiveAdmin.register Contact do
 
     attributes_table do
       row :name
-      row :subname
-      row :number
+      row "Phone Number" do
+        contact.number
+      end
       row :url
       row :address
-      row :department
       row :description
     end
 
