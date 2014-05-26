@@ -18,7 +18,7 @@ ActiveAdmin.register Contact do
       f.input :department
       f.input :description
     end
-    f.buttons
+    f.actions
   end
 
   # FIXME: not working

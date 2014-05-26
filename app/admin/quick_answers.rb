@@ -68,6 +68,6 @@ ActiveAdmin.register QuickAnswer do
       f.input :content_main_extra, label: "Full Content"
       f.input :content_need_to_know, label: "Related Resources"
     end
-    f.buttons
+    f.actions
   end
 end
