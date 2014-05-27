@@ -33,6 +33,7 @@ gem 'indextank'
 
 gem 'bluecloth'
 gem 'kramdown'
+gem 'reverse_markdown'
 gem 'friendly_id', '~> 4.0'
 gem 'gon'
 gem 'paperclip', '~> 3.0'
