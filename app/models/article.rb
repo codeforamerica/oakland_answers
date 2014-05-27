@@ -148,7 +148,9 @@ class Article < ActiveRecord::Base
     end
 
     query_final =      "title:(#{query.split.join(' OR ')})^10"
-    query_final << " OR content:(#{query.split.join(' OR ')})^5"
+    query_final << " OR content_main:(#{query.split.join(' OR ')})^5"
+    query_final << " OR content_main_extra:(#{query.split.join(' OR ')})^5"
+    query_final << " OR content_main_need_to_know:(#{query.split.join(' OR ')})^5"
     query_final << " OR tags:(#{query.split.join(' OR ')})^8"
     query_final << " OR stems:(#{stems.flatten.join(' OR ')})^3"
     query_final << " OR metaphones:(#{metaphones.flatten.compact.join(' OR ')})^2"
