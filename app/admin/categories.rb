@@ -14,7 +14,7 @@ ActiveAdmin.register Category do
       f.input :name
       f.input :description
     end
-    f.buttons
+    f.actions
   end
 
   show do

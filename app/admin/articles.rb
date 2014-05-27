@@ -42,6 +42,6 @@ ActiveAdmin.register Article do
       f.input :author_pic
       f.input :author_name
     end
-    f.buttons
+    f.actions
   end
 end

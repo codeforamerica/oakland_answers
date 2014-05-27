@@ -25,7 +25,7 @@ ActiveAdmin.register User do
       f.input :is_editor,  :label => "Editor"
       f.input :is_writer,  :label => "Writer"
     end
-    f.buttons
+    f.actions
   end
 
   show do |user|
