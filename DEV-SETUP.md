@@ -6,7 +6,7 @@
 
 ## Installation
 
-1. Make sure you have Ruby 1.9.3 installed. You can check this by running `ruby -v` in your terminal. [rbenv](https://github.com/sstephenson/rbenv) is a great tool for managing Ruby installations.
+1. Make sure you have Ruby 1.9.3 installed. You can check this by running `ruby -v` in your terminal. [rvm](https://rvm.io/) is a great tool for managing Ruby installations.
 1. Obtain API keys for [Searchify](https://www.searchify.com/), [BigHugeThesaurus](http://words.bighugelabs.com/api.php), [Amazon S3](http://aws.amazon.com/s3/), and [KissMetrics](http://support.kissmetrics.com/developers/) (optional).
 1. Fork the repo on GitHub
 1. Clone it `$ git clone git@github.com:YOUR-GH-USERNAME/answers.git`
