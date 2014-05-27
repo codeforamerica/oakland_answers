@@ -49,6 +49,7 @@ group :assets do
 end
 
 group :test, :development do
+  gem 'faker'
   gem 'spring-commands-rspec'
   gem 'memcached'
   gem 'dotenv-rails'
