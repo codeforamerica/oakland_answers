@@ -189,3 +189,10 @@ table.dashboard > tbody > tr > td {
 .author_image {
   padding: 0 10px 0 20%;
 }
+
+/* Define language areas */
+body.active_admin{
+  li.top-break{
+      border-top: 3px solid gray; 
+    }
+}
