@@ -41,7 +41,9 @@ ActiveAdmin.register QuickAnswer do
       row :status
       row :category
       row :contact
-      row :keywords
+      row  "Keywords" do
+        quick_answer.keywords.map { |k| k.name }.join(", ")
+      end
       row "Author" do
         quick_answer.author_name
       end
