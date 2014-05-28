@@ -34,6 +34,12 @@
                       <li class="article-listing">
                         <%= content_tag(:h2, link_to(article.title,article))%>
                         <p class="preview"><%= article.preview %></p>
+                        <div class="other-langs">
+                          <%= content_tag(:h3, link_to(article.title_es,article))%>
+                          <p class="preview"><%= article.preview_es %></p>
+                          <%= content_tag(:h3, link_to(article.title_cn,article))%>
+                          <p class="preview"><%= article.preview_cn %></p>
+                        </div>
                       </li>
           <% end %>
           <% if(category) %>
