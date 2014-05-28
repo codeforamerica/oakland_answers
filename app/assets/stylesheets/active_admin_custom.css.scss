@@ -8,6 +8,7 @@ body.active_admin{
       border-top: 20px solid #fff; 
     }
   form{
+    fieldset{
       textarea{
         font-size:2em;
         width:50%;
@@ -16,5 +17,13 @@ body.active_admin{
         font-size:2em;
         width:50%;
       }
+      ol{
+        li{
+          label{
+            font-size:2em;
+          }
+        }
+      }
+    }
   }
 }
