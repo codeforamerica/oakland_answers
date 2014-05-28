@@ -7,4 +7,14 @@ body.active_admin{
   li.top-break{
       border-top: 20px solid #fff; 
     }
+  form{
+      textarea{
+        font-size:2em;
+        width:50%;
+      }
+      input[type=text]{
+        font-size:2em;
+        width:50%;
+      }
+  }
 }
