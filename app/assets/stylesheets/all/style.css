@@ -891,3 +891,10 @@ ul.about-list li {
 .other-langs p{
   margin-top:5px;
 }
+
+.other-langs div img{
+  width:3%;
+  padding-top:20px;
+  padding-right:4px;
+  float:left;
+}
