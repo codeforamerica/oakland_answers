@@ -44,7 +44,8 @@ class Article < ActiveRecord::Base
     :is_published, :slugs, :category_id, :updated_at, :created_at, :author_pic,
     :author_pic_file_name, :author_pic_content_type, :author_pic_file_size,
     :author_pic_updated_at, :author_name, :author_link, :type, :service_url, :user_id, :status,
-    :keyword_ids
+    :keyword_ids, :title_es, :preview_es, :content_main_es,
+    :title_cn, :preview_cn, :content_main_cn
 
   # A note on the content fields:
   # *  Originally the content for the articles was stored as HTML in Article#content.
@@ -149,8 +150,8 @@ class Article < ActiveRecord::Base
 
     query_final =      "title:(#{query.split.join(' OR ')})^10"
     query_final << " OR content_main:(#{query.split.join(' OR ')})^5"
-    query_final << " OR content_main_extra:(#{query.split.join(' OR ')})^5"
-    query_final << " OR content_main_need_to_know:(#{query.split.join(' OR ')})^5"
+    query_final << " OR content_main_es:(#{query.split.join(' OR ')})^5"
+    query_final << " OR content_main_cn:(#{query.split.join(' OR ')})^5"
     query_final << " OR tags:(#{query.split.join(' OR ')})^8"
     query_final << " OR stems:(#{stems.flatten.join(' OR ')})^3"
     query_final << " OR metaphones:(#{metaphones.flatten.compact.join(' OR ')})^2"

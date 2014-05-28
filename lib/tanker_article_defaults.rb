@@ -8,8 +8,8 @@ module TankerArticleDefaults
     base.tankit index, :as => 'Article' do
       indexes :title
       indexes :content_main
-      indexes :content_main_extra
-      indexes :content_need_to_know
+      indexes :content_main_es
+      indexes :content_main_cn
       indexes :category, :category => true
       indexes :tags
       indexes :preview
