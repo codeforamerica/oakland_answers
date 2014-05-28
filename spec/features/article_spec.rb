@@ -4,13 +4,9 @@ describe "Articles" do
   describe "user views a quick answer details page" do
     let(:title)                { "Parking in Oakland" }
     let(:content_main)         { "Learn about parking" }
-    let(:content_main_extra)   { "Extra parking info" }
-    let(:content_need_to_know) { "All answers to parking" }
 
     let(:article) { FactoryGirl.create(:article, type: "QuickAnswer",
-                    title: title, content_main: content_main,
-                    content_main_extra: content_main_extra,
-                    content_need_to_know: content_need_to_know) }
+                    title: title, content_main: content_main) }
 
     before { visit article_path(article) }
 
@@ -20,15 +16,6 @@ describe "Articles" do
 
     it "displays the main content" do
       page.should have_content(content_main)
-    end
-
-    it "displays the main extra content" do
-      page.should have_content(content_main_extra)
-    end
-
-    it "displays the need to know content" do
-      page.should have_content('What You Need to Know')
-      page.should have_content(content_need_to_know)
     end
   end
 
@@ -69,9 +56,7 @@ describe "Articles" do
 
   describe "user views a guide details page" do
     let!(:guide) { FactoryGirl.create(:guide, title: "trains",
-                   content_main: "trains are great",
-                   content_main_extra: "trains are extra great",
-                   content_need_to_know: "know trains")}
+                   content_main: "trains are great") }
     let!(:step1) { FactoryGirl.create(:guide_step, title: "first step",
                    step: 1, article_id: guide.id, content: "do first") }
     let!(:step2) { FactoryGirl.create(:guide_step, title: "second step",

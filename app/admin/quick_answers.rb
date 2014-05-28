@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 ActiveAdmin.register QuickAnswer do
   controller do
     load_and_authorize_resource :except => :index
@@ -34,25 +36,31 @@ ActiveAdmin.register QuickAnswer do
 
   form :partial => "shared/admin/article_form"
 
-  show do
+  show do |quick_answer|
     attributes_table do
-      row :title
-      row :content_main
-      row :content_main_extra
-      row :content_need_to_know
-      row :preview
       row :status
-      row :user
+      row :category
+      row :contact
+      row :keywords
+      row "Author" do
+        quick_answer.author_name
+      end
       row :created_at
       row :updated_at
-      row :contact
+      row :title
+      row :preview
+      row :content_main
+      row :title_es
+      row :preview_es
+      row :content_main_es
+      row :title_cn
+      row :preview_cn
+      row :content_main_cn
     end
   end
 
   form do |f|
     f.inputs "Quick Answer Details" do
-      f.input :title
-      f.input :preview
       if current_user.is_writer?
         f.input :status, as: :select, collection: ["Draft", "Pending Review"]
       else
@@ -64,9 +72,15 @@ ActiveAdmin.register QuickAnswer do
       f.input :author_name, label: "Author"
     end
     f.inputs "Content" do
-      f.input :content_main, label: "Overview/Summary"
-      f.input :content_main_extra, label: "Full Content"
-      f.input :content_need_to_know, label: "Related Resources"
+      f.input :title
+      f.input :preview
+      f.input :content_main, label: "Content"
+      f.input :title_es, label: "Title (Español)", wrapper_html: { class: 'top-break' }
+      f.input :preview_es, label: "Preview (Español)"
+      f.input :content_main_es, label: "Content (Español)"
+      f.input :title_cn, label: "Title (中文)", wrapper_html: { class: 'top-break' }
+      f.input :preview_cn, label: "Preview (中文)"
+      f.input :content_main_cn, label: "Content (中文)"
     end
     f.actions
   end

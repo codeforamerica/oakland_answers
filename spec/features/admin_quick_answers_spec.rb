@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 require 'spec_helper'
 
 describe "Quick Answers" do
@@ -16,24 +18,34 @@ describe "Quick Answers" do
       let(:quick_answer) { FactoryGirl.create(:article, type: "QuickAnswer",
                                               title: "How Parking?",
                                               content_main: "Main Parking",
-                                              content_main_extra: "Extra Parking",
-                                              content_need_to_know: "Need Parking",
                                               preview: "Preview Parking",
                                               status: "Published",
                                               contact: contact,
-                                              user: author) }
-
-    before { visit admin_quick_answer_path(quick_answer) }
+                                              author_name: "Pui Ling") }
 
     it "shows quick answer details" do
+      visit admin_quick_answer_path(quick_answer)
+
       page.should have_content("How Parking?")
       page.should have_content("Main Parking")
-      page.should have_content("Extra Parking")
-      page.should have_content("Need Parking")
       page.should have_content("Preview Parking")
       page.should have_content("Published")
-      page.should have_content("pui@example.com")
+      page.should have_content("Pui Ling")
       page.should have_content(admin_contact_path(contact))
+    end
+
+    it "shows quick answer spanish content when it exists" do
+      quick_answer.update_attributes(content_main_es: "Vinícius Lages - Sem dúvida.")
+
+      visit admin_quick_answer_path(quick_answer)
+      page.should have_content("Vinícius Lages - Sem dúvida.")
+    end
+
+    it "shows quick answer chinese content when it exists" do
+      quick_answer.update_attributes(content_main_cn: "國際特赦組織在六四事件")
+
+      visit admin_quick_answer_path(quick_answer)
+      page.should have_content("國際特赦組織在六四事件")
     end
   end
 
@@ -55,9 +67,7 @@ describe "Quick Answers" do
       select "migurski", from: "Contact"
       select "vehicles", from: "Keywords"
       fill_in "Author", with: "Mike Migurski"
-      fill_in "Overview/Summary", with: "Parking Summary"
-      fill_in "Full Content", with: "Parking Content"
-      fill_in "Related Resources", with: "Parking Resources"
+      fill_in "Content", with: "Parking Summary"
       click_button "Create Quick answer"
       page.should have_content("Quick answer was successfully created.")
     end
@@ -69,8 +79,6 @@ describe "Quick Answers" do
     let(:quick_answer) { FactoryGirl.create(:article, type: "QuickAnswer",
                        title: "How Parking?",
                        content_main: "Main Parking",
-                       content_main_extra: "Extra Parking",
-                       content_need_to_know: "Need Parking",
                        preview: "Preview Parking",
                        status: "Draft",
                        contact: contact,
