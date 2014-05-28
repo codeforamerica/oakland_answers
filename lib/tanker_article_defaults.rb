@@ -12,7 +12,6 @@ module TankerArticleDefaults
       indexes :content_main
       indexes :content_main_es
       indexes :content_main_cn
-      indexes :category, :category => true
       indexes :tags
       indexes :preview
       indexes :preview_es
