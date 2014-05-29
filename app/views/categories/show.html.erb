@@ -12,7 +12,9 @@
         <div class="header">
           <h1><%= @category.name %></h1>
         </div>
-        <%= content_tag_for :p,  @category.description unless @category.description.blank? %>
+        <% if @category.description.present? %>
+          <p><%= @category.description %></p>
+        <% end %>
         <ul>
           <% @category.articles.by_access_count.each do |article| %>
             <% next unless article.published? %>
