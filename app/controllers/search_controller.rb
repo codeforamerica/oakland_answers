@@ -3,7 +3,6 @@ class SearchController < ApplicationController
     query =  params[:q].strip
     return redirect_to root_path if params[:q].blank?
     @query = query
-    query = query.downcase.gsub(/[^\w]/, ' ').gsub(/ . /, ' ')
     query = Article.remove_stop_words query
 
     # Searchify can't handle requests longer than this
