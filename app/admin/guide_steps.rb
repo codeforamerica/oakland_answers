@@ -7,7 +7,7 @@ ActiveAdmin.register GuideStep do
    end
 
   menu :parent => "Articles"
-
+  menu false
   index do
     column "Title", :title do |guide_step|
       link_to guide_step.title, [:admin, guide_step]
