@@ -6,7 +6,7 @@ describe GuidesHelper do
 
     it 'returns a hash using data from the article object' do
       expect(helper.meta_tag_hash(article)[:description]).to eq article.preview
-      expect(helper.meta_tag_hash(article)[:canonical]).to eq 'http://example.gov'
+      expect(helper.meta_tag_hash(article)[:canonical]).to eq official_government_long_url
     end
 
     context 'when the article belongs to a category' do
@@ -22,7 +22,7 @@ describe GuidesHelper do
     context 'when the article does not belongs to a category' do
       let (:article) { create(:article) }
       let (:category) { create(:category) }
- 
+
       it 'the hash :title key returns an array with only the title' do
         expect(helper.meta_tag_hash(article)[:title]).to eq [article.title]
       end
