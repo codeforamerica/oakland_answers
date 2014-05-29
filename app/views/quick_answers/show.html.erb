@@ -20,9 +20,29 @@
           <%= content_tag(:h1, @article.title ) %>
         </div>
         <div class="content-text">
-          <% unless @content_main.strip.blank? %>
+          <% if @content_main.present? %>
             <div class="quick_top">
               <%= @content_main.html_safe %>
+            </div>
+          <% end %>
+        </div>
+        <div class="header">
+          <%= content_tag(:h1, @article.title_es ) %>
+        </div>
+        <div class="content-text">
+          <% if @content_main_es.present? %>
+            <div class="quick_top">
+              <%= @content_main_es.html_safe %>
+            </div>
+          <% end %>
+        </div>
+        <div class="header">
+          <%= content_tag(:h1, @article.title_cn ) %>
+        </div>
+        <div class="content-text">
+          <% if @content_main_cn.present? %>
+            <div class="quick_top">
+              <%= @content_main_cn.html_safe %>
             </div>
           <% end %>
         </div>

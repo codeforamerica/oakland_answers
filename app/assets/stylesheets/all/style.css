@@ -628,7 +628,6 @@ div.breadcrumbs {
   color: #777;
 }
 div.content-text {
-  padding-top: 20px;
   font-weight: 300;
 }
 .article .content-text h2 {
@@ -663,6 +662,7 @@ div.content-text {
 div.quick_top{
   background: whitesmoke;
   padding: 20px;
+  margin-bottom:40px;
 }
 
 /* TABLE */

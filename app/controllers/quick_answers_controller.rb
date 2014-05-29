@@ -23,6 +23,10 @@ class QuickAnswersController < ApplicationController
     @content_main_extra = @article.md_to_html( :content_main_extra )
     @content_need_to_know =  @article.md_to_html( :content_need_to_know )
 
+    @content_main_es =  @article.md_to_html( :content_main_es )
+    @content_main_cn =  @article.md_to_html( :content_main_cn )
+
+
     respond_to do |format|
       format.html
       format.json { render json: @article }
