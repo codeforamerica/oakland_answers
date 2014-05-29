@@ -2,7 +2,15 @@ ActiveAdmin::Dashboards.build do
   section("Recent Articles", :if => proc {current_user.is_admin? || current_user.is_editor? }, :priority => 1) do
     table_for Article.order("created_at DESC").limit(5) do
       column "Article Title", :title do |article|
-        link_to article.title, [:admin, article]
+        title = ""
+        if article.title.present?
+          title = article.title
+        elsif article.title_es.present?
+          title = article.title_es
+        elsif article.title_cn.present?
+          title = article.title_cn
+        end
+        link_to title, [:admin, article]
       end
       column "Author", :user do |article|
         article.user.try(:email)

@@ -17,7 +17,15 @@ ActiveAdmin.register QuickAnswer do
 
   index do
     column "Quick Answer Title", :title do |article|
-      link_to article.title, [:admin, article]
+      title = ""
+      if article.title.present?
+        title = article.title
+      elsif article.title_es.present?
+        title = article.title_es
+      elsif article.title_cn.present?
+        title = article.title_cn
+      end
+      link_to title, [:admin, article]
     end
     column :category
     column :contact
