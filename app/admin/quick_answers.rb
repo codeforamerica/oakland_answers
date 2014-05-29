@@ -74,9 +74,9 @@ ActiveAdmin.register QuickAnswer do
       f.input :author_name, label: "Author"
     end
     f.inputs "Content" do
-      f.input :title
-      f.input :preview
-      f.input :content_main, label: "Content"
+      f.input :title, label: "Title (English)"
+      f.input :preview, label: "Preview (English)"
+      f.input :content_main, label: "Content (English)"
       f.input :title_es, label: "Title (Español)", wrapper_html: { class: 'top-break' }
       f.input :preview_es, label: "Preview (Español)"
       f.input :content_main_es, label: "Content (Español)"

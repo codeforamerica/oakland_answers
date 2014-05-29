@@ -7,7 +7,7 @@ ActiveAdmin.register WebService do
    end
 
   menu :parent => "Articles"
-
+  menu false
   filter :title
   filter :tags
   filter :contact_id

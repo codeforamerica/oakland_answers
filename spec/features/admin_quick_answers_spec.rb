@@ -60,14 +60,14 @@ describe "Quick Answers" do
     end
 
     it "successfully creates a new quick answer when all fields are filled out" do
-      fill_in "Title", with: "Let's Park"
-      fill_in "Preview", with: "Parking Preview"
       select "Published", from: "Status"
       select "Parking", from: "Category"
       select "migurski", from: "Contact"
       select "vehicles", from: "Keywords"
       fill_in "Author", with: "Mike Migurski"
-      fill_in "Content", with: "Parking Summary"
+      fill_in "Title (English)", with: "Let's Park"
+      fill_in "Preview (English)", with: "Parking Preview"
+      fill_in "Content (English)", with: "Parking Summary"
       click_button "Create Quick answer"
       page.should have_content("Quick answer was successfully created.")
     end
@@ -87,7 +87,7 @@ describe "Quick Answers" do
     before { visit edit_admin_quick_answer_path(quick_answer) }
 
     it "successfully modifies a quick answer" do
-      fill_in "Title", with: "Why Parking?"
+      fill_in "Title (English)", with: "Why Parking?"
       select "Published", from: "Status"
       click_button "Update Quick answer"
       page.should have_content("Quick answer was successfully updated.")
