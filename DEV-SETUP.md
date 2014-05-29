@@ -11,12 +11,11 @@
 1. Fork the repo on GitHub
 1. Clone it `$ git clone git@github.com:YOUR-GH-USERNAME/answers.git`
 1. `$ cd answers`
-1. Create a `.env` file. 
+1. Create a `.env` file (`$ cp .env.example .env`). 
   - There is a sample .env file in the root directory of the application called ".env.sample" (you can see it if you type ls -a).
   - Fill in the blanks with your own API keys. 
   - Minimum keys needed are:
-    - TODO
-    - TODO
+    - `SECRET_TOKEN`: run `rake secret` to generate one.
 1. Install qt dependency with Homebrew
   - Install homebrew: `$ ruby <(curl -fsSkL raw.github.com/mxcl/homebrew/go)`
   - Install qt: `$ brew install qt`
