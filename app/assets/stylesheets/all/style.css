@@ -293,16 +293,11 @@ div.pop-heading {
 div.pop-categories p a {
 }
 
-div.pop-categories li:not(:last-child):after {
-  /*content: " - ";*/
-}
 
-div.pop-categories li+li:before {
-  content: '- ';
-}
+
 
 div.pop-categories li {
-  display: inline;
+  display: block;
   font-size: 120%;
 }
 
