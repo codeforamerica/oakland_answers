@@ -202,11 +202,13 @@ GEM
       polyamorous (~> 0.5.0)
     method_source (0.8.2)
     mime-types (1.25.1)
+    mini_portile (0.6.0)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
     newrelic_rpm (3.8.1.221)
-    nokogiri (1.4.7)
+    nokogiri (1.6.2.1)
+      mini_portile (= 0.6.0)
     orm_adapter (0.5.0)
     paperclip (3.5.4)
       activemodel (>= 3.0.0)
@@ -372,7 +374,7 @@ DEPENDENCIES
   meta-tags
   meta_search (>= 1.1.0.pre)
   newrelic_rpm
-  nokogiri (= 1.4.7)
+  nokogiri (> 1.4.7)
   paperclip (~> 3.0)
   pg
   progressbar
