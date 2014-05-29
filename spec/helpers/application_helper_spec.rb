@@ -2,35 +2,62 @@ require 'spec_helper'
 
 include ApplicationHelper
 
-describe ApplicationHelper do   
+describe ApplicationHelper do
+  before :each do
+    # ENV.stub(:[]).with("AWS_ACCESS_KEY_ID").and_return("asdf")
+    # ENV.stub(:[]).with("AWS_SECRET_ACCESS_KEY").and_return("secret")
+    # ENV['OFFICIAL_SITE_TITLE']
+    # ENV['OFFICIAL_STYLE_GUIDE']
+    # ENV['OFFICIAL_CITY_NAME']
+    # ENV['OFFICIAL_CONTACT_MAIL']
+    # ENV['OFFICIAL_GOVERMENT_URL']
+    ENV.stub(:[])
+    ENV.stub(:[]).with("OFFICIAL_SITE_TITLE").and_return("Generic Answers")
+    ENV.stub(:[]).with("OFFICIAL_STYLE_GUIDE").and_return("The Style Guide")
+    ENV.stub(:[]).with("OFFICIAL_CITY_NAME").and_return("Cityville")
+    ENV.stub(:[]).with("OFFICIAL_CONTACT_MAIL").and_return("offical@contact.mail")
+    ENV.stub(:[]).with("OFFICIAL_GOVERNMENT_URL").and_return("https://official.government.url")  
+  end    
 
   it "returns official_site_title" do
-    official_site_title.class.should == String
+    title = official_site_title
+    expect(title.class).to(eq(String))
+    expect(title).to(eq(ENV["OFFICIAL_SITE_TITLE"]))
   end
   
   it "returns official style guide" do
-    official_style_guide.class.should == String
+    guide = official_style_guide
+    expect(guide.class).to(eq(String))
+    expect(guide).to(eq(ENV["OFFICIAL_STYLE_GUIDE"]))
   end
   
   it "returns official city name" do
-    official_city_name.class.should == String
+    name = official_city_name
+    expect(name.class).to(eq(String))
+    expect(name).to(eq(ENV["OFFICIAL_CITY_NAME"]))
   end
   
   it "official contact email" do
-    official_contact_email.class.should == String
+    email = official_contact_email
+    expect(email.class).to(eq(String))
+    expect(email).to(eq(ENV["OFFICIAL_CONTACT_MAIL"]))
   end
   
   it "returns official government long url" do
-    official_government_long_url.class.should == String
+    url = official_government_long_url
+    expect(url.class).to(eq(String))
+    expect(url).to(eq(ENV["OFFICIAL_GOVERNMENT_URL"]))
   end
   
   it "returns official government short url" do
-    official_government_short_url.class.should == String
+    url = official_government_short_url
+    expect(url.class).to(eq(String))
+    expect(url).to(eq("official.government.url"))
   end
   
   it "returns link to official government website" do
     link = link_to_official_government_website
-    link.class.should == ActiveSupport::SafeBuffer
+    expect(link.class).to(eq(ActiveSupport::SafeBuffer))
   end
  
 end
