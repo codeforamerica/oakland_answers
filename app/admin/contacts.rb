@@ -1,18 +1,24 @@
 ActiveAdmin.register Contact do
-  # This will authorize the Foobar class
-  # The authorization is done using the AdminAbility class
-  controller.authorize_resource  
+  controller.authorize_resource
 
-
-   # View 
   index do
-    #column :id
     column "Name", :name
     column :department
     column :url
     column "Created", :created_at
-    # column :tags
-    default_actions # Add show, edit, delete column
+    default_actions
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :name
+      f.input :number, label: "Phone Number"
+      f.input :url
+      f.input :address
+      f.input :department
+      f.input :description
+    end
+    f.actions
   end
 
   # FIXME: not working
@@ -23,11 +29,11 @@ ActiveAdmin.register Contact do
 
     attributes_table do
       row :name
-      row :subname
-      row :number
+      row "Phone Number" do
+        contact.number
+      end
       row :url
       row :address
-      row :department
       row :description
     end
 
@@ -47,7 +53,7 @@ ActiveAdmin.register Contact do
           column "" do |article|
             if article.status=="Published"
               link_to "View", article
-            else 
+            else
               "Draft"
             end
           end
@@ -61,7 +67,5 @@ ActiveAdmin.register Contact do
 
       end
     end
-
   end
-
 end

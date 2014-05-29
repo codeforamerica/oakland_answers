@@ -6,7 +6,7 @@ class HomeController < ApplicationController
     @popular_categories = Category.by_access_count.limit(4)
   end
 
-   def about
-   end
+ def about
+ end
 
 end

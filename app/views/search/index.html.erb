@@ -1,15 +1,6 @@
-<script>
-$(document).ready(function () {
-  $.get("search/spell_check.json?string='<%=j @query %>'", function(data) {
-    $('#sug').append(data.responseText);
-  });
-});
-</script>
 <% set_meta_tags  :description => "Search results for #{@query}.",
-                  :canonical => offical_government_long_url(request.fullpath),
-                  :title => "Search results for #{@query}."
-
-                   %>
+                  :canonical => official_government_long_url(request.fullpath),
+                  :title => "Search results for #{@query}." %>
 
 <div class="page-container search">
   <div class="row">
@@ -17,17 +8,6 @@ $(document).ready(function () {
       <div class="main-content">
         <div class="header">
           <h1>Search results for: "<strong><%=@query%></strong>"</h1>
-
-          <% if @query_corrected != @query %>
-            <div class="suggestion">
-              (Did you mean:"
-              <a href ='/search?q=<%= @query_corrected.gsub(/ /, '+') %>'>
-                <%=@query_corrected%>
-              </a>
-              "?)
-           </div>
-          <% end %>
-
           <br/>
 
           <% if @results.empty? %>

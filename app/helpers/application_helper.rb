@@ -4,47 +4,38 @@ module ApplicationHelper
 	def categories_list
 		Category.order('name')
 	end
+
 	def category_by_name(name)
 		Category.where(:name => name).first
 	end
   # end should
 
-
-
-
-	def offical_site_title
-		# "Oakland Answers"
+	def official_site_title
 		ENV['OFFICIAL_SITE_TITLE']
 	end
 
-
-	def offical_style_guide
-		# "Oakland Answers"
+	def official_style_guide
 		ENV['OFFICIAL_STYLE_GUIDE']
 	end
 
-
-	def offical_city_name
+	def official_city_name
 		ENV['OFFICIAL_CITY_NAME']
 	end
 
-	def offical_contact_email
+	def official_contact_email
 		ENV['OFFICIAL_CONTACT_MAIL']
 	end
 
-
-	def offical_government_long_url(params = '')
+	def official_government_long_url(params = '')
 		ENV['OFFICIAL_GOVERMENT_URL']
 	end
 
-	def offical_government_short_url(params = '')
-		File.basename(offical_government_long_url) + params
+	def official_government_short_url(params = '')
+		File.basename(official_government_long_url) + params
 	end
 
-
-	def link_to_offical_government_website(params = '', name = nil)
-		name = name.nil? ? offical_government_short_url : name
-		link_to(name, "#{offical_government_long_url}/#{params}")
+	def link_to_official_government_website(params = '', name = nil)
+		name = name.nil? ? official_government_short_url : name
+		link_to(name, "#{official_government_long_url}/#{params}")
 	end
-
 end

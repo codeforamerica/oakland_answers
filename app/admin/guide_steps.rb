@@ -1,5 +1,4 @@
 ActiveAdmin.register GuideStep do
-  # as per https://github.com/gregbell/active_admin/wiki/Enforce-CanCan-constraints
   controller do
     load_and_authorize_resource :except => :index
       def scoped_collection
@@ -9,9 +8,7 @@ ActiveAdmin.register GuideStep do
 
   menu :parent => "Articles"
 
-  # View
   index do
-    #column :id
     column "Title", :title do |guide_step|
       link_to guide_step.title, [:admin, guide_step]
     end
@@ -19,7 +16,7 @@ ActiveAdmin.register GuideStep do
     column :content
     column :step
     column "Updated", :updated_at
-    default_actions # Add show, edit, delete column
+    default_actions
   end
 
   form :partial => "form"

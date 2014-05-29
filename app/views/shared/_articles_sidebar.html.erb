@@ -1,9 +1,9 @@
-      <div class="sidebar">  
+      <div class="sidebar">
         <% unless @article.contact.nil? %>
           <div class="sidebar-unit">
             <h4 class="side-head">NEED MORE INFO?</h4>
             <div class="sidebar-content">
-              <% if @article.contact.url.index(',') == nil %>
+              <% if @article.contact.try(:url).try(:index, ',').nil? %>
                 <%= content_tag(:h4, link_to_unless(@article.contact.url.blank?, @article.contact.name, @article.contact.url, :target => "_blank")) %>
               <% elsif !(@article.contact.url.blank?) %>
                 <%= content_tag(:h4, @article.contact.name) %>
@@ -14,14 +14,14 @@
                 <br/>
               <% end %>
               <%= raw @article.contact.address %>
-              <% if @article.contact.number.length > 0 %>
+              <% if @article.contact.number.present? && @article.contact.number.length > 0 %>
                 <%= raw "Phone: #{@article.contact.number}" %>
               <% end %>
             </div>
           </div>
         <% end %>
         <% if @article.keywords.count > 0 %>
-          <% unless @article.related.empty? %>
+          <% if @article.related.any? %>
             <div class="sidebar-unit">
               <h4 class="side-head">RELATED TOPICS</h4>
               <div class="sidebar-content">
