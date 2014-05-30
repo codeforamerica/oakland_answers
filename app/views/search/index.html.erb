@@ -20,14 +20,14 @@
                     <%= content_tag( :h2, link_to( article.title, article_path(article.id) ) ) %>
                     <p class="preview"><%= article.preview %></p>
                       <div class="other-langs">
-                          <% if(article.title_es) %>
+                          <% if article.title_es.present? %>
                           <div class="preview-es">
                             <img src="/assets/es.gif" title="This content is also in Spanish" />
                             <%= content_tag(:h3, link_to(article.title_es,article))%>
                             <p class="preview"><%= article.preview_es %></p>
                           </div>
                           <% end %>
-                          <% if(article.title_cn) %>
+                          <% if article.title_cn.present? %>
                           <div class="preview-cn">
                             <img src="/assets/cn.gif" title="This content is also in Chinese" />
                             <%= content_tag(:h3, link_to(article.title_cn,article))%>

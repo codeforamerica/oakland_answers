@@ -26,26 +26,26 @@
             </div>
           <% end %>
         </div>
-        <div class="header">
-          <%= content_tag(:h1, @article.title_es ) %>
-        </div>
-        <div class="content-text">
-          <% if @content_main_es.present? %>
+        <% if @content_main_es.present? %>
+          <div class="header">
+            <%= content_tag(:h1, @article.title_es ) %>
+          </div>
+          <div class="content-text">
             <div class="quick_top">
               <%= @content_main_es.html_safe %>
             </div>
-          <% end %>
-        </div>
-        <div class="header">
-          <%= content_tag(:h1, @article.title_cn ) %>
-        </div>
-        <div class="content-text">
-          <% if @content_main_cn.present? %>
+          </div>
+        <% end %>
+        <% if @content_main_cn.present? %>
+          <div class="header">
+            <%= content_tag(:h1, @article.title_cn ) %>
+          </div>
+          <div class="content-text">
             <div class="quick_top">
               <%= @content_main_cn.html_safe %>
             </div>
-          <% end %>
-        </div>
+          </div>
+        <% end %>
       </div>
     </div><!-- /span9 -->
 
