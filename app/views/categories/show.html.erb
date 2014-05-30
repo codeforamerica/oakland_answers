@@ -21,8 +21,7 @@
               <li class="article-listing">
                 <%= content_tag( :h2, link_to( article.title, article_path(article.id) ) ) %>
                 <p class="preview"><%= article.preview %></p>
-            </li>
-            <div class="other-langs">
+                <div class="other-langs">
               <% if article.title_es.present? %>
                 <div class="preview-es">
                   <img src="/assets/es.gif" title="This content is also in Spanish" />
@@ -38,6 +37,8 @@
                 </div>
               <% end %>
             </div>
+            </li>
+            
           <% end -%>
 
         </ul>
