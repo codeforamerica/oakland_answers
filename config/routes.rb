@@ -2,6 +2,7 @@ Oaklandanswers::Application.routes.draw do
   get "quick_answer/show"
 
   get "category/index"
+  post "search/reindex_articles", to: "search#reindex_articles"
 
   ActiveAdmin.routes(self)
 

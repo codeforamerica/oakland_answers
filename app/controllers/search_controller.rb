@@ -21,4 +21,11 @@ class SearchController < ApplicationController
       format.html
     end
   end
+
+  def reindex_articles
+    Article.tanker_reindex
+    respond_to do |format|
+      format.json { render json: true }
+    end
+  end
 end
