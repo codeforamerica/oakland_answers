@@ -16,7 +16,7 @@ describe "Answers" do
   end
   
   it "returns zero high confidence model warnings" do
-    expect(checks.model_warnings.length).to(eq(0), "Run `rake security:models[0]` to debug.")
+    expect(checks.model_warnings.length).to(eq(0), "Run `rake 'security:models[0]'` to debug.")
   end
   
   it "returns zero high confidence template warnings" do
