@@ -55,6 +55,7 @@ group :test, :development do
   gem 'dotenv-rails'
   gem 'rspec-rails', '>= 2.10.1'
   gem 'rspec-html-matchers'
+  gem 'inch', require: false
 end
 
 group :test do
