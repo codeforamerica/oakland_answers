@@ -1,14 +1,4 @@
 module ApplicationHelper
-  
-  # these should be moved out of the helper and into their respective models
-	def categories_list
-		Category.order('name')
-	end
-
-	def category_by_name(name)
-		Category.where(:name => name).first
-	end
-  # end should
 
 	def official_site_title
 		ENV["OFFICIAL_SITE_TITLE"]
