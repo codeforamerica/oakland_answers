@@ -1,30 +1,23 @@
 module ApplicationHelper
-	def categories_list
-		Category.order('name')
-	end
-
-	def category_by_name(name)
-		Category.where(:name => name).first
-	end
 
 	def official_site_title
-		ENV['OFFICIAL_SITE_TITLE']
+		ENV["OFFICIAL_SITE_TITLE"]
 	end
 
 	def official_style_guide
-		ENV['OFFICIAL_STYLE_GUIDE']
+		ENV["OFFICIAL_STYLE_GUIDE"]
 	end
 
 	def official_city_name
-		ENV['OFFICIAL_CITY_NAME']
+		ENV["OFFICIAL_CITY_NAME"]
 	end
 
 	def official_contact_email
-		ENV['OFFICIAL_CONTACT_MAIL']
+		ENV["OFFICIAL_CONTACT_MAIL"]
 	end
 
 	def official_government_long_url(params = '')
-		ENV['OFFICIAL_GOVERMENT_URL']
+		ENV["OFFICIAL_GOVERNMENT_URL"]
 	end
 
 	def official_government_short_url(params = '')

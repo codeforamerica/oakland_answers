@@ -54,6 +54,7 @@ group :test, :development do
   gem 'memcached'
   gem 'dotenv-rails'
   gem 'rspec-rails', '>= 2.10.1'
+  gem 'rspec-html-matchers'
 end
 
 group :test do
