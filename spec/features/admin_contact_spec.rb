@@ -80,7 +80,7 @@ describe "Contacts" do
     end
 
     it "successfully destroys a contact" do
-      click_link "delete"
+      click_link "Delete Contact"
       page.should have_content("Contact was successfully destroyed.")
     end
   end

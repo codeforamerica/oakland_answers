@@ -69,7 +69,7 @@ describe "Categories" do
 
     before { visit admin_category_path(category) }
     it "successfully destroys a category" do
-      click_link "delete"
+      click_link "Delete Category"
       page.should have_content("Category was successfully destroyed.")
     end
   end
