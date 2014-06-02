@@ -14,6 +14,7 @@ Spork.prefork do
   end
 
   require 'capybara/rspec'
+  require 'capybara-screenshot/rspec'
   require 'database_cleaner'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
@@ -22,6 +23,7 @@ Spork.prefork do
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   Capybara.javascript_driver = :webkit
+  Capybara.asset_host = 'http://localhost:3000'
   WebMock.disable_net_connect!(allow_localhost: true)
 
   RSpec.configure do |config|
