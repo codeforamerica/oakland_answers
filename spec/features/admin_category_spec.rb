@@ -68,9 +68,8 @@ describe "Categories" do
                                         description: "Parking Description") }
 
     before { visit admin_category_path(category) }
-
     it "successfully destroys a category" do
-      click_link "Delete Category"
+      click_link "delete"
       page.should have_content("Category was successfully destroyed.")
     end
   end

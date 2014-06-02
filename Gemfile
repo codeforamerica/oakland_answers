@@ -59,6 +59,8 @@ group :test, :development do
   gem 'rspec-html-matchers'
   gem 'spring-commands-rspec'
   gem 'brakeman', require: false
+  gem 'inch', require: false
+  gem 'pry-rescue'
 end
 
 group :test do
@@ -73,4 +75,5 @@ group :test do
   gem 'spork-rails'
   gem 'webmock'
   gem 'vcr'
+  gem 'rspec-html-matchers'
 end
