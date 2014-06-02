@@ -4,13 +4,6 @@ include ApplicationHelper
 
 describe ApplicationHelper do
   before :each do
-    # ENV.stub(:[]).with("AWS_ACCESS_KEY_ID").and_return("asdf")
-    # ENV.stub(:[]).with("AWS_SECRET_ACCESS_KEY").and_return("secret")
-    # ENV['OFFICIAL_SITE_TITLE']
-    # ENV['OFFICIAL_STYLE_GUIDE']
-    # ENV['OFFICIAL_CITY_NAME']
-    # ENV['OFFICIAL_CONTACT_MAIL']
-    # ENV['OFFICIAL_GOVERMENT_URL']
     ENV.stub(:[])
     ENV.stub(:[]).with("OFFICIAL_SITE_TITLE").and_return("Generic Answers")
     ENV.stub(:[]).with("OFFICIAL_STYLE_GUIDE").and_return("The Style Guide")
@@ -58,6 +51,7 @@ describe ApplicationHelper do
   it "returns link to official government website" do
     link = link_to_official_government_website
     expect(link.class).to(eq(ActiveSupport::SafeBuffer))
+    expect(link).to(have_tag('a', {with: {href: ENV["OFFICIAL_GOVERNMENT_URL"]+"/"}}))
   end
  
 end
