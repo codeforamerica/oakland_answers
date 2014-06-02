@@ -1,4 +1,5 @@
 [![Code Climate](https://codeclimate.com/github/codeforamerica/oakland_answers.png)](https://codeclimate.com/github/codeforamerica/oakland_answers)
+[![Build Status](https://travis-ci.org/codeforamerica/oakland_answers.svg?branch=master)](https://travis-ci.org/codeforamerica/oakland_answers)
 
 Oakland Answers is based on [Honolulu Answers](http://answers.honolulu.gov): a new approach to make it easier for people to navigate city information and services quickly. It's a citizen-focused website that is question-driven, with clean, easy-to-navigate design. Unlike a portal destination, Honolulu Answers is like Google -- type in anything, and it probably gives you the answer you're looking for, using the words you know. Every page on the site is an answer to a potential Google search question by a citizen, written in simple, friendly language, as if you'd asked your neighbor a question. The content is organized based on citizen understanding, the intuitive way you'd think of a problem, not the way the city is organized internally.
 
