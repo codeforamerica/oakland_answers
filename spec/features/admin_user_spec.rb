@@ -27,7 +27,6 @@ describe "Users" do
 
     # TODO guh, creation doesn't have a success/failure message
     it "successfully creates a user" do
-      binding.pry
       fill_in "Email", with: "pui@example.com"
       fill_in "user_password", with: "Mahalo43"
       fill_in "user_password_confirmation", with: "Mahalo43"
@@ -46,7 +45,6 @@ describe "Users" do
 
     # TODO Blarh, same as creation
     it "successfully updates an existing user" do
-      binding.pry
       fill_in "Email", with: "pui_ling@example.com"
       click_button "Update User"
       page.should have_content("User Details")
@@ -61,7 +59,7 @@ describe "Users" do
     end
 
     it "successfully destroys a user" do
-      click_link "delete"
+      click_link "Delete User"
       page.should have_content("User was successfully destroyed.")
     end
   end

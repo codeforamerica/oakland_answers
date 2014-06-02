@@ -65,6 +65,12 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'launchy'
+  gem 'guard-rspec'
+  gem 'factory_girl_rails'
+  gem 'spork-rails'
+  gem 'guard-spork'
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'guard-rspec'
