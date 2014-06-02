@@ -139,6 +139,9 @@ p a:hover{
   color: rgb(0,136,204);
   border-bottom: none;
 }
+.breadcrumbs li{
+  display: inline;
+}
 
 table a{
   border-bottom: none;

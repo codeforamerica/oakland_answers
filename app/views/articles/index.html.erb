@@ -1,8 +1,6 @@
 <div class="page-container">
   <div class="breadcrumbs">
-    <%= link_to( "Home", root_url) %>
-    >
-    All Articles
+    <ol><%= render_breadcrumbs :tag=> :li, :separator =>" > " %></ol>
   </div>
   <div class="row">
     <div class="span9">

@@ -1,5 +1,5 @@
 class WebServicesController < ApplicationController
-
+  add_breadcrumb "Home", :root_url
   def show
     return render(:template => 'articles/missing') unless WebService.exists? params[:id]
 
@@ -20,6 +20,11 @@ class WebServicesController < ApplicationController
       render :show_html and return
     end
 
+    if @article.category.present?
+      add_breadcrumb @article.category.name, @article.category
+    end
+    add_breadcrumb @article.title
+    
     @content_main =  @article.md_to_html( :content_main )
     @content_main_extra = @article.md_to_html( :content_main_extra )
     @content_need_to_know =  @article.md_to_html( :content_need_to_know )

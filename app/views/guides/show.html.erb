@@ -1,13 +1,7 @@
 <% set_meta_tags meta_tag_hash(@article) %>
 <div class="page-container article">
   <div class="breadcrumbs">
-    <%= link_to( "Home", root_url) %>
-    <% if @article.category.present? %>
-    >
-    <%= link_to(@article.category.name, @article.category) %>
-    <% end %>
-    >
-    <%= @article.title %>
+    <ol><%= render_breadcrumbs :tag=> :li, :separator =>" > " %></ol>
   </div>
   <div class="row">
     <div class="span9">

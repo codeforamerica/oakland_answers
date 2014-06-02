@@ -2,9 +2,9 @@
                   :canonical => official_government_long_url(request.fullpath) %>
 <div class="page-container">
   <div class="breadcrumbs">
-    <%= link_to( "Home", root_url) %>
-    >
-    <%= title @category.name %>
+    <ol>
+      <%= render_breadcrumbs :tag=> :li, :separator =>" > " %>
+    </ol> 
   </div>
   <div class="row">
     <div class="span9">

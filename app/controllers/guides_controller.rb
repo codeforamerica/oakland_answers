@@ -1,5 +1,6 @@
 class GuidesController < ApplicationController
-	def show
+	add_breadcrumb "Home", :root_url
+  def show
 		return render(:template => 'articles/missing') unless Guide.exists? params[:id]
 		@article = Guide.find(params[:id])
 
@@ -11,6 +12,11 @@ class GuidesController < ApplicationController
 
     @article.delay.increment! :access_count
     @article.delay.category.increment!(:access_count) if @article.category
+
+    if @article.category.present?
+      add_breadcrumb @article.category.name, @article.category
+    end
+    add_breadcrumb @article.title
 
     if !@article.render_markdown
       @content_html = @article.content
