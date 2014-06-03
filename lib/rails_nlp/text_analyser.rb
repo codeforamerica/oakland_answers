@@ -57,6 +57,8 @@ module RailsNlp
       words.each do |word|
         keywords << Keyword.find_or_create_by_name( word )
       end
+      
+      keywords
     end
 
         # def self.analyse!
