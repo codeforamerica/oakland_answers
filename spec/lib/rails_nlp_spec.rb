@@ -1,13 +1,16 @@
 # encoding: UTF-8
 require 'spec_helper'
 
-describe RailsNlp::TextAnalyser do
+vcr_options = { 
+  cassette_name: 'rails_nlp'
+}
+
+describe RailsNlp::TextAnalyser, vcr: vcr_options do
   before(:all) do
     @analyser = RailsNlp::TextAnalyser.new
   end
 
   describe "Combining all the strings and texts of a model into one long string" do
-    use_vcr_cassette("rails_nlp")
     
     it "works with a fantasy example" do
       class AssocModel
@@ -50,7 +53,6 @@ describe RailsNlp::TextAnalyser do
   end
 
   describe "Clean the text of non-word characters" do
-    use_vcr_cassette("rails_nlp")
 
     it "removes html tags" do
       dirty = "<div id='content', class='class'>one two <br /><ul><li>three </li><br /><strong>four</strong></ul></div>"
@@ -93,7 +95,6 @@ describe RailsNlp::TextAnalyser do
   end
 
   describe "creating a frequency map of useful words" do
-    use_vcr_cassette("rails_nlp")
     
     it "ignores stop words" do
       string = "when is i a the then to but how where"
@@ -112,7 +113,6 @@ describe RailsNlp::TextAnalyser do
   end
 
   describe "Given an array of words, return an array of Keywords" do
-    use_vcr_cassette("rails_nlp")
     
     class PretendKeyword 
       attr_accessor :name, :metaphones, :stem, :synonyms
