@@ -39,6 +39,11 @@ gem 'gon'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk', '~> 1.3.4'
 
+group :development do
+  gem 'binding_of_caller'
+  gem 'better_errors'
+end
+
 group :assets do
   gem 'sass-rails', '~> 3.2.5'
   gem 'bourbon', '~> 3.2.3'
@@ -59,7 +64,6 @@ group :test, :development do
   gem 'rspec-html-matchers'
   gem 'spring-commands-rspec'
   gem 'brakeman', require: false
-  gem 'pry-rescue'
 end
 
 group :test do
@@ -74,4 +78,5 @@ group :test do
   gem 'spork-rails'
   gem 'webmock'
   gem 'vcr'
+  gem 'pry-rescue'
 end
