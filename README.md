@@ -3,6 +3,7 @@
 [![Coverage Status](https://coveralls.io/repos/18F/answers/badge.png?branch=feature%2Fadd_coveralls)](https://coveralls.io/r/18F/answers?branch=feature%2Fadd_coveralls)
 [![Code Climate](https://codeclimate.com/github/codeforamerica/oakland_answers.png)](https://codeclimate.com/github/codeforamerica/oakland_answers)
 [![Inline docs](http://inch-pages.github.io/github/codeforamerica/oakland_answers.png)](http://inch-pages.github.io/github/codeforamerica/oakland_answers)
+[![Dependency Status](https://gemnasium.com/18F/answers.svg)](https://gemnasium.com/18F/answers)
 
 Oakland Answers is based on [Honolulu Answers](http://answers.honolulu.gov): a new approach to make it easier for people to navigate city information and services quickly. It's a citizen-focused website that is question-driven, with clean, easy-to-navigate design. Unlike a portal destination, Honolulu Answers is like Google -- type in anything, and it probably gives you the answer you're looking for, using the words you know. Every page on the site is an answer to a potential Google search question by a citizen, written in simple, friendly language, as if you'd asked your neighbor a question. The content is organized based on citizen understanding, the intuitive way you'd think of a problem, not the way the city is organized internally.
 
