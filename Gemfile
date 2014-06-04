@@ -59,10 +59,18 @@ group :test, :development do
   gem 'rspec-html-matchers'
   gem 'spring-commands-rspec'
   gem 'brakeman', require: false
+  gem 'inch', require: false
+  gem 'pry-rescue'
 end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-screenshot'
+  gem 'launchy'
+  gem 'guard-rspec'
+  gem 'factory_girl_rails'
+  gem 'spork-rails'
+  gem 'guard-spork'
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'guard-rspec'
@@ -73,4 +81,5 @@ group :test do
   gem 'spork-rails'
   gem 'webmock'
   gem 'vcr'
+  gem 'rspec-html-matchers'
 end
