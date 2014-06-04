@@ -58,13 +58,13 @@ end
 
 group :test, :development do
   gem 'brakeman', require: false
+  gem 'coveralls', require: false
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'inch', require: false
   gem 'memcached'
   gem 'pry-rescue'
   gem 'rspec-rails', '>= 2.10.1'
-  gem 'spork-rails'
 end
 
 group :test do
@@ -75,7 +75,7 @@ group :test do
   gem 'launchy'
   gem 'rspec-html-matchers'
   gem 'shoulda'
-  gem 'simplecov', '~> 0.7.1', require: false
+  gem 'spork-rails'
   gem 'webmock'
   gem 'vcr'
 end

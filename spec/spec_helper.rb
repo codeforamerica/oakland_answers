@@ -1,4 +1,7 @@
 ENV["RAILS_ENV"] ||= 'test'
+require 'coveralls'
+Coveralls.wear!('rails')
+
 require 'spork'
 require 'vcr'
 
@@ -9,7 +12,6 @@ end
 
 Spork.prefork do
   unless ENV['DRB']
-    require 'simplecov'
     SimpleCov.start 'rails'
   end
 
@@ -50,7 +52,6 @@ end
 
 Spork.each_run do
   if ENV['DRB']
-    require 'simplecov'
     SimpleCov.start 'rails'
   end
 end
