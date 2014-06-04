@@ -19,7 +19,7 @@
           <% @category.articles.by_access_count.each do |article| %>
             <% next unless article.published? %>
               <li class="article-listing">
-                <%= content_tag( :h2, link_to( article.title, article_path(article.id) ) ) %>
+                <%= content_tag( :h2, link_to( article.title, article) ) %>
                 <p class="preview"><%= article.preview %></p>
                 <div class="other-langs">
               <% if article.title_es.present? %>
