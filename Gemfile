@@ -59,6 +59,7 @@ group :test, :development do
   gem 'rspec-html-matchers'
   gem 'spring-commands-rspec'
   gem 'brakeman', require: false
+  gem 'pry-rescue'
 end
 
 group :test do
