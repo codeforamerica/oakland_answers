@@ -417,9 +417,9 @@ DEPENDENCIES
   paperclip (~> 3.0)
   pg
   progressbar
-  rspec-html-matchers
   rails (> 3.2.17)
   reverse_markdown
+  rspec-html-matchers
   rspec-rails (>= 2.10.1)
   sass-rails (~> 3.2.5)
   shoulda
