@@ -58,6 +58,7 @@ group :test, :development do
   gem 'rspec-rails', '>= 2.10.1'
   gem 'rspec-html-matchers'
   gem 'spring-commands-rspec'
+  gem 'brakeman', require: false
 end
 
 group :test do
