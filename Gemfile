@@ -38,6 +38,7 @@ gem 'friendly_id', '~> 4.0'
 gem 'gon'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk', '~> 1.3.4'
+gem 'dotenv-rails'
 
 group :assets do
   gem 'sass-rails', '~> 3.2.5'
@@ -49,37 +50,32 @@ group :assets do
   gem 'therubyracer'
 end
 
+group :development do
+  gem 'guard-rspec', require: false
+  gem 'guard-spork'
+  gem 'spring-commands-rspec'
+end
+
 group :test, :development do
-  gem 'dotenv-rails'
+  gem 'brakeman', require: false
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'inch', require: false
   gem 'memcached'
-  gem 'rspec-rails', '>= 2.10.1'
-  gem 'rspec-html-matchers'
-  gem 'spring-commands-rspec'
-  gem 'brakeman', require: false
-  gem 'inch', require: false
   gem 'pry-rescue'
+  gem 'rspec-rails', '>= 2.10.1'
+  gem 'spork-rails'
 end
 
 group :test do
   gem 'capybara'
   gem 'capybara-screenshot'
-  gem 'launchy'
-  gem 'guard-rspec'
-  gem 'factory_girl_rails'
-  gem 'spork-rails'
-  gem 'guard-spork'
   gem 'capybara-webkit'
   gem 'database_cleaner'
-  gem 'guard-rspec'
-  gem 'guard-spork'
   gem 'launchy'
+  gem 'rspec-html-matchers'
   gem 'shoulda'
   gem 'simplecov', '~> 0.7.1', require: false
-  gem 'spork-rails'
   gem 'webmock'
   gem 'vcr'
-  gem 'rspec-html-matchers'
 end
