@@ -4,7 +4,7 @@
     <div class="sidebar-content">
        <ul>
         <% Category.order(:name).each do |c| %>
-          <%= content_tag( :li, link_to(c.name, category_path(c.id))) %>
+          <%= content_tag( :li, link_to(c.name, c)) %>
         <% end -%>
        </ul>
     </div>
