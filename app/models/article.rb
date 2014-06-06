@@ -23,6 +23,7 @@ class Article < ActiveRecord::Base
 
   scope :by_access_count, order('access_count DESC')
   scope :with_category, lambda { |category| where('categories.name = ?', category).joins(:category) }
+  scope :published, -> { where(status: "Published") }
 
   has_attached_file :author_pic,
     :storage => :s3,
