@@ -10,11 +10,11 @@
           <div class="main-content">
             <div class="header"><h1>Sorry we can't find what you are looking for.</h1></div>
 	            <div class="article-section">
-					<p>We are working to aggregate as much info from the City of <% official_city_name %> as we can. Unfortunately it is an ongoing process and we don't yet have the category you are looking for.</p>
+					<p>We are working to aggregate as much info from the City of <% ENV['OFFICIAL_CITY_NAME'] %> as we can. Unfortunately it is an ongoing process and we don't yet have the category you are looking for.</p>
 			
 					<h2>In the meantime we recommend:</h2>
 					<ul>
-						<li>Searching the <%= link_to_official_government_website %> site for more information.</li>
+						<li>Searching the <%= ENV['OFFICIAL_GOVERNMENT_URL'] %> site for more information.</li>
 						<li>Checking back in a few weeks!</li>
 					</ul>
 				</div>

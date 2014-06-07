@@ -15,10 +15,10 @@
           <% unless @article.service_url.blank? %>
           <div class="onlineservice">
             <div class="servicebox">
-              <a href="<%= @article.service_url%>"><img src="/assets/getting_started_btn.png" alt="Get Started on the #{official_government_short_url} website." /></a>
+              <a href="<%= @article.service_url%>"><img src="/assets/getting_started_btn.png" alt="Get Started on the <%= ENV['OFFICIAL_GOVERNMENT_URL'] %> website." /></a>
             </div>
-            <h3 class="service"><%= official_government_short_url %> lets you do this online! </h3>
-            <p>This will take you directly to the online service on the <%= official_government_short_url %> website.</p>
+            <h3 class="service"><%= ENV["OFFICIAL_GOVERNMENT_URL"] %> lets you do this online! </h3>
+            <p>This will take you directly to the online service on the <%= ENV["OFFICIAL_GOVERNMENT_URL"] %> website.</p>
           </div>
           <% end %>
 

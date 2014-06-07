@@ -1,5 +1,5 @@
-<% set_meta_tags  :description => "All #{@article_type.split(/(?=[A-Z])/).join(' ')} questions.", 
-                  :canonical => official_government_long_url(request.fullpath)
+<% set_meta_tags  description: "All #{@article_type.split(/(?=[A-Z])/).join(' ')} questions.", 
+                  canonical: ENV['OFFICIAL_GOVERNMENT_URL'] + request.fullpath
                   %>
 
 <div class="page-container">
