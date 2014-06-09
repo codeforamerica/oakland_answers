@@ -1,9 +1,7 @@
 <% set_meta_tags :description =>  "#{official_site_title} is an experimental new approach designed to make it easier for people to find City information and services quickly." %>
 <div class="page-container about-page">
 	<div class="breadcrumbs">
-		<%= link_to( "Home", root_url) %>
-		>
-		<%= title "About" %>
+		<ol><%= render_breadcrumbs :tag=> :li, :separator =>" > " %></ol>
 	</div>
 	<div class="container">
 		<div class="row">

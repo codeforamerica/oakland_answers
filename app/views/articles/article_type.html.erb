@@ -4,9 +4,7 @@
 
 <div class="page-container">
   <div class="breadcrumbs">
-    <%= link_to( "Home", root_url) %>
-    >
-    <%= title "All #{@article_type.split(/(?=[A-Z])/).join(' ')}s" %>
+    <ol><%= render_breadcrumbs :tag=> :li, :separator =>" > " %></ol>
   </div>
   <div class="row">
     <div class="span9">

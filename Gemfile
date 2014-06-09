@@ -39,6 +39,7 @@ gem 'gon'
 gem 'paperclip', '~> 3.0'
 gem 'aws-sdk', '~> 1.3.4'
 gem 'dotenv-rails'
+gem "breadcrumbs_on_rails"
 
 group :development do
   gem 'binding_of_caller'

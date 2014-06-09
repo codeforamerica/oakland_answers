@@ -17,6 +17,12 @@ describe "Articles" do
     it "displays the main content" do
       page.should have_content(content_main)
     end
+
+    it "displays properly formated breadcrumbs" do
+      pending 'currently creation of generic articles is disabled.'
+      expect(page.html).to have_tag('div#breadcrumbs ol li')
+    end
+
   end
 
   describe "user views the quick answers list page" do
@@ -53,6 +59,7 @@ describe "Articles" do
       page.should have_css(".sidebar-content ul li a", "camping")
     end
   end
+
 
   describe "user views a guide details page" do
     let!(:guide) { FactoryGirl.create(:guide, title: "trains",
