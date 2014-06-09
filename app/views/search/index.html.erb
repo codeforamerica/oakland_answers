@@ -1,6 +1,6 @@
-<% set_meta_tags  :description => "Search results for #{@query}.",
-                  :canonical => official_government_long_url(request.fullpath),
-                  :title => "Search results for #{@query}." %>
+<% set_meta_tags  description: "Search results for #{@query}.",
+                  canonical: ENV['OFFICIAL_GOVERNMENT_URL'] + request.fullpath,
+                  title: "Search results for #{@query}." %>
 
 <div class="page-container search">
   <div class="row">

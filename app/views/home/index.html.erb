@@ -1,12 +1,12 @@
-<% set_meta_tags :description => "Find answers to your questions about #{official_city_name} City Services." %>
+<% set_meta_tags description: "Find answers to your questions about #{ENV["OFFICIAL_CITY_NAME"]} City Services." %>
 <div class="modal-container span8">
   <div class="main-modal">
     <div id="welcome-line-l"></div>
     <div id="welcome-line-r"></div>
     <h3 class="welcome">Welcome To</h3>
-    <h1 class="home-modal"><%= official_site_title %></h1>
+    <h1 class="home-modal"><%= ENV["OFFICIAL_SITE_TITLE"] %></h1>
     <p class="call">
-      <%= "Find answers to your questions about City of #{official_city_name} services." %>
+      <%= "Find answers to your questions about City of #{ENV["OFFICIAL_CITY_NAME"]} services." %>
     </p>
 
     <div class="ribbon-front">
@@ -25,11 +25,11 @@
         <h2>Most Popular Categories:</h2>
       </div>
       <div class="pop-categories">
-        <%= render :partial => 'home/category', :collection => @popular_categories %>
+        <%= render partial: 'home/category', collection: @popular_categories %>
       </div>
     </div><!-- /popular -->
 
   </div><!-- /main-modal -->
 </div><!-- /modal-container -->
 
-<!--<%= render :partial => 'shared/autocomplete' %>-->
+<!--<%= render partial: 'shared/autocomplete' %>-->

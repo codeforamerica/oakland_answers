@@ -1,5 +1,5 @@
-<% set_meta_tags :description => "Questions related to #{@category.name}.", 
-                  :canonical => official_government_long_url(request.fullpath) %>
+<% set_meta_tags description: "Questions related to #{@category.name}.", 
+                  canonical: ENV['OFFICIAL_GOVERNMENT_URL'] + request.fullpath %>
 <div class="page-container">
   <div class="breadcrumbs">
     <ol>

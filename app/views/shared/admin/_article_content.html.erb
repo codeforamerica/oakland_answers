@@ -1,7 +1,7 @@
 <%= f.inputs "Content" do %>
   <% if @article.legacy? %>
     <h2 style="line-height: 2em; padding-left: 15em;">
-      <strong>This article was written before <% official_site_title %> migrated to Markdown.  In order to edit its contents, change the below selection to "No", and make sure the content boxes are properly formatted.</strong>
+      <strong>This article was written before <% ENV["OFFICIAL_SITE_TITLE"] %> migrated to Markdown.  In order to edit its contents, change the below selection to "No", and make sure the content boxes are properly formatted.</strong>
   </h2>
     <%=f.input :render_markdown, :label => "Legacy article?", :as => :radio,
       :collection => [["No", true], ["Yes", false]] %>

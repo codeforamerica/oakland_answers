@@ -1,6 +1,6 @@
-<% set_meta_tags :description => @article.preview,
-                 :canonical => official_government_long_url(request.fullpath),
-                 :title => [@article.category.try(:name), @article.title] %>
+<% set_meta_tags description: @article.preview,
+                 canonical: ENV['OFFICIAL_GOVERNMENT_URL'] + request.fullpath,
+                 title: [@article.category.try(:name), @article.title] %>
 
 <div class="page-container article">
   <div class="breadcrumbs">

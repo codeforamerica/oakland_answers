@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <%= display_meta_tags :site => "#{official_site_title}" %>
+  <%= display_meta_tags site: ENV["OFFICIAL_SITE_TITLE"] %>
   <meta name="robots" content="index,nofollow" />
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale =1,maximum-scale=1,user-scalable=no" />
@@ -31,7 +31,7 @@
     <div class="container">
       <div class="row">
         <div class="logo span4">
-          <a href="/" class="hnl-logo"><%= "#{official_site_title}" %></a>
+          <a href="/" class="hnl-logo"><%= ENV["OFFICIAL_SITE_TITLE"] %></a>
           <span class="bubble"><img src="/assets/beta.png" class="beta" alt="beta"></span>
         </div>
         <ul class="nav-top span5">
@@ -67,10 +67,10 @@
   <div class="container">
     <ul class="footer-links">
       <li><%=link_to("About", about_path)%></li>
-      <li><a href=<%= "mailto:#{official_contact_email}" %>>Contact</a></li>
+      <li><a href=<%= mail_to ENV["OFFICIAL_CONTACT_MAIL"] %>>Contact</a></li>
       <li><a href="https://github.com/city-of-oakland/oakland_answers">Code</a></li>
-      <% if not official_style_guide.nil? %>
-        <li><a href=<%= "#{official_style_guide}" %> target="_blank">Style Guide</a></li>
+      <% if not ENV["OFFICIAL_STYLE_GUIDE"].nil? %>
+        <li><a href=<%= ENV["OFFICIAL_STYLE_GUIDE"] %> target="_blank">Style Guide</a></li>
       <% end %>
 
       <li><%= link_to("Sign In", admin_dashboard_path) %></li>
@@ -88,7 +88,7 @@
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '<%=ENV['GOOGLE_ANALYTICS_KEY']%>']);
+  _gaq.push(['_setAccount', '<%=ENV["GOOGLE_ANALYTICS_KEY"]%>']);
   _gaq.push(['_trackPageview']);
   
   (function() {
