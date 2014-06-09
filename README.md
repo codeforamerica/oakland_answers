@@ -19,9 +19,10 @@ Honolulu Answers is designed to be very user-friendly. It declutters the govt we
 
 Mac OS X is best supported by Honolulu Answers, since it is what most of us at Code for America use. Ubuntu (and therefore presumeably other linux distributions) are also supported.  Windows is currently unsupported and untested.  
 
-[Installation Instructions for OS X 10.8 Mountain Lion](https://github.com/codeforamerica/honolulu_answers/wiki/Installation-Instructions-for-OS-X-10.8-Mountain-Lion)
+While our documentation efforts are in-progress, we have fairly stable installation instructions in [DEV-SETUP.md](DEV-SETUP.md). Older, but still useful, docs:
 
-Slightly outdated Ubuntu instructions are available [here](https://github.com/codeforamerica/honolulu_answers/wiki/Installation-Instructions-for-Ubuntu-12.04-Precise).
+- [Installation Instructions for OS X 10.8 Mountain Lion](https://github.com/codeforamerica/honolulu_answers/wiki/Installation-Instructions-for-OS-X-10.8-Mountain-Lion)
+- Slightly outdated Ubuntu instructions are available [here](https://github.com/codeforamerica/honolulu_answers/wiki/Installation-Instructions-for-Ubuntu-12.04-Precise).
 
 
 ## Usage
