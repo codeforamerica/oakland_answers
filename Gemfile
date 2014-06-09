@@ -40,6 +40,11 @@ gem 'paperclip', '~> 3.0'
 gem 'aws-sdk', '~> 1.3.4'
 gem 'dotenv-rails'
 
+group :development do
+  gem 'binding_of_caller'
+  gem 'better_errors'
+end
+
 group :assets do
   gem 'sass-rails', '~> 3.2.5'
   gem 'bourbon', '~> 3.2.3'
@@ -78,4 +83,5 @@ group :test do
   gem 'spork-rails'
   gem 'webmock'
   gem 'vcr'
+  gem 'pry-rescue'
 end
