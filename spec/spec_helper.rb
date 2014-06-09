@@ -5,6 +5,8 @@ require 'vcr'
 VCR.configure do |c|
   c.cassette_library_dir = 'fixtures/vcr_cassettes'
   c.hook_into :webmock # or :fakeweb
+  c.default_cassette_options = { record: :new_episodes }
+  c.configure_rspec_metadata!
 end
 
 Spork.prefork do
@@ -27,6 +29,7 @@ Spork.prefork do
   WebMock.disable_net_connect!(allow_localhost: true)
 
   RSpec.configure do |config|
+    #config.extend VCR::RSpec::Macros
     config.include Capybara::DSL
     config.include FactoryGirl::Syntax::Methods
 
