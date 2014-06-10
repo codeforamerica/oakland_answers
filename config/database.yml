@@ -1,8 +1,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: oakland_answers_dev
-  username: oakland_answers
+  database: answers_dev
+  username: answers
+  password: answers
   host: localhost
   pool: 5
   timeout: 5000

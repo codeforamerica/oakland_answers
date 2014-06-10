@@ -16,13 +16,12 @@
       api_key = ENV['BHT_API_KEY']
       response = HTTParty.get "http://words.bighugelabs.com/api/2/#{api_key}/#{word}/json"
       return [] if response.nil?
-      json = JSON.parse( response.to_json )
+      json = JSON.parse( response.body )
       synonyms = []
-      json.values.count.times do |n|
-        (synonyms << json.values[n]['syn'].flatten) if json.values[n]['syn']
+      json.keys.each do |key|
+        synonyms.push json[key]['syn'].flatten
       end
-      return [] if ( response.nil? or synonyms.empty? )
+
       synonyms.flatten.uniq
     end
   end
-# end
