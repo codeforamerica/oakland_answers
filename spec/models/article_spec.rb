@@ -73,45 +73,6 @@ describe Article do
 
   end
 
-
-  # related articles no longer implemented
-  # https://github.com/codeforamerica/oakland_answers/commit/36236fbe803b86ec0bc9e9cf5c8f07501432b026
-  describe '.related' do
-    subject  { article.related }
-    context 'has no related articles' do
-
-      it { should be_nil }
-    end
-
-    context 'has related articles' do
-      it { should be_nil }
-
-    end
-  end
-
-  describe ".hits" do
-    context 'before an article has been viewed' do
-      let(:new_article) { FactoryGirl.create(:article) }
-
-      it 'has zero hits' do
-        expect(new_article.hits).to eq(0)
-      end
-    end
-
-    context 'returns number of views' do
-      let(:old_article) { FactoryGirl.create(:article) }
-
-      it 'has seven views' do
-        old_article.access_count = 7
-        old_article.save
-
-        expect(old_article.hits).to eq(7)
-      end
-
-    end
-  end
-
-
   # related articles no longer implemented
   # https://github.com/codeforamerica/oakland_answers/commit/36236fbe803b86ec0bc9e9cf5c8f07501432b026
   describe '.related' do
