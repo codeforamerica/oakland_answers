@@ -41,11 +41,6 @@ gem 'aws-sdk', '~> 1.3.4'
 gem 'dotenv-rails'
 gem "breadcrumbs_on_rails"
 
-group :development do
-  gem 'binding_of_caller'
-  gem 'better_errors'
-end
-
 group :assets do
   gem 'sass-rails', '~> 3.2.5'
   gem 'bourbon', '~> 3.2.3'
@@ -57,8 +52,14 @@ group :assets do
 end
 
 group :development do
-  gem 'guard-rspec', require: false
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'guard-rspec'
   gem 'guard-spork'
+  gem 'pry-nav'
+  gem 'pry-rails'
+  gem 'pry-rescue'
+  gem 'rb-fsevent'
   gem 'spring-commands-rspec'
 end
 
@@ -69,8 +70,7 @@ group :test, :development do
   gem 'faker'
   gem 'inch', require: false
   gem 'memcached'
-  gem 'pry-rescue'
-  gem 'rspec-rails', '>= 2.10.1'
+  gem 'rspec-rails'
 end
 
 group :test do
@@ -84,5 +84,4 @@ group :test do
   gem 'spork-rails'
   gem 'webmock'
   gem 'vcr'
-  gem 'pry-rescue'
 end

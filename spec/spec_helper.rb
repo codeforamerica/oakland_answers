@@ -34,6 +34,7 @@ Spork.prefork do
     #config.extend VCR::RSpec::Macros
     config.include Capybara::DSL
     config.include FactoryGirl::Syntax::Methods
+    config.infer_spec_type_from_file_location!
 
     config.before(:suite) do
       DatabaseCleaner.strategy = :transaction
