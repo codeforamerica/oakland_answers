@@ -67,7 +67,7 @@
   <div class="container">
     <ul class="footer-links">
       <li><%=link_to("About", about_path)%></li>
-      <li><a href=<%= mail_to ENV["OFFICIAL_CONTACT_MAIL"] %>>Contact</a></li>
+      <li><%= mail_to ENV["OFFICIAL_CONTACT_MAIL"], "Contact" %></li>
       <li><a href="https://github.com/city-of-oakland/oakland_answers">Code</a></li>
       <% if not ENV["OFFICIAL_STYLE_GUIDE"].nil? %>
         <li><a href=<%= ENV["OFFICIAL_STYLE_GUIDE"] %> target="_blank">Style Guide</a></li>
