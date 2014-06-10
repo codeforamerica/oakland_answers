@@ -10,7 +10,12 @@ module RailsNlp
       model = options[:model]
       text = ''
       options[:fields].each do |field|
-        text << model.instance_eval(field) + ' '
+        begin
+          string = model.instance_eval(field)
+        rescue
+          # quietly fail.
+        end
+        text << "#{string} " unless string.blank?
       end
       text
     end

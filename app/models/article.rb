@@ -129,31 +129,6 @@ class Article < ActiveRecord::Base
     string = (string.downcase.split - eng_stop_list.flatten).join " "
   end
 
-  def self.expand_query( query )
-    stems,metaphones,synonyms = [[],[],[]]
-    query.split.each do |term|
-      kw = Keyword.find_by_name(term)
-      if kw
-        stems << kw.stem
-        metaphones << kw.metaphone.compact
-      else
-        stems << Text::PorterStemming.stem(term)
-        metaphones << Text::Metaphone.double_metaphone(term)
-      end
-    end
-
-    query_final =      "title:(#{query.split.join(' OR ')})^10"
-    query_final << " OR content_main:(#{query.split.join(' OR ')})^5"
-    query_final << " OR content_main_es:(#{query.split.join(' OR ')})^5"
-    query_final << " OR content_main_cn:(#{query.split.join(' OR ')})^5"
-    query_final << " OR tags:(#{query.split.join(' OR ')})^8"
-    query_final << " OR stems:(#{stems.flatten.join(' OR ')})^3"
-    query_final << " OR metaphones:(#{metaphones.flatten.compact.join(' OR ')})^2"
-    query_final << " OR synonyms:(#{query.split.join(' OR ')})"
-
-    return query_final
-  end
-
   def related
     # Rails.cache.fetch("#{self.id}-related") {
     #   return [] if wordcounts.empty?
@@ -181,38 +156,6 @@ class Article < ActiveRecord::Base
     self.access_count = 0 if self.access_count.nil?
   end
 
-  def collect_text( options )
-    model = options[:model]
-    text = ''
-    options[:fields].each do |field|
-      begin
-        text << model.instance_eval(field) + ' '
-      rescue NoMethodError
-      end
-    end
-    text
-  end
-
-  def clean str
-    # strip html tags
-    # "This currently assumes valid XHTML, which means no free < or > characters."
-    # https://github.com/rails/rails/blob/master/actionpack/lib/action_controller/vendor/html-scanner/html/tokenizer.rb
-    str = ActionView::Helpers::SanitizeHelper.strip_tags str
-    str.gsub!(/[[:cntrl:]]+/, ' ')
-    str.gsub!(/'(\S+)/, '')
-    str.gsub!(/[^\p{Word} ]/, '')
-    str.gsub!(/(\s|\A)\S(\s|\z)/, ' ')
-    str.gsub!(/\s\d+\s/, ' ')
-    str.downcase!
-    str
-  end
-
-  def count_words words
-    words = words.split
-    words = words - STOP_WORDS
-    words.frequency
-  end
-
   def delete_orphaned_keywords
     orphan_kw_ids = Keyword.all( :select => 'id' ).map{ |kw| kw.id } -
       Wordcount.all( :select => 'keyword_id' ).map{ |wc| wc.keyword_id }
@@ -228,15 +171,17 @@ class Article < ActiveRecord::Base
   def qm_after_create
     begin
       if self.status == "Published"
-        text = collect_text(
-          :model => self,
-          :fields => ['title','content_main','content_main_extra','content_need_to_know','preview','tags','category.name'])
-          text = clean( text )
-          wordcounts = count_words( text )
-          wordcounts.each do |word, frequency|
-            kw = Keyword.find_or_create_by_name( word )
-            Wordcount.create!(:keyword_id => kw.id, :article_id => self.id, :count => frequency)
-          end
+        @analyzer ||= RailsNlp::TextAnalyser.new
+        text = @analyzer.collect_text(
+            :model => self,
+            :fields => ['title','content_main','content_main_extra','content_need_to_know','preview','tags','category_name']
+          )
+        text = @analyzer.clean( text )
+        wordcounts = @analyzer.freq_map( text )
+        wordcounts.each do |word, frequency|
+          kw = Keyword.find_or_create_by_name( word )
+          Wordcount.create!(:keyword_id => kw.id, :article_id => self.id, :count => frequency)
+        end
       end
     rescue => e
       logger.error "Could not update keywords and wordcounts after create for article: #{self.try(:id)}"

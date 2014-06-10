@@ -10,6 +10,12 @@ describe Article do
     expect(article).to be_valid
   end
 
+  it 'allows mass assignment of common attributes' do
+    Article.new.attributes.keys.each do |attrib|
+      article { should allow_mass_assignment_of attrib.to_sym }
+    end
+  end
+
   it "has a friendly url" do
     article = Article.new(
         :title => "How to build an answer engine",
@@ -40,11 +46,29 @@ describe Article do
 
   describe '.delete_orphaned_keywords' do
     context 'updating an article' do
-      it 'destroys orphaned keywords associated'
+      it 'destroys orphaned keywords associated' do
+        article = Article.create(
+            :title => 'Cats are cats'
+          )
+
+        article.title = 'Dachshunds are dogs'
+
+        article.save
+
+        expect(article.keywords).to_not include 'dogs'
+      end
     end
 
     context 'when deleting an article' do
-      it 'destroys all keywords associated'
+      it 'destroys all keywords associated' do
+        article = Article.create(
+            :title => 'Cats have tails'
+          )
+
+        article.qm_after_destroy_without_delay # trigger after_destroy
+
+        expect(article.keywords).to be_empty
+      end
     end
 
   end
@@ -161,6 +185,25 @@ describe Article do
     end
   end
 
+  describe '.qm_after_create' do
+    it 'creates keywords for any relevant terms'
+
+    it 'creates wordcounts for relevant keywords' do
+      VCR.use_cassette('dragon_keyword_cassette', :record => :new_episodes, :allow_playback_repeats => true) do
+        article = Article.create(
+            :title => "How to train a dragon",
+            :category_id => Category.find_or_create_by_name("Dragon Training").id
+          )
+
+        article.publish
+
+        article.qm_after_create_without_delay
+
+        expect(article.wordcounts.collect { |wc| wc.keyword.name }).to include "dragon"
+      end
+    end
+  end
+
   describe "#remove_stop_words" do
     it "removes common english words from the string" do
       Article.remove_stop_words('why am I a banana').should eq('banana')
@@ -178,30 +221,8 @@ describe Article do
 
       expect(result.map{|r| r.title }).to include "Every answer you've ever been searching for and a bag of cats"
       expect(result.map{|r| r.type }).to include "QuickAnswer"
-<<<<<<< HEAD
-=======
     end
 
-    it 'excludes articles not matching specified type' do
-      new_article = Article.create(
-          :title => "Just a bag of cats",
-          :type => "Bag"
-        )
-
-      result = Article.find_by_type( "QuickAnswer" )
-
-      expect(result.map{|r| r.type }).to_not include "Bag"
->>>>>>> e9d068f... Adds specs for Article
-    end
-  end
-
-  describe '#to_s' do
-    context 'when an article has a category' do
-      it 'returns a string containing title, id and category' do
-        article.category_id = Category.find_or_create_by_name("Drivers License").id
-        article.save
-
-<<<<<<< HEAD
     it 'excludes articles not matching specified type' do
       new_article = Article.create(
           :title => "Just a bag of cats",
@@ -225,8 +246,29 @@ describe Article do
     end
   end
 
-  describe '#publish' do
-    it 'updates the article status to Published'
+
+  describe '.legacy?' do
+    it 'returns true if render_markdown is false' do
+      article.render_markdown = true
+      article.save
+
+      expect(article.legacy?).to eq(false)
+    end
+  end
+
+  describe '.indexable?' do
+    it 'returns true if article is published' do
+      article.publish
+
+      expect(article.indexable?).to eq(true)
+    end
+
+    it 'returns false if article is not published' do
+      article.status = 'Merp'
+      article.save
+
+      expect(article.indexable?).to eq(false)
+    end
   end
 
   describe '#before_validation' do
@@ -237,24 +279,27 @@ describe Article do
 
       expect(not_accessed_article.access_count).to eq(0)
     end
-=======
-        article.to_s.should eq("How do I get a driver license for the first time? (#{article.id}) [Drivers License]")
+  end
+
+  describe '#find_by_friendly_id' do
+    context 'when an article exists' do
+      it 'returns the corresponding article' do
+        find_this = Article.create(
+            :title => "Convert this to a 123 Useful slug! $"
+          )
+
+        result = Article.find_by_friendly_id('convert-this-to-a-123-useful-slug')
+
+        expect(result.id).to eq(find_this.id)
       end
     end
-  end
 
-  describe '#publish' do
-    it 'updates the article status to Published'
->>>>>>> e9d068f... Adds specs for Article
-  end
-
-  describe '#before_validation' do
-    it 'sets access count if nil' do
-      not_accessed_article = Article.create(
-          :title => "Forever alone article"
-        )
-
-      expect(not_accessed_article.access_count).to eq(0)
+    context 'when an article does not exist' do
+      it 'does not raise an exception' do
+        expect {
+            Article.find_by_friendly_id('5a8605c8bbe63767c705da93522a6f0f1b8a89f814ce2f2f921e29c81eed31624db97d744ea0fe37f6cd32280ab37f63f4352fbb7802a18adeb03af70f96cee7')
+          }.not_to raise_error
+      end
     end
   end
 
