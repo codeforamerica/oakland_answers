@@ -10,7 +10,7 @@
   <%= stylesheet_link_tag    "application-all", :media => "all" %>
   <%= stylesheet_link_tag    "application-mobile", :media => "all and (max-width: 969px)" %>
   <%= stylesheet_link_tag    "application-print", :media => "print" %>
-  
+
   <style>
     body {
      background:transparent url('<%= ENV["BACKGROUND_IMAGE"] %>') repeat 0 100%;
@@ -73,10 +73,9 @@
         <li><a href=<%= ENV["OFFICIAL_STYLE_GUIDE"] %> target="_blank">Style Guide</a></li>
       <% end %>
 
-      <li><%= link_to("Sign In", admin_dashboard_path) %></li>
     </ul>
     <div class="cfa-logos">
-      
+
       <a href="http://codeforamerica.org/"><img src="/assets/cfa_logo_footer.png" class="right" alt="Code for America" /></a>
       <span class="plus">&#43;</span>
       <a href="http://openoakland.org/"><img src="/assets/openoaklandlogo.png" class="right" alt="City of Oakland" /></a>
@@ -90,7 +89,7 @@
   var _gaq = _gaq || [];
   _gaq.push(['_setAccount', '<%=ENV["GOOGLE_ANALYTICS_KEY"]%>']);
   _gaq.push(['_trackPageview']);
-  
+
   (function() {
   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';

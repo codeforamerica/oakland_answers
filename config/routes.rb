@@ -4,8 +4,6 @@ Oaklandanswers::Application.routes.draw do
   get "category/index"
   post "search/reindex_articles", to: "search#reindex_articles"
 
-  ActiveAdmin.routes(self)
-
   devise_for :users, :controllers => { :sessions => "sessions" }
 
   resources :contacts
