@@ -21,7 +21,6 @@ gem 'memcachier'
 gem 'dalli'
 gem 'kgio'
 
-gem 'cancan'
 gem 'kaminari'
 gem 'tanker'
 gem 'text'
