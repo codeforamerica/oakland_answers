@@ -18,7 +18,6 @@ class Article < ActiveRecord::Base
 
   belongs_to :contact
   belongs_to :category
-  belongs_to :user
   has_many :wordcounts
   has_many :keywords, :through => :wordcounts
 

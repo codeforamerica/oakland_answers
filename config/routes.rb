@@ -12,8 +12,6 @@ Oaklandanswers::Application.routes.draw do
 
   resources :guides
 
-  resources :web_services
-
   resources :quick_answers
   root :to => "home#index"
 
