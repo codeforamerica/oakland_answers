@@ -9,7 +9,6 @@ gem 'foreman'
 
 gem 'newrelic_rpm', group: [:production, :staging, :development]
 gem 'annotate', '~>2.4.1.beta'
-gem 'progressbar'
 gem 'facets', require: false
 gem 'jquery-ui-rails'
 gem 'jquery-rails', '~> 2.3.0'
