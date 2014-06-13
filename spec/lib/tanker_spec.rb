@@ -10,12 +10,9 @@ describe "Tanker" do
        :title, :title_es, :title_cn,
        :content_main, :content_main_es, :content_main_cn,
        :tags, :preview, :preview_es, :preview_cn,
-       :metaphones, :synonyms,:keywords,
-       :stems, :title, :title_es,
-       :title_cn, :content_main, :content_main_es,
-       :content_main_cn, :tags, :preview,
-       :preview_es, :preview_cn, :metaphones,
-       :synonyms, :keywords, :stems
+       :title, :title_es, :title_cn, :content_main,
+       :content_main_es, :content_main_cn, :tags, :preview,
+       :preview_es, :preview_cn
        ]
     end
 

@@ -16,20 +16,6 @@ module TankerArticleDefaults
       indexes :preview
       indexes :preview_es
       indexes :preview_cn
-
-	    # NLP
-	    indexes :metaphones do
-	      keywords.map { |kw| kw.metaphone }
-	    end
-	    indexes :synonyms do
-	      keywords.map { |kw| kw.synonyms.first(5) }
-	    end
-	    indexes :keywords do
-	      keywords.map { |kw| kw.name }
-	    end
-	    indexes :stems do
-	      keywords.map { |kw| kw.stem }
-	    end
     end
   end
 end

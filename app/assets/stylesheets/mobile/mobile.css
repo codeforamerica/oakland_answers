@@ -107,16 +107,7 @@ div.content {
 	padding: 5px 0;
 }
 
-div.contact {
-  background-color: #ecdebd;
-  width: inherit;
-  padding: 5px 5px;
-  position: static;
-  color: #ecdebd;
-  margin-top:50px;
-}
-
-div.article{ 
+div.article{
   padding: 10px 15px;
   min-width:20px;
   max-width:inherit;

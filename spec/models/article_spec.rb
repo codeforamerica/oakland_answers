@@ -44,50 +44,6 @@ describe Article do
     end
   end
 
-  describe '.delete_orphaned_keywords' do
-    context 'updating an article' do
-      it 'destroys orphaned keywords associated' do
-        article = Article.create(
-            :title => 'Cats are cats'
-          )
-
-        article.title = 'Dachshunds are dogs'
-
-        article.save
-
-        expect(article.keywords).to_not include 'dogs'
-      end
-    end
-
-    context 'when deleting an article' do
-      it 'destroys all keywords associated' do
-        article = Article.create(
-            :title => 'Cats have tails'
-          )
-
-        article.qm_after_destroy_without_delay # trigger after_destroy
-
-        expect(article.keywords).to be_empty
-      end
-    end
-
-  end
-
-  # related articles no longer implemented
-  # https://github.com/codeforamerica/oakland_answers/commit/36236fbe803b86ec0bc9e9cf5c8f07501432b026
-  describe '.related' do
-    subject  { article.related }
-    context 'has no related articles' do
-
-      it { should be_nil }
-    end
-
-    context 'has related articles' do
-      it { should be_nil }
-
-    end
-  end
-
   describe ".hits" do
     context 'before an article has been viewed' do
       let(:new_article) { FactoryGirl.create(:article) }
@@ -142,25 +98,6 @@ describe Article do
       context "query is present in the title" do
         subject { Article.search_titles article.title }
         it { should include(article) }
-      end
-    end
-  end
-
-  describe '.qm_after_create' do
-    it 'creates keywords for any relevant terms'
-
-    it 'creates wordcounts for relevant keywords' do
-      VCR.use_cassette('dragon_keyword_cassette', :record => :new_episodes, :allow_playback_repeats => true) do
-        article = Article.create(
-            :title => "How to train a dragon",
-            :category_id => Category.find_or_create_by_name("Dragon Training").id
-          )
-
-        article.publish
-
-        article.qm_after_create_without_delay
-
-        expect(article.wordcounts.collect { |wc| wc.keyword.name }).to include "dragon"
       end
     end
   end

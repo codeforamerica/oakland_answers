@@ -5,10 +5,7 @@ require 'facets/enumerable'
 class Article < ActiveRecord::Base
   include TankerArticleDefaults
   include Tanker
-  include RailsNlp
   include Markdownifier
-
-  require_dependency 'keyword'
 
   extend FriendlyId
 
@@ -16,10 +13,7 @@ class Article < ActiveRecord::Base
   #             :history option means when you change the article title, old slugs still work
   friendly_id :title, use: [:slugged, :history]
 
-  belongs_to :contact
   belongs_to :category
-  has_many :wordcounts
-  has_many :keywords, :through => :wordcounts
 
   scope :by_access_count, order('access_count DESC')
   scope :with_category, lambda { |category| where('categories.name = ?', category).joins(:category) }
@@ -45,7 +39,7 @@ class Article < ActiveRecord::Base
     :is_published, :slugs, :category_id, :updated_at, :created_at, :author_pic,
     :author_pic_file_name, :author_pic_content_type, :author_pic_file_size,
     :author_pic_updated_at, :author_name, :author_link, :type, :service_url, :user_id, :status,
-    :keyword_ids, :title_es, :preview_es, :content_main_es,
+    :title_es, :preview_es, :content_main_es,
     :title_cn, :preview_cn, :content_main_cn
 
   # A note on the content fields:
@@ -58,11 +52,6 @@ class Article < ActiveRecord::Base
 
   handle_asynchronously :update_tank_indexes
   handle_asynchronously :delete_tank_indexes
-
-  # query_magic callbacks to update keywords and wordcounts tables (The gem will be called query_magic --hale)
-  after_create :qm_after_create
-  after_update :qm_after_update
-  after_destroy :qm_after_destroy
 
   before_validation :set_access_count_if_nil
 
@@ -128,13 +117,6 @@ class Article < ActiveRecord::Base
     string = (string.downcase.split - eng_stop_list.flatten).join " "
   end
 
-  def related
-    # Rails.cache.fetch("#{self.id}-related") {
-    #   return [] if wordcounts.empty?
-    #   (Article.search_tank(self.wordcounts.all(:order => 'count DESC', :limit => 10).map(&:keyword).map(&:name).join(" OR ")) - [self]).first(4)
-    # }
-  end
-
   def indexable?
     self.status == "Published"
   end
@@ -143,72 +125,7 @@ class Article < ActiveRecord::Base
     self.access_count
   end
 
-  def analyse
-    qm_after_create
-  end
-
-  def self.analyse_all
-    Article.all.each { |a| a.analyse }
-  end
-
   def set_access_count_if_nil
     self.access_count = 0 if self.access_count.nil?
   end
-
-  def delete_orphaned_keywords
-    orphan_kw_ids = Keyword.all( :select => 'id' ).map{ |kw| kw.id } -
-      Wordcount.all( :select => 'keyword_id' ).map{ |wc| wc.keyword_id }
-    Keyword.destroy( orphan_kw_ids )
-  end
-
-  ### query-magic activerecord callbacks
-
-  # When an article is created
-  #   1) Analyse all the text fields and parse them into a frequency map of words. { <word_i> => <freq_i>, [...], <word_n> => <freq_n> }
-  #   2) For each word in text, kw = Keyword.find_or_create_by_name(word).(i)
-  #   3) Create a new Wordcount row with :keyword_id => kw.id, :article_id => article.id and count as the frequency of the keyword in the article.
-  def qm_after_create
-    begin
-      if self.status == "Published"
-        @analyzer ||= RailsNlp::TextAnalyser.new
-        text = @analyzer.collect_text(
-            :model => self,
-            :fields => ['title','content_main','content_main_extra','content_need_to_know','preview','tags','category_name']
-          )
-        text = @analyzer.clean( text )
-        wordcounts = @analyzer.freq_map( text )
-        wordcounts.each do |word, frequency|
-          kw = Keyword.find_or_create_by_name( word )
-          Wordcount.create!(:keyword_id => kw.id, :article_id => self.id, :count => frequency)
-        end
-      end
-    rescue => e
-      logger.error "Could not update keywords and wordcounts after create for article: #{self.try(:id)}"
-      logger.error "Message: #{e.message} Backtrace: #{e.backtrace}"
-    end
-  end
-  handle_asynchronously :qm_after_create
-
-  def qm_after_update
-    begin
-      wordcounts.destroy_all
-      qm_after_create
-      delete_orphaned_keywords
-    rescue => e
-      logger.error "Could not update keywords and wordcounts after update for article: #{self.id unless self.id.blank?}"
-      logger.error "Message: #{e.message} Backtrace: #{e.backtrace}"
-    end
-  end
-  handle_asynchronously :qm_after_update
-
-  def qm_after_destroy
-    begin
-      wordcounts.destroy_all
-      delete_orphaned_keywords
-    rescue => e
-      logger.error "Could not update keywords and wordcounts after destroy for article: #{self.id unless self.id.blank?}"
-      logger.error "Message: #{e.message} Backtrace: #{e.backtrace}"
-    end
-  end
-  handle_asynchronously :qm_after_destroy
 end
