@@ -20,7 +20,6 @@ describe "Tanker" do
     let(:models) do
       [
         Article,
-        Guide,
         QuickAnswer
       ]
     end

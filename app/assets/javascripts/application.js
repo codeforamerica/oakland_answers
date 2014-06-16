@@ -15,7 +15,6 @@
 //= require jquery
 //= require jquery_ujs
 //# = require jquery.ui.autocomplete
-//= jquery-jvert-tabs-1.1.4
 //= require mustache
 //= require_tree .
 //

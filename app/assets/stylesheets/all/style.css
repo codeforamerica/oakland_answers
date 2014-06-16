@@ -695,37 +695,6 @@ td {
 .sidebar-content h4 {
   margin-bottom: 20px;
 }
-.vtabs-tab-column {
-  width: 160px;
-  float: left;
-}
-.vtabs-content-column{
-  width: 620px;
-  padding-left: 10px;
-}
-.vtabs{
-  display:block;
-}
-.vtabs-tab-column li.closed a{
-  color: grey;
-}
-.vtabs-tab-column li.open a{
-  color: #fff;
-}
-.vtabs-tab-column li.open a:after{
-  content: "\2794";
-  padding-left: 5px;
-}
-.vtabs-tab-column li.open{
-  background-color: #f38200;
-  /* height: 27px; */
-  padding: 5px;
-}
-h2.vtab-content-header{
-  border-bottom: 2px solid gray;
-  font-size: 25px;
-}
-
 /*accessibility*/
 a:focus, a:active { 
   color: black;
@@ -850,34 +819,6 @@ ul.about-list li {
 .highlight {
 	font-weight:bold;
 }
-
-/* attempt a callout style */
-.vtabs .vtabs-content-column .vtabs-content-panel em strong {
-    padding: 10px;
-    background-color: #D5E8F3;
-    line-height: 30px;
-    font-weight: normal;
-    font-style: normal;
-	margin-right: 20px;
-	margin-left: 20px;
-	margin-top: 14px;
-	display: block;
-	margin-bottom: 14px;
-}
-
-.vtabs .vtabs-content-column .vtabs-content-panel strong em {
-    padding: 10px;
-    background-color: #D5E8F3;
-    line-height: 30px;
-    font-weight: normal;
-    font-style: normal;
-	margin-right: 20px;
-	margin-left: 20px;
-	margin-top: 14px;
-	display: block;
-	margin-bottom: 14px;
-}
-
 
 .other-langs{
   margin-left:20px;

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140613000708) do
+ActiveRecord::Schema.define(:version => 20140613213920) do
 
   create_table "articles", :force => true do |t|
     t.datetime "updated"
@@ -87,15 +87,5 @@ ActiveRecord::Schema.define(:version => 20140613000708) do
   add_index "friendly_id_slugs", ["slug", "sluggable_type"], :name => "index_friendly_id_slugs_on_slug_and_sluggable_type", :unique => true
   add_index "friendly_id_slugs", ["sluggable_id"], :name => "index_friendly_id_slugs_on_sluggable_id"
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
-
-  create_table "guide_steps", :force => true do |t|
-    t.integer  "article_id"
-    t.string   "title"
-    t.text     "content"
-    t.text     "preview"
-    t.integer  "step"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
 end

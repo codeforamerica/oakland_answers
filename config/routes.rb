@@ -8,8 +8,6 @@ Oaklandanswers::Application.routes.draw do
 
   resources :categories
 
-  resources :guides
-
   resources :quick_answers
   root :to => "home#index"
 
