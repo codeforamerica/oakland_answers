@@ -1,11 +1,6 @@
-<% set_meta_tags description: "Questions related to #{@category.name}.", 
+<% set_meta_tags description: "Questions related to #{@category.name}.",
                   canonical: ENV['OFFICIAL_GOVERNMENT_URL'] + request.fullpath %>
 <div class="page-container">
-  <div class="breadcrumbs">
-    <ol>
-      <%= render_breadcrumbs :tag=> :li, :separator =>" > " %>
-    </ol> 
-  </div>
   <div class="row">
     <div class="span9">
       <div class="main-content">

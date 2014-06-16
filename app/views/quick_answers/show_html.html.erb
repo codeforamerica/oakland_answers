@@ -2,7 +2,7 @@
                  canonical: ENV['OFFICIAL_GOVERNMENT_URL'] + request.fullpath
                  title: [@article.category.name, @article.title] %>
 <div class="page-container article">
-  <div class="breadcrumbs">
+  <div>
     <%= link_to( "Home", root_url) %>
     >
     <%= link_to(@article.category.name, @article.category) %>

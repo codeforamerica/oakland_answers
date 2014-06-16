@@ -135,14 +135,6 @@ p a:hover{
   border-bottom: 1px solid #3a9d2f;
 }
 
-.breadcrumbs a{
-  color: rgb(0,136,204);
-  border-bottom: none;
-}
-.breadcrumbs li{
-  display: inline;
-}
-
 table a{
   border-bottom: none;
 }
@@ -618,13 +610,6 @@ li.article-listing p:hover{
 
 /* Article#show page */
 /* ----------------- */
-div.breadcrumbs {
-  height: 20px;
-  margin-left: 20px;
-  font-size: 90%;
-  padding: 12px 0 8px 0;
-  color: #777;
-}
 div.content-text {
   font-weight: 300;
 }
@@ -714,11 +699,6 @@ a[href ^= "http"]:after {
 div.footer a[href ^= "http"]:after {
      content: none;
 }
-
-div.breadcrumbs a[href ^= "http"]:after {
-     content: none;
-}
-
 
 /* STYLE FOR ABOUT PAGE */
 

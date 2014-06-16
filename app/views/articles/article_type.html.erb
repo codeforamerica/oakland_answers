@@ -1,11 +1,8 @@
-<% set_meta_tags  description: "All #{@article_type.split(/(?=[A-Z])/).join(' ')} questions.", 
+<% set_meta_tags  description: "All #{@article_type.split(/(?=[A-Z])/).join(' ')} questions.",
                   canonical: ENV['OFFICIAL_GOVERNMENT_URL'] + request.fullpath
                   %>
 
 <div class="page-container">
-  <div class="breadcrumbs">
-    <ol><%= render_breadcrumbs :tag=> :li, :separator =>" > " %></ol>
-  </div>
   <div class="row">
     <div class="span9">
       <div class="main-content">
