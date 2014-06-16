@@ -59,7 +59,6 @@ group :development do
 end
 
 group :test, :development do
-  gem 'brakeman', require: false
   gem 'coveralls', require: false
   gem 'factory_girl_rails'
   gem 'faker'
