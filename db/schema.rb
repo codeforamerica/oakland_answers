@@ -11,40 +11,30 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140613213920) do
+ActiveRecord::Schema.define(:version => 20140617002215) do
 
   create_table "articles", :force => true do |t|
     t.datetime "updated"
     t.string   "title"
-    t.text     "content"
-    t.datetime "created_at",                                   :null => false
-    t.datetime "updated_at",                                   :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
     t.string   "content_type"
     t.text     "preview"
     t.text     "tags"
-    t.string   "service_url"
     t.string   "slug"
     t.integer  "category_id"
-    t.integer  "access_count",            :default => 0
-    t.string   "author_pic_file_name"
-    t.string   "author_pic_content_type"
-    t.integer  "author_pic_file_size"
-    t.datetime "author_pic_updated_at"
     t.string   "author_name"
-    t.string   "author_link"
     t.string   "type"
-    t.text     "content_md"
-    t.boolean  "render_markdown",         :default => true
+    t.boolean  "render_markdown", :default => true
     t.text     "content_main"
-    t.text     "content_main_extra"
-    t.text     "content_need_to_know"
-    t.string   "status",                  :default => "Draft"
+    t.string   "status",          :default => "Draft"
     t.string   "title_es"
     t.text     "preview_es"
     t.text     "content_main_es"
     t.string   "title_cn"
     t.text     "preview_cn"
     t.text     "content_main_cn"
+    t.integer  "access_count"
   end
 
   add_index "articles", ["slug"], :name => "index_articles_on_slug"

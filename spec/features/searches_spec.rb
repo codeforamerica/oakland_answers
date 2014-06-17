@@ -43,12 +43,12 @@ describe "Searches" do
       let(:article_1) { FactoryGirl.create :article,
                         status: "Published",
                         title: "I Like Meows",
-                        content: "Meows are the best guys."
+                        content_main: "Meows are the best guys."
                       }
       let(:article_2) { FactoryGirl.create :article,
                         status: "Published",
                         title: "I Prefer Monkeys",
-                        content: "Monkeys are quite nice."
+                        content_main: "Monkeys are quite nice."
                       }
       let(:query)     { "best nice" }
 

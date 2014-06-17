@@ -7,13 +7,9 @@ gem 'pg'
 gem 'thin'
 gem 'foreman'
 
-gem 'newrelic_rpm', group: [:production, :staging, :development]
-gem 'annotate', '~>2.4.1.beta'
 gem 'facets', require: false
 gem 'jquery-ui-rails'
 gem 'jquery-rails', '~> 2.3.0'
-
-gem 'meta-tags', require: 'meta_tags'
 
 gem 'delayed_job_active_record'
 gem 'memcachier'
@@ -23,7 +19,6 @@ gem 'kgio'
 gem 'kaminari'
 gem 'tanker'
 gem 'text'
-gem 'httparty'
 gem 'json'
 gem 'indextank'
 
@@ -32,8 +27,6 @@ gem 'kramdown'
 gem 'reverse_markdown'
 gem 'friendly_id', '~> 4.0'
 gem 'gon'
-gem 'paperclip', '~> 3.0'
-gem 'aws-sdk', '~> 1.3.4'
 gem 'dotenv-rails'
 
 group :assets do
@@ -47,14 +40,8 @@ group :assets do
 end
 
 group :development do
-  gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'guard-rspec'
   gem 'guard-spork'
-  gem 'pry-nav'
   gem 'pry-rails'
-  gem 'pry-rescue'
-  gem 'rb-fsevent'
   gem 'spring-commands-rspec'
 end
 
@@ -62,20 +49,15 @@ group :test, :development do
   gem 'coveralls', require: false
   gem 'factory_girl_rails'
   gem 'faker'
-  gem 'inch', require: false
   gem 'memcached'
   gem 'rspec-rails'
 end
 
 group :test do
   gem 'capybara'
-  gem 'capybara-screenshot'
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'rspec-html-matchers'
-  gem 'shoulda'
   gem 'spork-rails'
   gem 'webmock'
-  gem 'vcr'
 end

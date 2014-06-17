@@ -24,10 +24,7 @@ class QuickAnswersController < ApplicationController
       render :show_html and return
     end
 
-    @content_main =  @article.md_to_html( :content_main )
-    @content_main_extra = @article.md_to_html( :content_main_extra )
-    @content_need_to_know =  @article.md_to_html( :content_need_to_know )
-
+    @content_main =     @article.md_to_html( :content_main )
     @content_main_es =  @article.md_to_html( :content_main_es )
     @content_main_cn =  @article.md_to_html( :content_main_cn )
 
