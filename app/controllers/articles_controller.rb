@@ -1,19 +1,17 @@
 class ArticlesController < ApplicationController
-  # caches_page :show # TODO: make the cache expire when an article is updated.  Currently can't get the cache to clear properly.
+  respond_to :json
+
   def index
     @bodyclass = "results"
     @categories = Category.by_access_count
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @categories }
-    end
+    respond_with(@categories)
   end
 
   def show
     # redirect to the new paths (such as /quick_answers/1 instead of /articles/1)
-    @article = Article.find(params[:id])
-    return redirect_to quick_answer_path(@article), status: :moved_permanently
+    @article = Article.friendly.find(params[:id])
+    return redirect_to quick_answer_path(@article.id), status: :moved_permanently
   end
 
   def article_type

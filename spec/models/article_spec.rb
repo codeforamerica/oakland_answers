@@ -16,16 +16,6 @@ describe Article do
     end
   end
 
-  it "has a friendly url" do
-    article = Article.new(
-        :title => "How to build an answer engine",
-      )
-
-    article.save
-
-    expect(article.slug).to eq("how-to-build-an-answer-engine")
-  end
-
   describe 'can be published' do
     context 'an unpublished article' do
       let(:unpublished_article) { FactoryGirl.create(:article) }
@@ -120,30 +110,7 @@ describe Article do
       expect(result.map{|r| r.title }).to include "Every answer you've ever been searching for and a bag of cats"
       expect(result.map{|r| r.type }).to include "QuickAnswer"
     end
-
-    it 'excludes articles not matching specified type' do
-      new_article = Article.create(
-          :title => "Just a bag of cats",
-          :type => "Bag"
-        )
-
-      result = Article.find_by_type( "QuickAnswer" )
-
-      expect(result.map{|r| r.type }).to_not include "Bag"
-    end
   end
-
-  describe '#to_s' do
-    context 'when an article has a category' do
-      it 'returns a string containing title, id and category' do
-        article.category_id = Category.find_or_create_by_name("Drivers License").id
-        article.save
-
-        article.to_s.should eq("How do I get a driver license for the first time? (#{article.id}) [Drivers License]")
-      end
-    end
-  end
-
 
   describe '.legacy?' do
     it 'returns true if render_markdown is false' do
@@ -178,28 +145,4 @@ describe Article do
       expect(not_accessed_article.access_count).to eq(0)
     end
   end
-
-  describe '#find_by_friendly_id' do
-    context 'when an article exists' do
-      it 'returns the corresponding article' do
-        find_this = Article.create(
-            :title => "Convert this to a 123 Useful slug! $"
-          )
-
-        result = Article.find_by_friendly_id('convert-this-to-a-123-useful-slug')
-
-        expect(result.id).to eq(find_this.id)
-      end
-    end
-
-    context 'when an article does not exist' do
-      it 'does not raise an exception' do
-        expect {
-            Article.find_by_friendly_id('5a8605c8bbe63767c705da93522a6f0f1b8a89f814ce2f2f921e29c81eed31624db97d744ea0fe37f6cd32280ab37f63f4352fbb7802a18adeb03af70f96cee7')
-          }.not_to raise_error
-      end
-    end
-  end
-
 end
-

@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
-gem 'nokogiri', '> 1.4.7'
-gem 'rails', '> 3.2.17'
+ruby '2.1.2'
+gem 'nokogiri', '~> 1.6.2.1'
+gem 'rails', '4.1.0'
 gem 'pg'
 gem 'thin'
 gem 'foreman'
@@ -25,17 +25,16 @@ gem 'indextank'
 gem 'bluecloth'
 gem 'kramdown'
 gem 'reverse_markdown'
-gem 'friendly_id', '~> 4.0'
+gem 'friendly_id', '5.0.4'
 gem 'gon'
 gem 'dotenv-rails'
 
 group :assets do
-  gem 'sass-rails', '~> 3.2.5'
-  gem 'bourbon', '~> 3.2.3'
-  gem "meta_search", '>= 1.1.0.pre'
+  gem 'sass-rails', '~> 4.0.3'
+  gem 'sprockets', '2.11.0'
+  gem 'ransack', '~> 1.2.3'
   gem 'uglifier', '>= 1.0.3'
   gem 'less-rails-bootstrap'
-  gem 'coffee-rails', '~> 3.2.1'
   gem 'therubyracer'
 end
 

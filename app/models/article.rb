@@ -9,29 +9,15 @@ class Article < ActiveRecord::Base
 
   extend FriendlyId
 
-  # Permalinks. :slugged option means it uses the 'slug' column for the url
-  #             :history option means when you change the article title, old slugs still work
   friendly_id :title, use: [:slugged, :history]
 
   belongs_to :category
 
-  scope :by_access_count, order('access_count DESC')
+  scope :by_access_count, -> { order('access_count DESC') }
   scope :with_category, lambda { |category| where('categories.name = ?', category).joins(:category) }
   scope :published, -> { where(status: "Published") }
 
   validates_presence_of :access_count
-
-  attr_accessible :preview, :title, :content_main, :access_count,
-    :render_markdown, :preview, :contact_id, :tags,
-    :is_published, :slugs, :category_id, :updated_at, :created_at, :author_pic,
-    :author_name, :type, :status,
-    :title_es, :preview_es, :content_main_es,
-    :title_cn, :preview_cn, :content_main_cn
-
-  # A note on the content fields:
-  # *  Originally the content for the articles was stored as HTML in Article#content.
-  # *  We then moved to Markdown for content storage, resulting in Article#content_md.
-  # *  Most recently, the QuickAnswers were split into three distinct sections: content_main, content_main_extra and content_need_to_know. All these use Markdown.
 
   after_save :update_tank_indexes
   after_destroy :delete_tank_indexes
@@ -47,15 +33,6 @@ class Article < ActiveRecord::Base
     !render_markdown
   end
 
-  def self.find_by_friendly_id( friendly_id )
-    begin
-      find( friendly_id )
-    rescue ActiveRecord::RecordNotFound => e
-      Rails.logger.debug e.to_s
-      nil
-    end
-  end
-
   def self.search( query )
     return Article.all if query.blank?
     self.search_tank query
@@ -68,10 +45,6 @@ class Article < ActiveRecord::Base
 
   def self.find_by_type( content_type )
     return Article.where(:type => content_type).order('category_id').order('access_count DESC')
-  end
-
-  def to_s
-    "#{self.title} (#{self.id}) [#{self.category.name}]" if self.category
   end
 
   def published?

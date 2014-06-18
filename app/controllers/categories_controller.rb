@@ -1,17 +1,16 @@
 class CategoriesController < ApplicationController
+  respond_to :json, :html
   def index
   	@bodyclass = "results"
 
     @categories = Category.by_access_count
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @categories }
-    end
+    respond_with(@categories)
   end
-  def show
-  	return render(:template => 'categories/missing') unless Category.exists? params[:id]
 
-    @category = Category.find(params[:id])
+  def show
+    @category = Category.friendly.find(params[:id])
+      return render(:template => 'categories/missing') if @category.nil?
+
     # redirection of old permalinks
     if request.path != category_path( @category )
       logger.info "Old permalink: #{request.path}"
@@ -23,10 +22,7 @@ class CategoriesController < ApplicationController
     @content_html = BlueCloth.new(@category.name).to_html
     @bodyclass = "results"
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @category }
-    end
+    respond_with(@category)
   end
 
   def missing

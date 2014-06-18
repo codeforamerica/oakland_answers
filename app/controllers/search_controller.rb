@@ -1,4 +1,6 @@
 class SearchController < ApplicationController
+  respond_to :json, :html
+
   def index
     query =  params[:q].strip
     return redirect_to root_path if params[:q].blank?
@@ -16,16 +18,11 @@ class SearchController < ApplicationController
     @results = Article.search_tank(query)
     Rails.logger.info "search-request: IP:#{request.env['REMOTE_ADDR']}, params[:query]:#{query}, QUERY:#{query}, FIRST_RESULT:#{@results.first.title unless @results.empty?}, RESULTS_N:#{@results.size}"
 
-    respond_to do |format|
-      format.json  { render @results }
-      format.html
-    end
+    respond_with(@results)
   end
 
   def reindex_articles
     Article.tanker_reindex
-    respond_to do |format|
-      format.json { render json: true }
-    end
+    render json: { success: true }
   end
 end

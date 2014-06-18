@@ -1,13 +1,10 @@
 class QuickAnswersController < ApplicationController
+  respond_to :json, :html
+
   def show
+    @article = Article.friendly.find(params[:id])
 
-    unless QuickAnswer.exists? params[:id]
-      return render(:template => 'articles/missing')
-    end
-
-    @article = QuickAnswer.find(params[:id])
-
-    unless @article.published?
+    if @article.nil? || !@article.published?
       return render(:template => 'articles/missing')
     end
 
@@ -19,6 +16,7 @@ class QuickAnswersController < ApplicationController
     @article.delay.increment! :access_count
     @article.delay.category.increment!(:access_count) if @article.category
 
+    #  TODO OMG, this is terrible, need to fix
     unless @article.render_markdown
       @content_html = @article.content
       render :show_html and return
@@ -29,9 +27,6 @@ class QuickAnswersController < ApplicationController
     @content_main_cn =  @article.md_to_html( :content_main_cn )
 
 
-    respond_to do |format|
-      format.html
-      format.json { render json: @article }
-    end
+    respond_with(@article)
   end
 end

@@ -9,10 +9,10 @@ Oaklandanswers::Application.routes.draw do
   resources :categories
 
   resources :quick_answers
-  root :to => "home#index"
+  root to: "home#index"
 
-  match '/about' => "home#about" , :as => :about
-  match '/search/' => "search#index" , :as => :search, :via => [:get, :post]
-  match 'autocomplete' => "search#autocomplete"
-  match '/articles/article-type/:content_type' => "articles#article_type", as: :articles_type
+  get '/about', to: "home#about" , as: :about
+  match '/search/', to: "search#index" , as: :search, via: [:get, :post]
+  get 'autocomplete', to: "search#autocomplete"
+  get '/articles/article-type/:content_type',  to: "articles#article_type", as: :articles_type
 end
