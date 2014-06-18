@@ -88,4 +88,6 @@ Oaklandanswers::Application.configure do
   config.action_mailer.delivery_method = :smtp
 
   config.cache_store = :dalli_store
+
+  config.eager_load = true
 end
