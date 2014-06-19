@@ -8,7 +8,7 @@
         <div class="content-text">
           <% if @article.content_main.present? %>
             <div class="quick_top">
-              <%= @article.content_main.html_safe %>
+              <%= markdown_to_html(@article.content_main) %>
             </div>
           <% end %>
         </div>
@@ -18,7 +18,7 @@
           </div>
           <div class="content-text">
             <div class="quick_top">
-              <%= @article.content_main_es.html_safe %>
+              <%= markdown_to_html(@article.content_main_es) %>
             </div>
           </div>
         <% end %>
@@ -28,7 +28,7 @@
           </div>
           <div class="content-text">
             <div class="quick_top">
-              <%= @article.content_main_cn.html_safe %>
+              <%= markdown_to_html(@article.content_main_cn) %>
             </div>
           </div>
         <% end %>

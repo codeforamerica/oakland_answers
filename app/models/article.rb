@@ -39,20 +39,6 @@ class Article < ActiveRecord::Base
     status == "Published"
   end
 
-  def md_to_html( field )
-    return '' if instance_eval(field.to_s).blank?
-    Kramdown::Document.new( instance_eval(field.to_s), :auto_ids => false).to_html
-  end
-
-  def raw_md_to_html( field )
-    return '' if field.to_s.blank?
-    Kramdown::Document.new( field.to_s, :auto_ids => false).to_html
-  end
-
-  def content_to_markdown
-    Markdownifier.new.html_to_markdown( self.content )
-  end
-
   def self.remove_stop_words string
     eng_stop_list = Rails.cache.fetch('stop_words') do
       CSV.read( "#{Rails.root.to_s}/lib/assets/eng_stop.csv" )
