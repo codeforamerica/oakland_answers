@@ -11,7 +11,7 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: oakland_answers_test
+  database: answers_test
   host: localhost
   pool: 5
   timeout: 5000
@@ -19,8 +19,7 @@ test:
 production:
   adapter: postgresql
   encoding: unicode
-  database: oakland_answers_production
-  username: oakland_answers
+  database: answers_production
   host: localhost
   pool: 5
   timeout: 5000
