@@ -1,6 +1,6 @@
 before_script:
   - cp .env.example .env
-  - psql -c 'create database "oakland_answers_test";' -U postgres
+  - psql -c 'create database "answers_test";' -U postgres
   - bundle exec rake db:migrate --trace
   - bundle exec rake db:test:prepare --trace
 language: ruby
