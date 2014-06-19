@@ -1,0 +1,42 @@
+<div class="page-container article">
+  <div class="row">
+    <div class="span9">
+      <div class="main-content">
+        <div class="header">
+          <%= content_tag(:h1, @article.title ) %>
+        </div>
+        <div class="content-text">
+          <% if @article.content_main.present? %>
+            <div class="quick_top">
+              <%= @article.content_main.html_safe %>
+            </div>
+          <% end %>
+        </div>
+        <% if @article.content_main_es.present? %>
+          <div class="header">
+            <%= content_tag(:h1, @article.title_es ) %>
+          </div>
+          <div class="content-text">
+            <div class="quick_top">
+              <%= @article.content_main_es.html_safe %>
+            </div>
+          </div>
+        <% end %>
+        <% if @article.content_main_cn.present? %>
+          <div class="header">
+            <%= content_tag(:h1, @article.title_cn ) %>
+          </div>
+          <div class="content-text">
+            <div class="quick_top">
+              <%= @article.content_main_cn.html_safe %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div><!-- /span9 -->
+
+    <div class="span3">
+      <%= render :partial => 'shared/articles_sidebar' %>
+    </div><!-- /span3 -->
+  </div>
+</div>

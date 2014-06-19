@@ -16,46 +16,6 @@ describe Article do
     end
   end
 
-  describe 'can be published' do
-    context 'an unpublished article' do
-      let(:unpublished_article) { FactoryGirl.create(:article) }
-
-      it 'returns status Published' do
-        unpublished_article.publish
-
-        expect(unpublished_article.status).to eq('Published')
-      end
-
-      it 'is published' do
-        unpublished_article.publish
-
-        expect(unpublished_article.published?).to be_true
-      end
-    end
-  end
-
-  describe ".hits" do
-    context 'before an article has been viewed' do
-      let(:new_article) { FactoryGirl.create(:article) }
-
-      it 'has zero hits' do
-        expect(new_article.hits).to eq(0)
-      end
-    end
-
-    context 'returns number of views' do
-      let(:old_article) { FactoryGirl.create(:article) }
-
-      it 'has seven views' do
-        old_article.access_count = 7
-        old_article.save
-
-        expect(old_article.hits).to eq(7)
-      end
-
-    end
-  end
-
   describe ".search" do
 
     it "matches articles in the database" do
@@ -98,32 +58,9 @@ describe Article do
     end
   end
 
-  describe ".find_by_type" do
-    it 'returns articles matching type' do
-      new_article = Article.create(
-          :title => "Every answer you've ever been searching for and a bag of cats",
-          :type => 'QuickAnswer'
-        )
-
-      result = Article.find_by_type( "QuickAnswer" )
-
-      expect(result.map{|r| r.title }).to include "Every answer you've ever been searching for and a bag of cats"
-      expect(result.map{|r| r.type }).to include "QuickAnswer"
-    end
-  end
-
-  describe '.legacy?' do
-    it 'returns true if render_markdown is false' do
-      article.render_markdown = true
-      article.save
-
-      expect(article.legacy?).to eq(false)
-    end
-  end
-
   describe '.indexable?' do
     it 'returns true if article is published' do
-      article.publish
+      article.status = "Published"
 
       expect(article.indexable?).to eq(true)
     end

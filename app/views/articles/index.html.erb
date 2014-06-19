@@ -10,7 +10,7 @@
                 <ul class="category-articles">
                   <% category.articles.by_access_count.each do |article| %>
                     <% next unless article.published? %>
-                      <li class="category-article"><%= content_tag( :h3, link_to( article.title, article_path(article.id) ) ) %></li>
+                      <li class="category-article"><%= content_tag( :h3, link_to( article.title, article_path(article) ) ) %></li>
                   <% end -%>
                 </ul>
             </li>
