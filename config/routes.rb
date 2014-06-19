@@ -1,14 +1,10 @@
 Oaklandanswers::Application.routes.draw do
-  get "quick_answer/show"
-
   get "category/index"
   post "search/reindex_articles", to: "search#reindex_articles"
 
   resources :articles
 
   resources :categories
-
-  resources :quick_answers
   root to: "home#index"
 
   get '/about', to: "home#about" , as: :about

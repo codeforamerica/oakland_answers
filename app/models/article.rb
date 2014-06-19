@@ -17,8 +17,8 @@ class Article < ActiveRecord::Base
   scope :with_category, lambda { |category| where('categories.name = ?', category).joins(:category) }
   scope :published, -> { where(status: "Published") }
 
-  after_save :update_tank_indexes
-  after_destroy :delete_tank_indexes
+  after_save :update_tank_indexes, unless: Proc.new { Rails.env.test? || Rails.env.development? }
+  after_destroy :delete_tank_indexes, unless: Proc.new { Rails.env.test? || Rails.env.development? }
 
   handle_asynchronously :update_tank_indexes
   handle_asynchronously :delete_tank_indexes

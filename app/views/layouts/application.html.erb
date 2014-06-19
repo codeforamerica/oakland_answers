@@ -35,7 +35,7 @@
         </div>
         <ul class="nav-top span5">
           <li class="">
-            <%= link_to("Browse", "/articles/article-type/quick-answer") %>
+            <%= link_to("Browse", articles_path) %>
           </li>
         </ul>
         <% if !current_page?('/')  %>
@@ -48,11 +48,7 @@
   </div><!-- /navbar-top -->
   <div class="container main clearfix"><!-- main content container -->
 
-
-
 <%= yield %>
-
-
 
   </div><!-- /container-fluid -->
 </div><!-- /wrapper -->

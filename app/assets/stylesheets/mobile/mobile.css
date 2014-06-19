@@ -75,10 +75,6 @@ form#search input.btn {
 	cursor:pointer;
 }
 
-div.quickAnswer{
-  margin-top:10px;
-  width:inherit;
-}
 #searchStatus{ 
   margin:2px;
   font-size:16px;

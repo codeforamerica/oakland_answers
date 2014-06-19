@@ -17,12 +17,7 @@ describe "Tanker" do
     end
 
     # any models which have `include TankerDefaults` should be part of this Array:
-    let(:models) do
-      [
-        Article,
-        QuickAnswer
-      ]
-    end
+    let(:models) { [ Article] }
 
     it "indexes the proper fields for several models" do
       models.each do |model|

@@ -1,4 +1,4 @@
-QuickAnswer.destroy_all
+Article.destroy_all
 Category.destroy_all
 
 Category.create([
@@ -13,7 +13,7 @@ Category.create([
 first_category_id = Category.first.id
 second_category_id = Category.second.id
 
-QuickAnswer.create([
+Article.create([
   { :title => "Emphasize Words",                :content_main => "Some of these words *are emphasized*. Some of these words _are emphasized also_.",                 :preview => "emphasis",          :tags => "emph",   :status => "Published", :category_id => first_category_id },
   { :title => "Cat News",                       :content_main => "I start my morning with a cup of coffee and [breaking cat news](http://www.breakingcatnews.com/)", :preview => "cat news",          :tags => "cats",   :status => "Published", :category_id => first_category_id },
   { :title => "Quick Brown Fox",                :content_main => "The quick brown fox jumped over the lazy dog's back. ### Header 3",                                :preview => "lazy dogs",         :tags => "dogs",   :status => "Published", :category_id => first_category_id },
