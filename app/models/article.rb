@@ -11,6 +11,8 @@ class Article < ActiveRecord::Base
 
   friendly_id :title, use: [:slugged, :history]
 
+  validates_presence_of :title, :content_main
+
   belongs_to :category
 
   scope :by_access_count, -> { order('access_count DESC') }

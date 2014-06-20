@@ -35,7 +35,7 @@
         </div>
         <ul class="nav-top span5">
           <li class="">
-            <%= link_to("Browse", articles_path) %>
+            <%= link_to("Browse Answers", articles_path) %>
           </li>
         </ul>
         <% if !current_page?('/')  %>
@@ -46,7 +46,10 @@
       </div><!-- /row -->
     </div>
   </div><!-- /navbar-top -->
-  <div class="container main clearfix"><!-- main content container -->
+  <% flash.each do |name, msg| -%>
+    <%= content_tag :div, msg, class: name %>
+  <% end -%>
+<div class="container main clearfix"><!-- main content container -->
 
 <%= yield %>
 

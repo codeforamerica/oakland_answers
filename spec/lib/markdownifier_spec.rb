@@ -5,7 +5,7 @@ describe Markdownifier do
     markdownifier = Markdownifier::Markdownifier.new
     input = "<h1>hello</h1>"
     output = markdownifier.html_to_markdown(input)
-    output.class.should == String
-    output[0].should == "#"
+    expect(output.class).to eq(String)
+    expect(output[0]).to eq("#")
   end
 end

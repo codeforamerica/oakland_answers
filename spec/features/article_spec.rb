@@ -12,11 +12,11 @@ describe "Articles" do
     before { visit article_path(article) }
 
     it "displays the article title" do
-      page.should have_content(title)
+      expect(page).to have_content(title)
     end
 
     it "displays the main content" do
-      page.should have_content(content_main)
+      expect(page).to have_content(content_main)
     end
   end
 
@@ -35,22 +35,22 @@ describe "Articles" do
     end
 
     it "displays the categories as headers" do
-      page.should have_selector("h1 a", text: "parking")
-      page.should have_selector("h1 a", text: "camping")
+      expect(page).to have_selector("h1 a", text: "parking")
+      expect(page).to have_selector("h1 a", text: "camping")
     end
 
     it "has two articles under the the parking category" do
-      page.should have_css("ul.category-articles li.category-article h3 a", text: "first parking")
-      page.should have_css("ul.category-articles li.category-article h3 a", text: "second parking")
+      expect(page).to have_css("ul.category-articles li.category-article h3 a", text: "first parking")
+      expect(page).to have_css("ul.category-articles li.category-article h3 a", text: "second parking")
     end
 
     it "has one article under the camping category" do
-      page.should have_css("ul.category-articles li.category-article h3 a", text: "just camping")
+      expect(page).to have_css("ul.category-articles li.category-article h3 a", text: "just camping")
     end
 
     it "displays the categories in the sidebar" do
-      page.should have_css(".sidebar-content ul li a", "parking")
-      page.should have_css(".sidebar-content ul li a", "camping")
+      expect(page).to have_css(".sidebar-content ul li a", "parking")
+      expect(page).to have_css(".sidebar-content ul li a", "camping")
     end
   end
 end
