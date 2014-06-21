@@ -34,9 +34,11 @@ group :assets do
   gem 'sprockets', '2.11.0'
   gem 'ransack', '~> 1.2.3'
   gem 'uglifier', '>= 1.0.3'
-  gem 'less-rails-bootstrap'
-  gem 'therubyracer'
 end
+
+gem 'less-rails'
+gem 'therubyracer'
+gem "twitter-bootstrap-rails"
 
 group :development do
   gem 'guard-spork'

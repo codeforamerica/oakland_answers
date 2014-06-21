@@ -23,10 +23,6 @@ Oaklandanswers::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( home.js style.css mobile.css.scss tiny_mce/* active_admin.js active_admin.css.scss indextank/jquery.indextank.autocomplete.js )
-  config.assets.precompile << '*.js'
-
   #config.static_cache_control = "public, max-age=2592000"
 
   # Defaults to Rails.root.join("public/assets")
@@ -57,9 +53,6 @@ Oaklandanswers::Application.configure do
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
-
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( home.js style.css mobile.css.scss active_admin.js active_admin.css.scss indextank/jquery.indextank.autocomplete.js )
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
