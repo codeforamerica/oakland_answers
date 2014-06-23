@@ -1,88 +1,68 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta name="robots" content="index,nofollow" />
-  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale =1,maximum-scale=1,user-scalable=no" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <%= include_gon %>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= content_for?(:title) ? yield(:title) : "Oakland Answers" %></title>
+    <%= csrf_meta_tags %>
 
-  <style>
-    body {
-     background:transparent url('<%= ENV["BACKGROUND_IMAGE"] %>') repeat 0 100%;
-    }
-  </style>
-  <%= javascript_include_tag "application" %>
+    <%= stylesheet_link_tag "application", :media => "all" %>
 
-  <%= csrf_meta_tags %>
-</head>
-<body class="<%= @bodyclass %>" onload="if($){ $('#query').focus(); }">
-<div id="wrapper">
-  <div class="navbar-top">
-    <!-- <p class="notice alert alert-info"><%= notice %></p>
-    <p class="alert alert-error"><%= alert %></p> -->
-    <div class="container">
-      <div class="row">
+    <!-- For third-generation iPad with high-resolution Retina display: -->
+    <!-- Size should be 144 x 144 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
+
+    <!-- For iPhone with high-resolution Retina display: -->
+    <!-- Size should be 114 x 114 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-114x114-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '114x114' %>
+
+    <!-- For first- and second-generation iPad: -->
+    <!-- Size should be 72 x 72 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-72x72-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '72x72' %>
+
+    <!-- For non-Retina iPhone, iPod Touch, and Android 2.1+ devices: -->
+    <!-- Size should be 57 x 57 pixels -->
+    <%= favicon_link_tag 'apple-touch-icon-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png' %>
+
+    <!-- For all other devices -->
+    <!-- Size should be 32 x 32 pixels -->
+    <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
+
+    <%= javascript_include_tag "application" %>
+  </head>
+  <body class="body-background">
+
+    <div class="navbar navbar-default navbar-inverse">
+      <div class="navbar-inner">
         <div class="logo span4">
-          <a href="/" class="hnl-logo"><%= ENV["OFFICIAL_SITE_TITLE"] %></a>
-          <span class="bubble"><img src="/assets/beta.png" class="beta" alt="beta"></span>
+          <a class="oakland-logo" href="#">Oakland Answers</a>
+          <span>
+            <img src="/assets/beta.png" class="beta" alt="beta">
+          </span>
         </div>
-        <ul class="nav-top span5">
-          <li class="">
-            <%= link_to("Browse Answers", articles_path) %>
-          </li>
+        <ul class="nav nav-links">
+          <li><%= link_to "Browse Q&A's", articles_path %></li>
+          <li><%= link_to "Create a New Q&A", new_article_path %></li>
         </ul>
-        <% if !current_page?('/')  %>
-        <div class="header-search span3">
-          <%= render :partial => 'shared/search_form' %>
+      </div>
+    </div>
+
+    <div class="container main clearfix"><!-- main content container -->
+
+      <%= bootstrap_flash %>
+      <%= yield %>
+    </div>
+
+    <div id="footer">
+        <div class="cfa-logos">
+          <a href="http://codeforamerica.org/"><img src="/assets/cfa_logo_footer.png" class="right" alt="Code for America" /></a>
+          <span class="plus">&#43;</span>
+          <a href="http://openoakland.org/"><img src="/assets/openoaklandlogo.png" class="right" alt="City of Oakland" /></a>
+          <span class="plus">&#43;</span>
+          <a href="http://www2.oaklandnet.com"><img src="/assets/OaklandCityTree.png" class="right" alt="City of Oakland" /></a>
         </div>
-        <% end %>
-      </div><!-- /row -->
     </div>
-  </div><!-- /navbar-top -->
-  <% flash.each do |name, msg| -%>
-    <%= content_tag :div, msg, class: name %>
-  <% end -%>
-<div class="container main clearfix"><!-- main content container -->
 
-<%= yield %>
-
-  </div><!-- /container-fluid -->
-</div><!-- /wrapper -->
-<div class="footer">
-  <div class="container">
-    <ul class="footer-links">
-      <li><%=link_to("About", about_path)%></li>
-      <li><%= mail_to ENV["OFFICIAL_CONTACT_MAIL"], "Contact" %></li>
-      <li><a href="https://github.com/city-of-oakland/oakland_answers">Code</a></li>
-      <% if not ENV["OFFICIAL_STYLE_GUIDE"].nil? %>
-        <li><a href=<%= ENV["OFFICIAL_STYLE_GUIDE"] %> target="_blank">Style Guide</a></li>
-      <% end %>
-
-    </ul>
-    <div class="cfa-logos">
-
-      <a href="http://codeforamerica.org/"><img src="/assets/cfa_logo_footer.png" class="right" alt="Code for America" /></a>
-      <span class="plus">&#43;</span>
-      <a href="http://openoakland.org/"><img src="/assets/openoaklandlogo.png" class="right" alt="City of Oakland" /></a>
-      <span class="plus">&#43;</span>
-      <a href="http://www2.oaklandnet.com"><img src="/assets/OaklandCityTree.png" class="right" alt="City of Oakland" /></a>
-    </div>
-  </div>
-</div><!-- /footer -->
-
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', '<%=ENV["GOOGLE_ANALYTICS_KEY"]%>']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
-</script>
-
-</body>
+  </body>
 </html>

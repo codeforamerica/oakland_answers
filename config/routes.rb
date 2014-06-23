@@ -1,4 +1,5 @@
 Oaklandanswers::Application.routes.draw do
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
   get "category/index"
   post "search/reindex_articles", to: "search#reindex_articles"
 

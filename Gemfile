@@ -39,6 +39,7 @@ end
 gem 'less-rails'
 gem 'therubyracer'
 gem "twitter-bootstrap-rails"
+gem 'bootsy'
 
 group :development do
   gem 'guard-spork'

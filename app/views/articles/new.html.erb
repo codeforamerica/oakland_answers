@@ -1,16 +1,21 @@
 <div class="page-container">
-  <div class="container">
-    <%= form_for @article do |f| %>
-      <%= f.label :title, "Question" %>:
-      <%= f.text_field :title %><br />
+  <div class="row">
+    <div class="main-content">
+      <div class="header"><h1>Add Some Content</h1></div>
+      <%= form_for @article do |f| %>
+        <%= f.label :title, "Question" %>
+        <%= f.text_field :title, class: "question-field" %>
 
-      <%= f.label :content_main, "Answer" %>:
-      <%= f.text_area :content_main %><br />
+        <%= f.label :content_main, "Answer" %>
+        <%= f.bootsy_area :content_main %>
 
-      <%= f.label :author_name %>:
-      <%= f.text_field :author_name %><br />
+        <%= f.label :author_name %>
+        <%= f.text_field :author_name %>
 
-      <%= f.submit "Submit" %>
-    <% end %>
+        <%= f.label :author_link %>
+        <%= f.text_field :author_link %><br />
+        <%= f.submit "Add" %>
+      <% end %>
+    </div>
   </div>
 </div>

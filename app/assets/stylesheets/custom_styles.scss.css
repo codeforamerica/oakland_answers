@@ -1,0 +1,438 @@
+@import url(http://fonts.googleapis.com/css?family=Satisfy);
+@import url(http://fonts.googleapis.com/css?family=Oswald);
+@import url(http://fonts.googleapis.com/css?family=News+Cycle);
+@import url(http://fonts.googleapis.com/css?family=Archivo+Narrow);
+
+/* General Styles */
+/* -------------- */
+.body-background {
+  background:transparent url("apartment_windows.jpg") repeat 0 100%;
+  background-attachment: fixed;
+  font: 100%/1.5 "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+}
+
+/* Fonts */
+/* ----- */
+h2, h3, h4, h5, h6 { font: 100%/1.5 "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif; line-height: 100%; }
+
+h1 {
+  font-family: "Archivo Narrow", "News Cycle", "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif; line-height: 100%;
+  font-size: 30px;
+}
+
+h1.home-modal {
+  font-size: 5.4em;
+  font-weight: 580;
+  letter-spacing: 0.04em;
+  color: #303030;
+  font-family: Oswald, "News Cycle", Helvetica, Tahoma, Arial, sans-serif;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 35px 0 30px 0;
+  text-shadow: -5px 5px 5px rgba(0, 0, 0, 0.1), -5px 2px 5px rgba(0, 0, 0, 0.05), -5px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3.welcome {
+  font-family: "Satisfy", cursive;
+  color: #303030;
+  font-size:36px;
+  text-align: center;
+  line-height: 100%;
+  z-index: 100;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+h3.content-type {
+  padding: 10px 15px;
+  color: #FFF;
+  background-color: #000;
+  display: inline-block;
+  text-transform: uppercase;
+  margin-left: -30px;
+  margin-bottom: 15px;
+  font-family: Oswald, "News Cycle", Helvetica, Tahoma, Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.07em;
+}
+
+h4.side-head {
+  font-family: Oswald, "News Cycle", Helvetica, Tahoma, Arial, sans-serif;
+  font-size: 18px;
+  color: #FFF;
+  background-color:#3a9d2f;
+  padding: 10px 15px;
+  margin: 0;
+  letter-spacing: 0.075em;
+}
+
+p {
+  color: #070707;
+  font-weight: 300;
+  margin: 10px 0;
+}
+
+p.preview {
+  font-weight: 300;
+  margin-bottom: 0px;
+}
+
+p a,h1 a,h2 a,h3 a,h4 a,li a{
+  color: rgb(0,136,204);
+  border-bottom: none;
+}
+
+p a:hover{
+  color: rgb(0,136,204);
+  border-bottom: 1px solid #3a9d2f;
+}
+
+.breadcrumbs a{
+  color: rgb(0,136,204);
+  border-bottom: none;
+}
+
+table a{
+  border-bottom: none;
+}
+
+a {
+  border-bottom: 1px solid #3a9d2f;
+}
+
+.category p a{
+  border-bottom: 1px solid #3a9d2f;
+}
+
+a:hover{
+  border-bottom: 1px solid #3a9d2f;
+  text-decoration: none;
+  color: rgb(0,136,204);
+}
+
+/* Top Nav */
+/* ----- */
+a.oakland-logo {
+  font-size: 20px;
+  color: #FFFFFF;
+  font-family: Oswald, "News Cycle", Helvetica, Tahoma, Arial, sans-serif;
+  letter-spacing: 0.08em;
+  border-bottom: 7px solid #3a9d2f;
+  text-decoration: none;
+  text-transform: uppercase;
+  line-height: 70%;
+}
+
+.logo {
+  display: inline-block;
+  padding-top: 35px;
+  margin-top: 5px;
+}
+
+.navbar-inner {
+  height: 80px;
+  width: 100%
+}
+
+img.beta {
+  margin-top: -65px;
+  margin-left: -10px;
+}
+
+.nav-links {
+  padding-top: 35px;
+  margin-top: 5px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+}
+
+/* Homepage Modal */
+/* -------------- */
+.container.main {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.modal-container {
+  background-color: #fbfbfb;
+  float: none;
+  margin: 0 auto;
+  padding: 40px 50px 50px 50px;
+  border:1px solid #FFF;
+  -moz-box-shadow:    0px 0px 20px 1px rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.4);
+  box-shadow:         0px 0px 20px 1px rgba(0, 0, 0, 0.4);
+}
+
+div.main-modal { }
+
+div#welcome-line-l {
+  position: relative;
+  float: left;
+  margin-top: 12px;
+  z-index: 1;
+  width: 35%;
+  border: 1px solid #666768;
+}
+
+div#welcome-line-r {
+  position: relative;
+  float: right;
+  margin-top: 12px;
+  z-index: 50;
+  width: 35%;
+  border: 1px solid #666768;
+}
+
+div.pop-heading {
+  border-bottom: 10px solid #3a9d2f;
+  margin: 0 0 20px 0;
+}
+
+div.pop-categories p a {
+}
+
+div.pop-categories li:not(:last-child):after {
+  /*content: " - ";*/
+}
+
+div.pop-categories li+li:before {
+  content: '- ';
+}
+
+div.pop-categories li {
+  display: inline;
+  font-size: 120%;
+}
+
+
+p.call {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.pop-heading h2 {
+  font-size:20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+div.category {
+  padding: 20px 0;
+  border-bottom: 1px solid #cdcbcb;
+}
+div.category.last {
+  border: none;
+}
+.category {
+  font-size: 14px;
+  color: #333;
+}
+.category .left {
+  font-size: 20px;
+  display: inline-block;
+  margin-right: 60px;
+}
+
+div.category a{
+  color: rgb(51, 51, 51);
+}
+
+div.category a:hover{
+  color: rgb(69, 128, 180);
+}
+
+.category .right{
+  font-size: 120%;
+  /*word-spacing: 20px;*/
+}
+
+
+/* Homepage Modal -- Search Ribbon*/
+/* ------------------------------ */
+div.search-ribbon {}
+.ribbon-wrapper {
+  position: relative;
+  width: 700px;
+  height: 60px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 10px;
+}
+.ribbon-front {
+  position: relative;
+  padding: 25px 70px;
+  margin: 0 -78px 50px -78px;
+  background-color: rgb(69,77,96);
+  color: white;
+  text-shadow: 0 1px 1px #155B88;
+  box-shadow: 2px 1px 6px -3px rgba(0, 0, 0, 0.5), -2px 0px 5px -3px rgba(0, 0, 0, 0.5), 0px 5px 10px -4px rgba(0, 0, 0, 0.3);
+}
+
+.ribbon-front .triangle-l {
+  border-color: transparent #2a3040 transparent transparent;
+  border-style:solid;
+  border-width:34px;
+  height:0;
+  width:0;
+  position: absolute;
+  left: -34px;
+  top: 83px;
+  z-index: -1;
+}
+
+.ribbon-front .triangle-r {
+  border-color: transparent transparent transparent #2a3040;
+  border-style:solid;
+  border-width:34px;
+  height:0;
+  width:0;
+  position: absolute;
+  right: -34px;
+  top: 83px;
+  z-index: -1;
+}
+
+
+/* Search bar */
+/* ---------- */
+input#query {
+  width: 70%;
+  height: 40px;
+  padding: 3px 5px;
+  border: 1px solid #454d60;
+  -webkit-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+  background: white;
+  outline: none;
+  font: 100%/1.5 "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  -moz-transition: all 0.25s ease-in-out;
+  border-radius:          3px;
+  -webkit-border-radius:  3px;
+  -moz-border-radius:     3px;
+}
+.header-search input#query {
+  width: 65%;
+}
+input:focus#query {
+  outline: none;
+  box-shadow: 0px 0px 5px #3a9d2f;
+  border: 1px solid #303030;
+}
+
+input:hover#query { }
+
+#query::-webkit-input-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}
+
+#query:-moz-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}
+
+#query:-ms-placeholder {
+   color: #9c9c9c;
+   font-style: italic;
+}
+
+
+/* Search Button */
+/* ------------- */
+.btn-search {
+  background-color:#3a9d2f;
+  -moz-border-radius:3px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
+  display:inline-block;
+  color:#ffffff;
+  font-family:Helvetica, Arial;
+  font-size:1.3em;
+  font-weight:bold;
+  padding: 10px 12px;
+  text-decoration:none;
+  border: none;
+  margin-left: 10px;
+  -webkit-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+}
+.btn-search:hover,  {
+
+   background-image: -webkit-linear-gradient(top,   rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+   background-image: -moz-linear-gradient(top,      rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+   background-image: -o-linear-gradient(top,        rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+   background-image: -ms-linear-gradient(top,       rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0));
+   background-image: linear-gradient(top,           rgba(255, 255, 255, 0.2), rgba(0, 0, 0, 0)); /*Shadow*/
+}
+
+.btn-search:active, .btn-search:focus {
+  background-color: rgb(255,222,77);
+  color: black;
+}
+
+/* Footer */
+/* ------ */
+#footer {
+  width: 100%;
+  background-color: black;
+  height: 75px;
+  position: absolute;
+}
+
+.cfa-logos {
+  float: right;
+  display: block;
+  width: 420px;
+  margin: 12px;
+}
+.cfa-logos a, .cfa-logos a:hover {
+  text-decoration: none;
+  border: none;
+}
+
+.cfa-logos a:focus {
+  outline: 1;
+}
+
+.cfa-logos img {
+  height: 50px;
+  margin: 0 10px;
+}
+.cfa-logos > span.plus {
+  color: #FFF;
+  font-size: 20px;
+}
+
+/* Other pages */
+.page-container {
+  background-color: rgba(255, 255, 255, 0.8);
+  background-repeat: repeat;
+}
+.page-container.search {
+  padding-top:40px;
+}
+
+.main-content {
+  background-color: #FFF;
+  padding: 30px;
+  opacity:1;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+textarea {
+  width: 650px;
+  height: 200px;
+}
+
+.question-field {
+  width: 650px;
+}
