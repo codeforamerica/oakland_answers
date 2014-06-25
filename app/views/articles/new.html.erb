@@ -1,24 +1,8 @@
 <div class="row">
   <div class="span11 center">
     <div class="main-content">
-      <div class="header"><h1>Add Some Content</h1></div>
-      <%= form_for @article do |f| %>
-        <%= f.label :title, "Question" %>
-        <%= f.text_field :title, class: "question-field" %>
-
-        <%= f.label :content_main, "Answer" %>
-        <%= f.bootsy_area :content_main %>
-
-        <%= label_tag "Category" %>
-        <%= collection_select(:article, :category_id, Category.all, :id, :name, :prompt => 'Please select a category') %>
-
-        <%= f.label :author_name, "Author Name (optional)" %>
-        <%= f.text_field :author_name %>
-
-        <%= f.label :author_link, "Author Link (optional)" %>
-        <%= f.text_field :author_link %><br />
-        <%= f.submit "Add" %>
-      <% end %>
+      <div class="header"><h1>Add a Question and Answer</h1></div>
+      <%= render partial: "form", locals: { article: @article } %>
     </div>
   </div>
 </div>

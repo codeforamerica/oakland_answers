@@ -1,16 +1,8 @@
-<div class="page-container">
-  <div class="container">
-    <%= form_for @article do |f| %>
-      <%= f.label :title, "Question" %>:
-      <%= f.text_field :title %><br />
-
-      <%= f.label :content_main, "Answer" %>:
-      <%= f.bootsy_area :content_main %><br />
-
-      <%= f.label :author_name %>:
-      <%= f.text_field :author_name %><br />
-
-      <%= f.submit "Submit" %>
-    <% end %>
+<div class="row">
+  <div class="span11 center">
+    <div class="main-content">
+      <div class="header"><h1>Edit Question and Answer</h1></div>
+      <%= render partial: "form", locals: { article: @article } %>
+    </div>
   </div>
 </div>

@@ -1,0 +1,17 @@
+<%= form_for article do |f| %>
+  <%= f.label :title, "Question" %>
+  <%= f.text_field :title, class: "question-field" %>
+
+  <%= f.label :content_main, "Answer" %>
+  <%= f.bootsy_area :content_main %>
+
+  <%= label_tag "article_category_id", "Category" %>
+  <%= collection_select(:article, :category_id, Category.all, :id, :name, :prompt => 'Please select a category') %>
+
+  <%= f.label :author_name, "Author Name (optional)" %>
+  <%= f.text_field :author_name %>
+
+  <%= f.label :author_link, "Author Link (optional)" %>
+  <%= f.text_field :author_link %><br />
+  <%= f.submit "Add" %>
+<% end %>

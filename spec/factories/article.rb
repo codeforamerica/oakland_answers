@@ -13,5 +13,11 @@ FactoryGirl.define do
     factory :article_random do
       title SecureRandom.hex(16)
     end
+
+    factory :article_with_category do
+      after(:build) do |article|
+        article.category = FactoryGirl.create(:category)
+      end
+    end
   end
 end

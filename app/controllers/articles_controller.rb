@@ -19,9 +19,10 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
     if @article.save
+      flash[:success] = "New question and answer successfully created"
       redirect_to article_path(@article)
     else
-      flash[:error] = "Please add both a question and answer"
+      flash.now[:error] = "Please fill in all required fields"
       render :new
     end
   end
@@ -33,9 +34,10 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.friendly.find(params[:id])
     if @article.update_attributes(article_params)
+      flash[:success] = "Question and answer successfully updated"
       redirect_to article_path(@article)
     else
-      flash[:error] = "Please add both a question and answer"
+      flash.now[:error] = "Please fill in all required fields"
       render :edit
     end
   end

@@ -45,7 +45,7 @@ describe ArticlesController do
                        author_name: "Erica Kwan"
                      }
       post :create, article: article_hash
-      expect(flash[:error]).to eq "Please add both a question and answer"
+      expect(flash[:error]).to eq "Please fill in all required fields"
     end
   end
 
@@ -67,7 +67,7 @@ describe ArticlesController do
     it "shows an error when invalid params are passed" do
       article = FactoryGirl.create(:article)
       post :update, id: article.slug, article: { title: " " }
-      expect(flash[:error]).to eq "Please add both a question and answer"
+      expect(flash[:error]).to eq "Please fill in all required fields"
     end
   end
 end

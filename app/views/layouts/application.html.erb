@@ -49,8 +49,13 @@
 
     <div class="container main clearfix"><!-- main content container -->
 
-      <%= bootstrap_flash %>
-      <%= yield %>
+    <% flash.each do |type, message| %>
+      <div class="alert <%= bootstrap_class_for(type) %> alert-dismissable fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        <%= message %>
+      </div>
+    <% end %>
+    <%= yield %>
     </div>
 
     <div id="footer">
