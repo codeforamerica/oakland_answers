@@ -8,6 +8,7 @@ class ArticlesController < ApplicationController
 
   def index
     @categories = Category.by_access_count
+    @categories = @categories.select{ |c| c.articles.published.count > 0 }
     respond_with(@categories)
   end
 
@@ -42,6 +43,6 @@ class ArticlesController < ApplicationController
   private
 
   def article_params
-    params.require(:article).permit(:title, :content_main, :author_name, :bootsy_image_gallery_id)
+    params.require(:article).permit(:title, :content_main, :author_name, :author_link, :category_id, :bootsy_image_gallery_id)
   end
 end

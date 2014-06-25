@@ -1,5 +1,5 @@
-<div class="page-container">
-  <div class="row">
+<div class="row">
+  <div class="span11 center">
     <div class="main-content">
       <div class="header"><h1>Add Some Content</h1></div>
       <%= form_for @article do |f| %>
@@ -9,10 +9,13 @@
         <%= f.label :content_main, "Answer" %>
         <%= f.bootsy_area :content_main %>
 
-        <%= f.label :author_name %>
+        <%= label_tag "Category" %>
+        <%= collection_select(:article, :category_id, Category.all, :id, :name, :prompt => 'Please select a category') %>
+
+        <%= f.label :author_name, "Author Name (optional)" %>
         <%= f.text_field :author_name %>
 
-        <%= f.label :author_link %>
+        <%= f.label :author_link, "Author Link (optional)" %>
         <%= f.text_field :author_link %><br />
         <%= f.submit "Add" %>
       <% end %>

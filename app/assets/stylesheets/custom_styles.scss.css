@@ -5,9 +5,7 @@
 
 /* General Styles */
 /* -------------- */
-.body-background {
-  background:transparent url("apartment_windows.jpg") repeat 0 100%;
-  background-attachment: fixed;
+.body {
   font: 100%/1.5 "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
 }
 
@@ -82,7 +80,7 @@ p.preview {
 }
 
 p a,h1 a,h2 a,h3 a,h4 a,li a{
-  color: rgb(0,136,204);
+  color: #606060;
   border-bottom: none;
 }
 
@@ -152,12 +150,22 @@ img.beta {
   letter-spacing: 0.03em;
 }
 
+.navbar
+{
+  margin-bottom: 0;
+}
+
 /* Homepage Modal */
 /* -------------- */
 .container.main {
-  margin-top: 50px;
-  margin-bottom: 50px;
+  background:transparent url("apartment_windows.jpg") repeat 0 100%;
+  background-attachment: fixed;
+  margin-left: 0;
+  margin-right: 0;
+  width: 100%;
+  min-height: 500px;
 }
+
 .modal-container {
   background-color: #fbfbfb;
   float: none;
@@ -168,8 +176,6 @@ img.beta {
   -webkit-box-shadow: 0px 0px 20px 1px rgba(0, 0, 0, 0.4);
   box-shadow:         0px 0px 20px 1px rgba(0, 0, 0, 0.4);
 }
-
-div.main-modal { }
 
 div#welcome-line-l {
   position: relative;
@@ -198,7 +204,6 @@ div.pop-categories p a {
 }
 
 div.pop-categories li:not(:last-child):after {
-  /*content: " - ";*/
 }
 
 div.pop-categories li+li:before {
@@ -248,7 +253,6 @@ div.category a:hover{
 
 .category .right{
   font-size: 120%;
-  /*word-spacing: 20px;*/
 }
 
 
@@ -383,8 +387,9 @@ input:hover#query { }
 #footer {
   width: 100%;
   background-color: black;
-  height: 75px;
-  position: absolute;
+  height: 80px;
+  position: relative;
+  bottom: 0;
 }
 
 .cfa-logos {
@@ -393,6 +398,7 @@ input:hover#query { }
   width: 420px;
   margin: 12px;
 }
+
 .cfa-logos a, .cfa-logos a:hover {
   text-decoration: none;
   border: none;
@@ -424,8 +430,6 @@ input:hover#query { }
   background-color: #FFF;
   padding: 30px;
   opacity:1;
-  margin-left: 20px;
-  margin-bottom: 20px;
 }
 
 textarea {
@@ -435,4 +439,44 @@ textarea {
 
 .question-field {
   width: 650px;
+}
+
+.span11.center, .span12.center {
+  margin: 0 auto;
+  float: none;
+}
+
+.span3 {
+  margin-left: 0;
+}
+
+.header > h1 {
+  padding-bottom: 10px;
+  border-bottom: 6px solid #3a9d2f;
+}
+
+li.category-listing {
+  border-bottom: 1px solid #DDD;
+  padding: 20px 0px;
+}
+
+li:last-child.category-listing {
+  border-bottom: none;
+}
+
+li.category-article {
+  margin-bottom: 30px;
+}
+
+li:last-child.category-article {
+  margin-bottom: 0;
+}
+
+ul.categories, ul.category-articles {
+  list-style-type: none;
+}
+
+p.preview {
+  font-weight: 300;
+  font-size: 18px;
 }

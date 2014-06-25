@@ -40,12 +40,12 @@ describe "Articles" do
     end
 
     it "has two articles under the the parking category" do
-      expect(page).to have_css("ul.category-articles li.category-article h3 a", text: "first parking")
-      expect(page).to have_css("ul.category-articles li.category-article h3 a", text: "second parking")
+      expect(page).to have_css("ul.category-articles li.category-article h2 a", text: "first parking")
+      expect(page).to have_css("ul.category-articles li.category-article h2 a", text: "second parking")
     end
 
     it "has one article under the camping category" do
-      expect(page).to have_css("ul.category-articles li.category-article h3 a", text: "just camping")
+      expect(page).to have_css("ul.category-articles li.category-article h2 a", text: "just camping")
     end
 
     it "displays the categories in the sidebar" do

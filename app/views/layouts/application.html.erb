@@ -31,12 +31,11 @@
 
     <%= javascript_include_tag "application" %>
   </head>
-  <body class="body-background">
-
+  <body>
     <div class="navbar navbar-default navbar-inverse">
       <div class="navbar-inner">
         <div class="logo span4">
-          <a class="oakland-logo" href="#">Oakland Answers</a>
+          <%= link_to "Oakland Answers", root_path, class: "oakland-logo" %>
           <span>
             <img src="/assets/beta.png" class="beta" alt="beta">
           </span>
