@@ -1,27 +1,18 @@
-<!-- <div id="navigation">
-  <%= render :partial => 'shared/search_form' %>
-</div> -->
-<div class="page-container">
-  <div class="row">
-    <div class="span9">
-      <div class="main-content">
-        <div class="header">
-          <h1>Listing of All Categories</h1>
-        </div>
-        <ul>
+<div class="row">
+  <div class="span11 center">
+    <div class="main-content">
+      <div class="header">
+        <%= content_tag(:h1, "All Categories") %>
+        <ul class="categories">
           <% @categories.each do |category| %>
             <li class="category-listing">
-              <%= content_tag( :h2, link_to(category.name, category) ) %>
-              <p class="preview"><%= category.description %></p>
-          </li>
+              <%= content_tag(:h1, link_to(category.name,category))%>
+              <p><%= category.description %></p>
+            </li>
           <% end -%>
         </ul>
+
       </div>
-    </div><!-- /span9 -->
-
-    <div class="span3">
-      <%= render :partial => 'shared/categories_sidebar' %>
-    </div><!-- /span3 -->
-
-  </div><!-- /row -->
-</div><!-- /page-container -->
+    </div>
+  </div>
+</div>

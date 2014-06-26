@@ -5,8 +5,9 @@
 
 /* General Styles */
 /* -------------- */
-.body {
+body {
   font: 100%/1.5 "Helvetica Neue", Helvetica, Tahoma, Arial, sans-serif;
+  background-color: black;
 }
 
 /* Fonts */
@@ -163,7 +164,7 @@ img.beta {
   margin-left: 0;
   margin-right: 0;
   width: 100%;
-  min-height: 500px;
+  min-height: 600px;
 }
 
 .modal-container {
@@ -214,7 +215,6 @@ div.pop-categories li {
   display: inline;
   font-size: 120%;
 }
-
 
 p.call {
   font-size: 20px;
@@ -417,6 +417,24 @@ input:hover#query { }
   font-size: 20px;
 }
 
+/* Sidebar */
+.sidebar ul {
+  margin-top: 20px;
+  list-style-type: none;
+  font-size: 18px;
+}
+
+.sidebar li:first-child {
+  margin-bottom: 10px;
+  margin-top: 0px;
+}
+
+.sidebar li {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+
 /* Other pages */
 .page-container {
   background-color: rgba(255, 255, 255, 0.8);
@@ -474,6 +492,10 @@ li:last-child.category-article {
 
 ul.categories, ul.category-articles {
   list-style-type: none;
+}
+
+ul.category-details {
+  margin-top: 30px;
 }
 
 p.preview {
