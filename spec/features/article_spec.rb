@@ -70,6 +70,15 @@ describe "Articles" do
         expect(page).to have_content("Where Can I Park?")
         expect(page).to have_content("Parking in Oakland")
       end
+
+      it "displays the article on the index page after a new article is created" do
+        fill_in("Question", with: "Where Can I Park?")
+        fill_in("Answer", with: "Parking in Oakland")
+        select("parking", from: "Category")
+        click_on("Add")
+        visit articles_path
+        expect(page).to have_content("Where Can I Park?")
+      end
     end
 
     context "when not all required fields are filled out" do

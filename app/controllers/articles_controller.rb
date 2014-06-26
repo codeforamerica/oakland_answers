@@ -17,7 +17,8 @@ class ArticlesController < ApplicationController
   end
 
   def create
-    @article = Article.new(article_params)
+    # All articles will by default be published immediately
+    @article = Article.new(article_params.merge({status: "Published"}))
     if @article.save
       flash[:success] = "New question and answer successfully created"
       redirect_to article_path(@article)
