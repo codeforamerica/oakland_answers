@@ -2,6 +2,7 @@ class Category < ActiveRecord::Base
   extend FriendlyId
   has_many :articles
 
+  validates_presence_of :name
   before_validation :set_access_count_if_nil
 
   friendly_id :name, use: [:slugged, :history]
