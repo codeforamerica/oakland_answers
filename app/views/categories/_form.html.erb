@@ -1,0 +1,8 @@
+<%= form_for category do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name %>
+
+  <%= f.label :description, "Description (optional)" %>
+  <%= f.text_field :description %></br>
+  <%= f.submit "Submit" %>
+<% end %>

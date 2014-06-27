@@ -1,8 +1,6 @@
 require 'spec_helper'
 
 describe ArticlesController do
-  render_views
-
   describe "#show" do
     it "successfully renders an article details page" do
       article = FactoryGirl.create(:article)

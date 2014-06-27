@@ -1,31 +1,49 @@
 class CategoriesController < ApplicationController
   respond_to :json, :html
   def index
-  	@bodyclass = "results"
-
     @categories = Category.by_access_count
     respond_with(@categories)
   end
 
   def show
     @category = Category.friendly.find(params[:id])
-      return render(:template => 'categories/missing') if @category.nil?
-
-    # redirection of old permalinks
-    if request.path != category_path( @category )
-      logger.info "Old permalink: #{request.path}"
-      return redirect_to @category, status: :moved_permanently
-    end
-
     @category.delay.increment! :access_count
-
-    @content_html = BlueCloth.new(@category.name).to_html
-    @bodyclass = "results"
-
     respond_with(@category)
   end
 
-  def missing
-    render :layout => 'missing'
+  def new
+    @category = Category.new
+  end
+
+  def create
+    @category = Category.new(category_params)
+    if @category.save
+      flash[:success] = "New category created"
+      redirect_to category_path(@category)
+    else
+      flash.now[:error] = "Please fill in all required fields"
+      render :new
+    end
+  end
+
+  def edit
+    @category = Category.friendly.find(params[:id])
+  end
+
+  def update
+    @category = Category.friendly.find(params[:id])
+    if @category.update_attributes(category_params)
+      flash[:success] = "Category successfully updated"
+      redirect_to category_path(@category)
+    else
+      flash.now[:error] = "Please fill in all required fields"
+      render :edit
+    end
+  end
+
+  private
+
+  def category_params
+    params.require(:category).permit(:name, :description)
   end
 end

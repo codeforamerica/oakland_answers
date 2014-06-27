@@ -37,4 +37,47 @@ describe 'Categories' do
       expect(page).to have_content("How do I park?")
     end
   end
+
+  describe 'user creates a new category' do
+    it 'redirects to the categories details page when all fields are filled out' do
+      visit new_category_path
+      fill_in("Name", with: "Parking")
+      fill_in("Description (optional)", with: "Yay for parking")
+      click_on("Submit")
+      expect(page).to have_content("Parking")
+    end
+
+    it 'shows an error message and does not redirect if name is not filled out' do
+      visit new_category_path
+      fill_in("Description (optional)", with: "Yay for parking")
+      click_on("Submit")
+      expect(page).to have_content("Please fill in all required fields")
+      expect(page).to have_content("Add a Category")
+    end
+  end
+
+  describe "user edits an existing category" do
+    before do
+      category = FactoryGirl.create(:category)
+      visit edit_category_path(category)
+    end
+
+    context "when all required fields are filled out" do
+      it "displays the category details page after the category has been edited" do
+        fill_in("Name", with: "park")
+        click_on("Submit")
+        expect(page).to have_content("Category successfully updated")
+        expect(page).to have_content("park")
+      end
+    end
+
+    context "when not all required fields are filled out" do
+      it "renders an error message and does not redirect" do
+        fill_in("Name", with: " ")
+        click_on("Submit")
+        expect(page).to have_content("Please fill in all required fields")
+        expect(page).to have_content("Update a Category")
+      end
+    end
+  end
 end
