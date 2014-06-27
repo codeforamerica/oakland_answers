@@ -11,9 +11,9 @@ class Article < ActiveRecord::Base
 
   friendly_id :title, use: [:slugged, :history]
 
-  validates_presence_of :title, :content_main
-
   belongs_to :category
+
+  validates_presence_of :title, :content_main, :category
 
   scope :by_access_count, -> { order('access_count DESC') }
   scope :with_category, lambda { |category| where('categories.name = ?', category).joins(:category) }

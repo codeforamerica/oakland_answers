@@ -31,9 +31,11 @@ describe ArticlesController do
 
   describe "#create" do
     it "redirects when valid params are passed" do
+      category = FactoryGirl.create(:category)
       article_hash = { title: "How to park?",
                        content_main: "This is how you park",
-                       author_name: "Erica Kwan"
+                       author_name: "Erica Kwan",
+                       category_id: category.id
                      }
       expect(post(:create, article: article_hash))
       .to redirect_to article_path(assigns(:article))
