@@ -65,7 +65,7 @@ describe "Articles" do
         fill_in("Question", with: "Where Can I Park?")
         fill_in("Answer", with: "Parking in Oakland")
         select("parking", from: "Category")
-        click_on("Add")
+        click_on("Submit")
         expect(page).to have_content("New question and answer successfully created")
         expect(page).to have_content("Where Can I Park?")
         expect(page).to have_content("Parking in Oakland")
@@ -75,16 +75,24 @@ describe "Articles" do
         fill_in("Question", with: "Where Can I Park?")
         fill_in("Answer", with: "Parking in Oakland")
         select("parking", from: "Category")
-        click_on("Add")
+        click_on("Submit")
         visit articles_path
         expect(page).to have_content("Where Can I Park?")
       end
     end
 
     context "when not all required fields are filled out" do
-      it "renders an error message and does not redirect" do
+      it "renders an error message and does not redirect when a Q&A is not entered" do
         select("parking", from: "Category")
-        click_on("Add")
+        click_on("Submit")
+        expect(page).to have_content("Please fill in all required fields")
+        expect(page).to have_content("Add a Question and Answer")
+      end
+
+      it "renders an error message and does not redirect when a category is not selected" do
+        fill_in("Question", with: "Where Can I Park?")
+        fill_in("Answer", with: "Parking in Oakland")
+        click_on("Submit")
         expect(page).to have_content("Please fill in all required fields")
         expect(page).to have_content("Add a Question and Answer")
       end
@@ -93,7 +101,7 @@ describe "Articles" do
 
   describe "user edits an existing article" do
     before do
-      article = FactoryGirl.create(:article_with_category)
+      article = FactoryGirl.create(:article)
       visit edit_article_path(article)
     end
 
@@ -101,7 +109,7 @@ describe "Articles" do
       it "displays the article details page after the article has been edited" do
         fill_in("Question", with: "Where Can I Park?")
         fill_in("Answer", with: "Parking in Oakland")
-        click_on("Add")
+        click_on("Submit")
         expect(page).to have_content("Question and answer successfully updated")
         expect(page).to have_content("Where Can I Park?")
         expect(page).to have_content("Parking in Oakland")
@@ -111,7 +119,7 @@ describe "Articles" do
     context "when not all required fields are filled out" do
       it "renders an error message and does not redirect" do
         fill_in("Question", with: " ")
-        click_on("Add")
+        click_on("Submit")
         expect(page).to have_content("Please fill in all required fields")
         expect(page).to have_content("Edit Question and Answer")
       end
