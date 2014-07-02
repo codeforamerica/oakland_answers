@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe Article do
   let(:article) { FactoryGirl.create(:article) }
-  before        { allow(Article).to receive(:search_tank) { [article] } }
   subject       { article }
 
   describe '.indexable?' do

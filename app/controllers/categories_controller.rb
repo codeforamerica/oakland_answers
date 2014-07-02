@@ -7,7 +7,7 @@ class CategoriesController < ApplicationController
 
   def show
     @category = Category.friendly.find(params[:id])
-    @category.delay.increment! :access_count
+    @category.increment! :access_count
     respond_with(@category)
   end
 

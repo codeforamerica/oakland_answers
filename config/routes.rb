@@ -10,5 +10,4 @@ Oaklandanswers::Application.routes.draw do
 
   get '/about', to: "home#about" , as: :about
   match '/search/', to: "search#index" , as: :search, via: [:get, :post]
-  get 'autocomplete', to: "search#autocomplete"
 end
