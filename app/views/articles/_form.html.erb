@@ -5,6 +5,18 @@
   <%= f.label :content_main, "Answer" %>
   <%= f.bootsy_area :content_main %>
 
+  <%= f.label :title, "Question - Español (optional)" %>
+  <%= f.text_field :title_es, class: "question-field" %>
+
+  <%= f.label :content_main, "Answer - Español (optional)" %>
+  <%= f.bootsy_area :content_main_es %>
+
+  <%= f.label :title, "Question - 中文 (optional)" %>
+  <%= f.text_field :title_cn, class: "question-field" %>
+
+  <%= f.label :content_main, "Answer - 中文 (optional)" %>
+  <%= f.bootsy_area :content_main_cn %>
+
   <%= label_tag "article_category_id", "Category" %>
   <%= collection_select(:article, :category_id, Category.all, :id, :name, :prompt => 'Please select a category') %>
 

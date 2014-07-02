@@ -15,9 +15,7 @@ class SearchController < ApplicationController
       return
     end
 
-    @results = Article.search_tank(query)
-    Rails.logger.info "search-request: IP:#{request.env['REMOTE_ADDR']}, params[:query]:#{query}, QUERY:#{query}, FIRST_RESULT:#{@results.first.title unless @results.empty?}, RESULTS_N:#{@results.size}"
-
+    @results = Article.search(query).to_a
     respond_with(@results)
   end
 
