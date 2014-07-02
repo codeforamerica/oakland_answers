@@ -11,16 +11,12 @@ gem 'facets', require: false
 gem 'jquery-ui-rails'
 gem 'jquery-rails', '~> 2.3.0'
 
-gem 'delayed_job_active_record'
 gem 'memcachier'
 gem 'dalli'
 gem 'kgio'
 
-gem 'kaminari'
-gem 'tanker'
 gem 'text'
 gem 'json'
-gem 'indextank'
 
 gem 'bluecloth'
 gem 'kramdown'
@@ -28,6 +24,7 @@ gem 'reverse_markdown'
 gem 'friendly_id', '5.0.4'
 gem 'gon'
 gem 'dotenv-rails'
+gem 'textacular'
 
 group :assets do
   gem 'sass-rails', '~> 4.0.3'
