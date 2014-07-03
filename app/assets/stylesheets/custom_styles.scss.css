@@ -364,6 +364,7 @@ input:hover#query { }
   text-decoration:none;
   border: none;
   margin-left: 10px;
+  margin-bottom: 10px;
   -webkit-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
   -moz-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
   box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
@@ -380,6 +381,10 @@ input:hover#query { }
 .btn-search:active, .btn-search:focus {
   background-color: rgb(255,222,77);
   color: black;
+}
+
+#search-info {
+  margin-left: 38px;
 }
 
 /* Footer */
