@@ -159,7 +159,6 @@ img.beta {
 /* Homepage Modal */
 /* -------------- */
 .container.main {
-  background:transparent url("apartment_windows.jpg") repeat 0 100%;
   background-attachment: fixed;
   margin-left: 0;
   margin-right: 0;
