@@ -47,7 +47,7 @@ CREATE TABLE articles (
     access_count integer DEFAULT 0,
     author_name character varying(255),
     author_link character varying(255),
-    type character varying(255),
+    old_type character varying(255),
     render_markdown boolean DEFAULT true,
     content_main text,
     status character varying(255) DEFAULT 'Draft'::character varying,
@@ -359,6 +359,8 @@ INSERT INTO schema_migrations (version) VALUES ('20121107014855');
 INSERT INTO schema_migrations (version) VALUES ('20121107020439');
 
 INSERT INTO schema_migrations (version) VALUES ('20121108074632');
+
+INSERT INTO schema_migrations (version) VALUES ('20130703215958');
 
 INSERT INTO schema_migrations (version) VALUES ('20140527211609');
 
