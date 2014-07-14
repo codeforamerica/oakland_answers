@@ -20,7 +20,7 @@ Oakland Answers is based on [Honolulu Answers](http://answers.honolulu.gov): a n
 
     $ foreman start
 
-    visit http://localhost:5000 in your web browser
+visit http://localhost:5000 in your web browser
 
 ## Deploying to Heroku
 
