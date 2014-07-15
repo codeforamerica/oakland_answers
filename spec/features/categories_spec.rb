@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe 'Categories' do
-  describe 'user views a category page' do
+  describe 'user views a category details page' do
     let(:category) { FactoryGirl.create(:category, name: 'parking', description: 'Foo') }
 
     it 'displays category details' do
@@ -38,7 +38,9 @@ describe 'Categories' do
     end
   end
 
-  describe 'user creates a new category' do
+  describe 'a signed in user creates a new category' do
+    before { allow(User).to receive(:find_by_email) { FactoryGirl.create(:user) } }
+
     it 'redirects to the categories details page when all fields are filled out' do
       visit new_category_path
       fill_in("Name", with: "Parking")
@@ -58,6 +60,7 @@ describe 'Categories' do
 
   describe "user edits an existing category" do
     before do
+      allow(User).to receive(:find_by_email) { FactoryGirl.create(:user) }
       category = FactoryGirl.create(:category)
       visit edit_category_path(category)
     end

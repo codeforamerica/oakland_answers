@@ -10,4 +10,7 @@ Oaklandanswers::Application.routes.draw do
 
   get '/about', to: "home#about" , as: :about
   match '/search/', to: "search#index" , as: :search, via: [:get, :post]
+
+  post 'persona/login' => 'persona#login'
+  post 'persona/logout' => 'persona#logout'
 end

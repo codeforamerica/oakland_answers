@@ -1,4 +1,7 @@
 class CategoriesController < ApplicationController
+  before_action :require_signin
+  skip_before_action :require_signin, only: [:show, :index]
+
   respond_to :json, :html
   def index
     @categories = Category.by_access_count
@@ -16,7 +19,7 @@ class CategoriesController < ApplicationController
   end
 
   def create
-    @category = Category.new(category_params)
+    @category = Category.new(category_params.merge(user: @current_user))
     if @category.save
       flash[:success] = "New category created"
       redirect_to category_path(@category)
@@ -32,7 +35,7 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.friendly.find(params[:id])
-    if @category.update_attributes(category_params)
+    if @category.update_attributes(category_params.merge(user: @current_user))
       flash[:success] = "Category successfully updated"
       redirect_to category_path(@category)
     else
@@ -44,6 +47,12 @@ class CategoriesController < ApplicationController
   private
 
   def category_params
-    params.require(:category).permit(:name, :description)
+    params.require(:category).permit(:name, :description, :user)
+  end
+
+  def require_signin
+    if current_user.nil?
+      redirect_to root_path
+    end
   end
 end

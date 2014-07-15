@@ -31,7 +31,9 @@
           </div>
         </div>
       <% end %>
-      <%= link_to "edit", edit_article_path(@article) %>
+      <% if @current_user.present? %>
+        <%= link_to "edit", edit_article_path(@article) %>
+      <% end %>
     </div>
   </div>
 </div>
