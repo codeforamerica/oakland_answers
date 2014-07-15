@@ -12,6 +12,7 @@
 //
 // loaclhost:3000/?debug_assets=1 > View Page Source -- to view all assets client side loads
 //
+//= require persona
 //= require jquery
 //= require jquery_ujs
 //= require bootsy
