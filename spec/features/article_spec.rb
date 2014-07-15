@@ -9,14 +9,29 @@ describe "Articles" do
                     content_main: content_main)
                   }
 
-    before { visit article_path(article) }
-
     it "displays the article title" do
+      visit article_path(article)
       expect(page).to have_content(title)
     end
 
     it "displays the main content" do
+      visit article_path(article)
       expect(page).to have_content(content_main)
+    end
+
+    describe "when a user is signed in" do
+      it "allows the user to edit the article" do
+        allow(User).to receive(:find_by_email) { FactoryGirl.create(:user) }
+        visit article_path(article)
+        expect(page).to have_content('edit')
+      end
+    end
+
+    describe "when a user is not signed in" do
+      it "does not allow the user to edit the article" do
+        visit article_path(article)
+        expect(page).to_not have_content('edit')
+      end
     end
   end
 
@@ -54,8 +69,9 @@ describe "Articles" do
     end
   end
 
-  describe "user adds a new article" do
+  describe "a signed in user adds a new article" do
     before do
+      allow(User).to receive(:find_by_email) { FactoryGirl.create(:user) }
       FactoryGirl.create(:category, name: "parking")
       visit new_article_path
     end
@@ -99,8 +115,9 @@ describe "Articles" do
     end
   end
 
-  describe "user edits an existing article" do
+  describe "a signed in user edits an existing article" do
     before do
+      allow(User).to receive(:find_by_email) { FactoryGirl.create(:user) }
       article = FactoryGirl.create(:article)
       visit edit_article_path(article)
     end

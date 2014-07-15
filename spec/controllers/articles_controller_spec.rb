@@ -21,53 +21,105 @@ describe ArticlesController do
   end
 
   describe "#new" do
-    it "successfully renders" do
-      get :new
-      expect(response).to have_http_status(:success)
+    describe "when the user is signed in" do
+      let(:user) { FactoryGirl.create(:user) }
+      before     { allow(User).to receive(:find_by_email) { user } }
+
+      it "successfully renders" do
+        get :new
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "when the user is not signed in" do
+      it "redirects to the home page" do
+        expect(get(:new)).to redirect_to(root_url)
+      end
     end
   end
 
   describe "#create" do
-    it "redirects when valid params are passed" do
-      category = FactoryGirl.create(:category)
-      article_hash = { title: "How to park?",
-                       content_main: "This is how you park",
-                       author_name: "Erica Kwan",
-                       category_id: category.id
-                     }
-      expect(post(:create, article: article_hash))
-      .to redirect_to article_path(assigns(:article))
+    let(:category ) { FactoryGirl.create(:category) }
+
+    describe "when the user is signed in" do
+      let(:user) { FactoryGirl.create(:user) }
+      before     { allow(User).to receive(:find_by_email) { user } }
+
+      it "redirects when valid params are passed" do
+        article_hash = { title: "How to park?",
+                         content_main: "This is how you park",
+                         author_name: "Erica Kwan",
+                         category_id: category.id
+                       }
+        expect(post(:create, article: article_hash))
+        .to redirect_to article_path(assigns(:article))
+      end
+
+      it "shows an error when invalid params are passed" do
+        article_hash = { title: " ",
+                         content_main: "This is how you park",
+                         author_name: "Erica Kwan"
+                       }
+        post :create, article: article_hash
+        expect(flash[:error]).to eq "Please fill in all required fields"
+      end
     end
 
-    it "shows an error when invalid params are passed" do
-      article_hash = { title: " ",
-                       content_main: "This is how you park",
-                       author_name: "Erica Kwan"
-                     }
-      post :create, article: article_hash
-      expect(flash[:error]).to eq "Please fill in all required fields"
+    describe "when the user is not signed in" do
+      it "redirects to the home page" do
+        article_hash = { title: "How to park?",
+                         content_main: "This is how you park",
+                         author_name: "Erica Kwan",
+                         category_id: category.id
+                       }
+        expect(post(:create, article: article_hash)).to redirect_to(root_url)
+      end
     end
   end
 
   describe "#edit" do
-    it "successfully renders" do
-      article = FactoryGirl.create(:article)
-      get :edit, id: article.slug
-      expect(response).to have_http_status(:success)
+    let(:article) { FactoryGirl.create(:article) }
+
+    describe "when the user signs in" do
+      let(:user) { FactoryGirl.create(:user) }
+      before     { allow(User).to receive(:find_by_email) { user } }
+
+      it "successfully renders" do
+        get :edit, id: article.slug
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "when the user is not signed in" do
+      it "redirects to the home page" do
+        expect(get(:edit, id: article.slug)).to redirect_to(root_url)
+      end
     end
   end
 
   describe "#update" do
-    it "redirects when valid params are passed" do
-      article = FactoryGirl.create(:article)
-      expect(post(:update, id: article.slug, article: { author_name: "Mow Meowerson" }))
-      .to redirect_to article_path(article)
+    let(:article) { FactoryGirl.create(:article) }
+
+    describe "when the user signs in" do
+      let(:user) { FactoryGirl.create(:user) }
+      before     { allow(User).to receive(:find_by_email) { user } }
+
+      it "redirects when valid params are passed" do
+        expect(post(:update, id: article.slug, article: { author_name: "Mow Meowerson" }))
+        .to redirect_to article_path(article)
+      end
+
+      it "shows an error when invalid params are passed" do
+        post :update, id: article.slug, article: { title: " " }
+        expect(flash[:error]).to eq "Please fill in all required fields"
+      end
     end
 
-    it "shows an error when invalid params are passed" do
-      article = FactoryGirl.create(:article)
-      post :update, id: article.slug, article: { title: " " }
-      expect(flash[:error]).to eq "Please fill in all required fields"
+    describe "when the user is not signed in" do
+      it "redirects to the home page" do
+        expect(post(:update, id: article.slug, article: { author_name: "Mow Meowerson" }))
+        .to redirect_to(root_url)
+      end
     end
   end
 end

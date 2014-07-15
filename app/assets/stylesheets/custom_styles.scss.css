@@ -130,6 +130,7 @@ a.oakland-logo {
   display: inline-block;
   padding-top: 35px;
   margin-top: 5px;
+  margin-right: 260px;
 }
 
 .navbar-inner {
@@ -156,6 +157,13 @@ img.beta {
   margin-bottom: 0;
 }
 
+#sign-in {
+  display: inline-block;
+  float: right;
+  margin-top: 27px;
+  margin-right: 60px;
+}
+
 /* Homepage Modal */
 /* -------------- */
 .container.main {
@@ -167,6 +175,7 @@ img.beta {
 }
 
 .modal-container {
+  width: 770px;
   background-color: #fbfbfb;
   float: none;
   margin: 0 auto;

@@ -1,6 +1,7 @@
 class Category < ActiveRecord::Base
   extend FriendlyId
   has_many :articles
+  belongs_to :user
 
   validates_presence_of :name
   before_validation :set_access_count_if_nil

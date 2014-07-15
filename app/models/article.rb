@@ -12,6 +12,7 @@ class Article < ActiveRecord::Base
   friendly_id :title, use: [:slugged, :history]
 
   belongs_to :category
+  belongs_to :user
 
   validates_presence_of :title, :content_main, :category
 

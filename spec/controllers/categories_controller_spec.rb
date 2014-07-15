@@ -21,46 +21,95 @@ describe CategoriesController do
   end
 
   describe "#new" do
-    it "successfully renders" do
-      get :new
-      expect(response).to have_http_status(:success)
+    describe "when a user is signed in" do
+      let(:user) { FactoryGirl.create(:user) }
+      before     { allow(User).to receive(:find_by_email) { user } }
+
+      it "successfully renders" do
+        get :new
+        expect(response).to have_http_status(:success)
+      end
+    end
+
+    describe "when a user is not signed in" do
+      it "redirects to the home page" do
+        expect(get(:new)).to redirect_to(root_url)
+      end
     end
   end
 
   describe "#create" do
-    it "redirects when valid params are passed" do
-      category_hash = { name: "Parking", description: "Let's Park" }
+    describe "when a user is signed in" do
+      let(:user) { FactoryGirl.create(:user) }
+      before     { allow(User).to receive(:find_by_email) { user } }
 
-      expect(post(:create, category: category_hash))
-      .to redirect_to category_path(assigns(:category))
+      it "redirects when valid params are passed" do
+        category_hash = { name: "Parking", description: "Let's Park" }
+
+        expect(post(:create, category: category_hash))
+        .to redirect_to category_path(assigns(:category))
+      end
+
+      it "shows an error when invalid params are passed" do
+        category_hash = { name: " ", description: "Let's Park" }
+        post :create, category: category_hash
+        expect(flash[:error]).to eq "Please fill in all required fields"
+      end
     end
 
-    it "shows an error when invalid params are passed" do
-      category_hash = { name: " ", description: "Let's Park" }
-      post :create, category: category_hash
-      expect(flash[:error]).to eq "Please fill in all required fields"
+    describe "when a user is not signed in" do
+      it "redirects to the home page" do
+        category_hash = { name: "Parking", description: "Let's Park" }
+
+        expect(post(:create, category: category_hash))
+        .to redirect_to(root_url)
+      end
     end
   end
 
 describe "#edit" do
-  it "successfully renders" do
-    category = FactoryGirl.create(:category)
-    get :edit, id: category.slug
-    expect(response).to have_http_status(:success)
+  let(:category) { FactoryGirl.create(:category) }
+
+  describe "when a user is signed in" do
+    let(:user) { FactoryGirl.create(:user) }
+    before     { allow(User).to receive(:find_by_email) { user } }
+
+    it "successfully renders" do
+      get :edit, id: category.slug
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "when a user is not signed in" do
+    it "redirects to the home page" do
+      expect(get(:edit, id: category.slug)).to redirect_to(root_url)
+    end
   end
 end
 
   describe "#update" do
-    it "redirects when valid params are passed" do
-      category = FactoryGirl.create(:category)
-      expect(post(:update, id: category.slug, category: { description: "meowing" }))
-      .to redirect_to category_path(category)
+    let(:category) { FactoryGirl.create(:category) }
+
+    describe "when a user is signed in" do
+      let(:user) { FactoryGirl.create(:user) }
+      before     { allow(User).to receive(:find_by_email) { user } }
+
+      it "redirects when valid params are passed" do
+        expect(post(:update, id: category.slug, category: { description: "meowing" }))
+        .to redirect_to category_path(category)
+      end
+
+      it "shows an error when invalid params are passed" do
+        post :update, id: category.slug, category: { name: " " }
+        expect(flash[:error]).to eq "Please fill in all required fields"
+      end
     end
 
-    it "shows an error when invalid params are passed" do
-      category = FactoryGirl.create(:category)
-      post :update, id: category.slug, category: { name: " " }
-      expect(flash[:error]).to eq "Please fill in all required fields"
+    describe "when a user is not signed in" do
+      it "redirects to the home page" do
+        expect(post(:update, id: category.slug, category: { description: "meowing" }))
+        .to redirect_to(root_url)
+      end
     end
   end
 end

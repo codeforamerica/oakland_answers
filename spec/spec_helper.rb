@@ -13,7 +13,7 @@ Spork.prefork do
   require 'database_cleaner'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
-    require 'webmock/rspec'
+  require 'webmock/rspec'
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   Capybara.javascript_driver = :webkit

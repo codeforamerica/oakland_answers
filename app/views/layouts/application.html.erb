@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "Oakland Answers" %></title>
+    <script src="https://login.persona.org/include.js"></script>
+    <script type="text/javascript">
+      var currentUser = <% if session[:email] %>'<%= session[:email] %>'<% else %>null<% end %>;
+    </script>
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag "application", :media => "all" %>
@@ -40,16 +45,26 @@
   <body>
     <div class="navbar navbar-default navbar-inverse">
       <div class="navbar-inner">
+        <div class="row">
         <div class="logo span4">
           <%= link_to "Oakland Answers", root_path, class: "oakland-logo" %>
           <span>
             <img src="/assets/beta.png" class="beta" alt="beta">
           </span>
         </div>
-        <ul class="nav nav-links">
-          <li><%= link_to "Browse Q&A's", articles_path %></li>
-          <li><%= link_to "Create a New Q&A", new_article_path %></li>
-        </ul>
+            <ul class="nav nav-links span5">
+              <li><%= link_to "Browse Q&A's", articles_path %></li>
+              <% if @current_user.present? %>
+                <li><%= link_to "Create a New Q&A", new_article_path %></li>
+              <% end %>
+            </ul>
+          <form id="sign-in">
+            <% if @current_user.present? %>
+              <input type="button" class="btn" id="signout" value="Sign out">
+            <% else %>
+              <input type="button" class="btn" id="signin" value="Sign in">
+            <% end %>
+          </form>
       </div>
     </div>
 
@@ -73,6 +88,18 @@
           <a href="http://www2.oaklandnet.com"><img src="/assets/OaklandCityTree.png" class="right" alt="City of Oakland" /></a>
         </div>
     </div>
+
+    <script type="text/javascript">
+      var signinLink = document.getElementById('signin');
+      if (signinLink) {
+        signinLink.onclick = function() { navigator.id.request(); };
+      }
+
+      var signoutLink = document.getElementById('signout');
+      if (signoutLink) {
+        signoutLink.onclick = function() { navigator.id.logout(); };
+      }
+    </script>
 
   </body>
 </html>
