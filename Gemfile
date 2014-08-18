@@ -45,7 +45,6 @@ group :development do
 end
 
 group :test, :development do
-  gem 'coveralls', require: false
   gem 'factory_girl_rails'
   gem 'faker'
   gem 'memcached'

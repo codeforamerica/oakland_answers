@@ -1,14 +1,8 @@
 ENV["RAILS_ENV"] ||= 'test'
-require 'coveralls'
-Coveralls.wear!('rails')
 
 require 'spork'
 
 Spork.prefork do
-  unless ENV['DRB']
-    SimpleCov.start 'rails'
-  end
-
   require 'capybara/rspec'
   require 'database_cleaner'
   require File.expand_path("../../config/environment", __FILE__)
@@ -37,11 +31,5 @@ Spork.prefork do
     config.after(:each) do
       DatabaseCleaner.clean
     end
-  end
-end
-
-Spork.each_run do
-  if ENV['DRB']
-    SimpleCov.start 'rails'
   end
 end
